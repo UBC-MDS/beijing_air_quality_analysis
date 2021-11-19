@@ -1,70 +1,45 @@
 ---
-title: "Exploratory data analysis of the Wisconsin Breast Cancer data set"
+title: "Exploratory data analysis of Beijing air quality data set"
 output: github_document
-bibliography: ../doc/breast_cancer_refs.bib
+bibliography: ../doc/air_quality_refs.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
-library(feather)
 library(tidyverse)
 library(knitr)
-library(caret)
-library(ggridges)
 library(ggthemes)
+library(here)
 theme_set(theme_minimal())
 set.seed(2020)
 ```
 
 # Summary of the data set
 
-```{r load data}
-bc_data <- read_feather("../data/raw/wdbc.feather")
-colnames(bc_data) <- c("id",
-                      "class",
-                      "mean_radius",
-                      "mean_texture",
-                      "mean_perimeter", 
-                      "mean_area",
-                      "mean_smoothness",
-                      "mean_compactness",
-                      "mean_concavity",
-                      "mean_concave_points",
-                      "mean_symmetry",
-                      "mean_fractal_dimension",
-                      "se_radius",
-                      "se_texture",
-                      "se_perimeter", 
-                      "se_area",
-                      "se_smoothness",
-                      "se_compactness",
-                      "se_concavity",
-                      "se_concave_points",
-                      "se_symmetry",
-                      "se_fractal_dimension",
-                      "max_radius",
-                      "max_texture",
-                      "max_perimeter", 
-                      "max_area",
-                      "max_smoothness",
-                      "max_compactness",
-                      "max_concavity",
-                      "max_concave_points",
-                      "max_symmetry",
-                      "max_fractal_dimension")
-n_nas <- nrow(bc_data) - (drop_na(bc_data) %>% tally())
+## Data Import
+
+```{r load_data}
+csv_list <- dir(here("data", "raw"))
+
+air_data <- data.frame()
+for (file_name in csv_list) {
+        air_data <-
+                rbind(air_data, 
+                      read_csv(here("data", "raw", file_name), show_col_types = FALSE))
+}
+
+head(air_data)
 ```
 
+The data set used in this project is an hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from March 1st, 2013 to February 28th, 2017. The air-quality data are from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
 
-The data set used in this project is of digitized breast cancer image features created by Dr. William H. Wolberg, W. Nick Street, and Olvi L. Mangasarian at the University of Wisconsin, Madison [@Streetetal].  It was sourced from the UCI Machine Learning Repository [@Dua2019] and can be found [here](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)), specifically [this file](http://mlr.cs.umass.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data). Each row in the data set represents summary statistics from measurements of an image of a tumour sample, including the diagnosis (benign or malignant) and several other measurements (e.g., nucleus texture, perimeter, area, etc.). Diagnosis for each image was conducted by physicians. There are `r nrow(bc_data)` observations in the data set, and `r ncol(bc_data) - 1` features. There are `r n_nas` observations with missing values in the data set. Below we show the number of each observations for each of the classes in the data set. 
+Each row in the data set represents a measurements of air pollutants (e.g., PM2.5, PM10, CO) at specific date and time in 12 different district in Beijing, including Aotizhongxin, Changping, Dingling and so on. The meteorological data in each air-quality site are matched with the nearest weather station from the China Meteorological Administration.. There are `r nrow(air_data)` observations in the data set, and `r ncol(air_data) - 1` features. Below we show the structure of each features in the data set.
 
-```{r class counts}
-kable(summarise(bc_data,
-                `Benign cases` = sum(class  == "B"),
-                `Malignant cases` = sum(class  == "M")),
-      caption = "Table 1. Counts of observation for each class.")
+## Study the data
+
+```{r study_data}
+str(air_data)
 ```
-
 
 # Partition the data set into training and test sets
 
