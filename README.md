@@ -25,15 +25,14 @@ We analyse the `Beijing Air Quality` data set, donated to the UC Irvine Machine 
 
 # References
 
-::: {#refs .references}
-<div>
+::: {#refs .references} <div>
 
-Whaley P, Nieuwenhuijsen M, Burns J. 2021. "Update of the WHO global air quality
-guidelines: systematic reviews". In *Environ Int.* 142(Special issue) (https://www.sciencedirect.com/journal/environment-international/special-issue/10MTC4W8FXJ)
+Whaley P, Nieuwenhuijsen M, Burns J. 2021. "Update of the WHO global air quality guidelines: systematic reviews". In *Environ Int.* 142(Special issue) (<https://www.sciencedirect.com/journal/environment-international/special-issue/10MTC4W8FXJ>)
 
-Yu-Fei Xing, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. "The impact of PM2.5 on the human respiratory system". In *Journal of Thoracic Disease.* 8(1): E69--E74. (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4740125/)
+Yu-Fei Xing, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. "The impact of PM2.5 on the human respiratory system". In *Journal of Thoracic Disease.* 8(1): E69--E74. (<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4740125/>)
 
-Wang, Shuxiao, and Hao, Jiming. 2012. "Air quality management in China: Issues, challenges, and options." In *Journal of Environmental Sciences*. 24(1). (https://www.sciencedirect.com/science/article/abs/pii/S1001074211607249)
+Wang, Shuxiao, and Hao, Jiming. 2012. "Air quality management in China: Issues, challenges, and options." In *Journal of Environmental Sciences*. 24(1). (<https://www.sciencedirect.com/science/article/abs/pii/S1001074211607249>)
 
 </div>
+
 :::
