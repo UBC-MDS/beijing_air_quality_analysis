@@ -1,15 +1,14 @@
 ---
 title: "Exploratory data analysis of Beijing air quality data set"
 output: github_document
-bibliography: ../doc/air_quality_refs.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
+library(here)
 library(tidyverse)
 library(knitr)
 library(ggthemes)
-library(here)
 theme_set(theme_minimal())
 set.seed(2020)
 ```
@@ -19,7 +18,7 @@ set.seed(2020)
 ## Data Import
 
 ```{r load_data}
-csv_list <- dir(here("data", "raw"))
+csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
 
 air_data <- data.frame()
 for (file_name in csv_list) {
