@@ -23,9 +23,9 @@ We analyse the `Beijing Air Quality` data set, donated to the UC Irvine Machine 
 
 We will combine sub data-sets, which were collected from twelve testing locations in Beijing, into one data frame, and then split this data frame into two samples based on time frames below.
 
--   Sample_A: air quality data from March 1st 2013 - March 1st 2015
+-   Sample_A: air quality data from March 2013 - February 2015
 
--   Sample_B: air quality data from March 2nd 2015 - February 28th 2017
+-   Sample_B: air quality data from March 2015 - February 2017
 
 **Hypothesis Testing:**
 
