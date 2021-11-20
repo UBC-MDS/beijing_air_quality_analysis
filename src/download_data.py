@@ -1,46 +1,54 @@
-# author: Tiffany Timbers
-# date: 2019-12-18
+# author: Macy Chan
+# date: 2021-11-19
 
-"""Downloads data csv data from the web to a local filepath as either a csv or feather file format.
+"""Downloads data from the web and unzip the data.
 
-Usage: src/down_data.py --out_type=<out_type> --url=<url> --out_file=<out_file>
+Usage: src/down_data.py --url=<url> --out_folder=<out_folder>
 
 Options:
---out_type=<out_type>    Type of file to write locally (script supports either feather or csv)
 --url=<url>              URL from where to download the data (must be in standard csv format)
---out_file=<out_file>    Path (including filename) of where to locally write the file
+--out_folder=<out_folder>    Folder of where to locally unzip the file (e.g. data/raw)
 """
-  
+
 from docopt import docopt
 import requests
 import os
 import pandas as pd
-import feather
+from urllib.request import urlopen
+from zipfile import ZipFile
 
 opt = docopt(__doc__)
 
-def main(out_type, url, out_file):
-  try: 
-    request = requests.get(url)
-    request.status_code == 200
-  except Exception as req:
-    print("Website at the provided url does not exist.")
-    print(req)
-    
-  data = pd.read_csv(url, header=None)
-  
-  if out_type == "csv":
+
+def unzip(url, out_folder):
     try:
-      data.to_csv(out_file, index = False)
-    except:
-      os.makedirs(os.path.dirname(out_file))
-      data.to_csv(out_file, index = False)
-  elif out_type == "feather":
-    try:  
-      feather.write_dataframe(data, out_file)
-    except:
-      os.makedirs(os.path.dirname(out_file))
-      feather.write_dataframe(data, out_file)
+        print("Unzipping file...")
+        zipresp = urlopen(url)
+        tempzip = open("/tmp/tempfile.zip", "wb")
+        tempzip.write(zipresp.read())
+        tempzip.close()
+        zf = ZipFile("/tmp/tempfile.zip")
+        zf.extractall(path=out_folder)
+        zf.close()
+        print(f"Finished unzipping file to {os.getcwd()}/{out_folder}")
+    except Exception as req:
+        print("Failed unzip file.")
+        print(req)
+
+
+def main(url, out_folder):
+    print("Checking URL connection...")
+    try:
+        request = requests.get(url)
+        if request.status_code == 200:
+            if not os.path.exists(os.getcwd() + "/" + out_folder):
+                os.makedirs(out_folder + "/")
+        unzip(url, out_folder)
+
+    except Exception as req:
+        print("Website at the provided url is invalid.")
+        print(req)
+
 
 if __name__ == "__main__":
-  main(opt["--out_type"], opt["--url"], opt["--out_file"])
+    main(opt["--url"], opt["--out_folder"])
