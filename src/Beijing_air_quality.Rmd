@@ -8,7 +8,10 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
 library(here)
 library(tidyverse)
 library(knitr)
+library(ggplot2)
 library(ggthemes)
+library(scales)
+library(cowplot)
 theme_set(theme_minimal())
 set.seed(2020)
 ```
@@ -34,9 +37,9 @@ for (file_name in csv_list) {
 head(air_data)
 ```
 
-The data set used in this project is an hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from March 1st, 2013 to February 28th, 2017. The air-quality data are from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
+The data set used in this project is an hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from 1 March 2013 to 28 February 2017. The air-quality data is from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
 
-Each row in the data set represents a measurements of air pollutants (e.g., PM2.5, PM10, CO) at specific date and time in 12 different district in Beijing, including Aotizhongxin, Changping, Dingling and so on. The meteorological data in each air-quality site are matched with the nearest weather station from the China Meteorological Administration.. There are `r nrow(air_data)` observations in the data set, and `r ncol(air_data) - 1` features. Below we show the structure of each features in the data set.
+Each row in the data set represents a measurements of air pollutants (e.g., PM2.5, PM10, CO) at specific date and time in 12 different district in Beijing, including Aotizhongxin, Changping, Dingling and so on. The meteorological data in each air-quality site are matched with the nearest weather station from the China Meteorological Administration. There are `420,768` observations in the data set, and `18` features. Below we show the structure of each features in the data set.
 
 ## Study the data
 
@@ -44,56 +47,75 @@ Each row in the data set represents a measurements of air pollutants (e.g., PM2.
 str(air_data)
 ```
 
-# Partition the data set into training and test sets
+# Data Wrangling 
 
-Before proceeding further, we will split the data such that 75% of observations are in the training and 25% of observations are in the test set. Below we list the counts of observations for each class:
+We are interested to determine how PM2.5 has changed over two time periods - between March 1 2013 to Feb 28 2015, and March 1 2015 to Feb 28 2017. As such, we will drop all irrelevant columns, and only keep year, month, PM2.5. We have also created a derived column 'class', which will act as our target variable.
 
-```{r split data}
-# # drop id and convert class to factor
-# bc_data <- bc_data %>% 
-#     select(-id) %>% 
-#     mutate(class = as.factor(class))
-#   
-# # split into training and test data sets
-# training_rows <- bc_data %>% 
-#     select(class) %>% 
-#     pull() %>%
-#     createDataPartition(p = 0.75, list = FALSE)
-# training_data <- bc_data %>% slice(training_rows)
-# test_data <- bc_data %>% slice(-training_rows)
-# 
-# train_counts <- summarise(training_data,
-#                           `Data partition` = "Training",
-#                           `Benign cases` = sum(class  == "B"),
-#                           `Malignant cases` = sum(class  == "M"))
-# test_counts <- summarise(test_data,
-#                          `Data partition` = "Test",
-#                          `Benign cases` = sum(class  == "B"),
-#                          `Malignant cases` = sum(class  == "M"))
-# kable(bind_rows(train_counts, test_counts),
-#       caption = "Table 2. Counts of observation for each class for each data partition.")
+```{r data wrangling}
+air_data_processed <- air_data |>
+  select(year, month, PM2.5)
 ```
 
-There is a minor class imbalance, but it is not so great that we will plan to immediately start our modeling plan with over- or under-sampling. If during initial tuning, there are indicators that it may in fact be a greater problem than anticipated (e.g., if the confusion matrix indicates that the model makes a lot more mistakes on the minority class, here malignant cases) then we will only then start to explore whether empoying techniques to address class imbalance may be of help to improving model performance in regards to predicting the minority class.
+```{r Creating new column called class and re-binding it}
+# Isolate Sample A
+sample_A_2015 <- air_data_processed |>
+  filter(year == 2015,
+         month <= 2)
+
+Sample_A_2013_2014 <- air_data_processed |>
+  filter(year >= 2013 & year <= 2014)
+
+Sample_A <- rbind(Sample_A_2013_2014,sample_A_2015) |>
+  mutate(class = 'Sample_A')
+
+# Isolate Sample B
+sample_B_2015 <- air_data_processed |>
+  filter(year == 2015,
+         month > 2)
+
+Sample_B_2016_2017 <- air_data_processed |>
+  filter(year>2015)
+
+Sample_B <- rbind(sample_B_2015, Sample_B_2016_2017) |>
+  mutate(class = 'Sample_B')
+
+# Processed Dataframe
+air_data_processed <- rbind(Sample_A, Sample_B)
+air_data_processed
+```
+
+Figure 1. Processed dataset with new derived column (sample).
 
 # Exploratory analysis on the training data set
 
-To look at whether each of the predictors might be useful to predict the tumour class, we plotted the distributions of each predictor from the training data set and coloured the distribution by class (benign: blue and malignant: orange). In doing this we see that class distributions for all of the mean and max predictors for all the measurements overlap somewhat, but do show quite a difference in their centres and spreads. This is less so for the standard error (se) predictors. In particular, the standard errors of fractal dimension, smoothness, symmetry and texture look very similar in both the distribution centre and spread. Thus, we might choose to omit these from our model.
+We will perform exploratory data analysis steps to highlight the distribution of PM2.5 data points for both sample A and sample B.
 
-```{r predictor distributions, fig.width=8, fig.height=10, fig.cap="Distribution of training set predictors for the benign (B) and malignant (M) tumour cases."}
-# training_data %>% 
-#   gather(key = predictor, value = value, -class) %>% 
-#   mutate(predictor = str_replace_all(predictor, "_", " ")) %>% 
-#   ggplot(aes(x = value, y = class, colour = class, fill = class)) +
-#       facet_wrap(. ~ predictor, scale = "free", ncol = 4) +
-#       geom_density_ridges(alpha = 0.8) +
-#       scale_fill_tableau() +
-#       scale_colour_tableau() +
-#       guides(fill = FALSE, color = FALSE) +
-#       theme(axis.title.x = element_blank(),
-#             axis.title.y = element_blank())
+```{r EDA boxplot and density plot}
+sample_A_B_boxplot <- air_data_processed |>
+  group_by(class) |>
+  ggplot(aes(x=PM2.5, y=class, fill = class)) +
+  geom_boxplot(names=c('Sample A', 'Sample B')) +
+  geom_point(stat = 'summary', fun = 'mean', color = 'black') +
+  labs(title = 'Sample A has a higher median and mean value than Sample B',
+       subtitle = 'Both Sample A and Sample B are heavily right skewed') +
+  theme(axis.title.y=element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x=element_blank(),
+        axis.text.x = element_blank())
+
+sample_A_B_distribution <- air_data_processed |>
+  group_by(class) |>
+  ggplot(aes(x=PM2.5, fill = class)) +
+  geom_density(alpha = 0.4) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+plot_grid(sample_A_B_boxplot, sample_A_B_distribution, ncol=1)
+
 ```
 
-Figure 1. Distribution of training set predictors for the benign (B) and malignant (M) tumour cases.
+Figure 2. Boxplot and Density plot for both samples' PM2.5 distribution. (Black dot represents the mean PM2.5 value of each sample).
 
-# References
+Both samples are heavily right skewed. Sample A has a higher median and mean PM2.5 value than Sample B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
