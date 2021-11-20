@@ -4,7 +4,7 @@ editor_options:
     wrap: 72
 ---
 
-# Beijing Air Quality Analysis
+# Beijing Air Quality Analysis Proposal
 
 -   Authors: Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
 
@@ -45,7 +45,7 @@ harmful for its ability to penetrate deep into the lungs and cause
 long-lasting damage to the respiratory system (J Thorac Dis. 2016 Jan;
 8(1): E69--E74).
 
-## Method
+## Methods
 
 **Data Wrangling:**
 
@@ -56,6 +56,9 @@ frame into two samples based on time frames below.
 -   Sample_A: air quality data from March 2013 - February 2015
 
 -   Sample_B: air quality data from March 2015 - February 2017
+
+New Column 'Class' will be created to classify each observation as
+either Sample_A or Sample_B (during exploratory data analysis)
 
 **Hypothesis Testing:**
 
@@ -74,6 +77,24 @@ demonstrate the unique patterns and distributions of PM2.5 data points
 for each sample as well as visualization to compare/contrast two
 samples. Then we will decide the suitable tests and estimators to answer
 our question from the exploratory steps.
+
+**Results Interpretation:**
+
+We will demonstrate the results in both tables and visualization, for
+example:
+
+Previewing the data set by outputting top rows of the imported data
+frame.
+
+Creating figures, such as histogram, violin plot and so forth, to
+visualize and compare the distribution as well as any possible outliers
+of two samples.
+
+Highlighting test statistic values and significance threshold with
+shaded bar plot
+
+Summarizing each figure with brief conclusion and providing insightful
+explanation for the observed characteristics in organized paragraphs.
 
 ## Usage
 
