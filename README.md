@@ -47,54 +47,78 @@ long-lasting damage to the respiratory system (J Thorac Dis. 2016 Jan;
 
 ## Methods
 
-**Data Wrangling:**
+### Sub Exploratory Questions:
+
+1.  How does the distribution of air quality data observations look
+    like? Are they normally distributed?
+2.  If we splited the data into sub data sets based on time frames, will
+    there be any overlap in the 95% confidence interval ranges of the
+    samples?
+
+In order to explore the data set while answering the sub questions, we
+will perform further steps as below to get better understanding for the
+main question.
+
+### **Data Wrangling:**
 
 We will combine sub data-sets, which were collected from twelve testing
 locations in Beijing, into one data frame, and then split this data
 frame into two samples based on time frames below.
 
--   Sample_A: air quality data from March 2013 - February 2015
+-   time_A: air quality data from March 2013 - February 2015
 
--   Sample_B: air quality data from March 2015 - February 2017
+-   time_B: air quality data from March 2015 - February 2017
 
-New Column 'Class' will be created to classify each observation as
-either Sample_A or Sample_B (during exploratory data analysis)
-
-**Hypothesis Testing:**
+### **Hypothesis Testing:**
 
 Given that we have good sample size for both samples and the data points
-are independent, we plan to perform hypothesis testing to estimate the
-difference in parameters/sample estimates of two samples.
+are independent, we will perform a hypothesis test to determine whether
+there is statistical evidence to indicate an improvement in PM2.5
+measurements in Beijing between 2013 and year 2017.
 
-\- Null Hypothesis: The sample estimates of Sample_A and Sample_B are
-equal.
+\- Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from
+time_B does not show any sign of improvement comparing to time_A. (Point
+estimate of PM2.5 in time_A is equal to the point estimate of PM2.5 in
+time_B)
 
-\- Alternative Hypothesis: The sample estimates of Sample_A and Sample_B
-are NOT equal .
+\- Alternative Hypothesis($H_A$): The measurement of PM2.5 in Beijing
+from time_B shows an improvement comparing to time_A. (Point estimate of
+PM2.5 in time_A is **greater** than the point estimate of PM2.5 in
+time_B)
 
 We will perform exploratory data analysis steps to identify and
 demonstrate the unique patterns and distributions of PM2.5 data points
-for each sample as well as visualization to compare/contrast two
-samples. Then we will decide the suitable tests and estimators to answer
-our question from the exploratory steps.
+for time_A and time_B data sets, and then make the decision on
+corresponding tests and estimators to answer our inferential question
+from the introduction.
 
-**Results Interpretation:**
+**Exploratory approaches:**
 
-We will demonstrate the results in both tables and visualization, for
-example:
+-   Creating figures, such as histogram, boxplot plot, density plot and
+    so forth, to visualize and contrast the distribution of time_A and
+    time_B. These plots help us to spot whether the samples are normally
+    distributed or skewed in each data set and allow us to pick the
+    feasible estimator.
 
-Previewing the data set by outputting top rows of the imported data
-frame.
+-   Creating sub data frames, such as yearly medians/means of PM2.5 to
+    get a general idea of the value range.
 
-Creating figures, such as histogram, violin plot and so forth, to
-visualize and compare the distribution as well as any possible outliers
-of two samples.
+### **Results Interpretation:**
 
-Highlighting test statistic values and significance threshold with
-shaded bar plot
+Demonstrations of the results will be in three forms, tabular data
+frame, labeled visualization as well as text explanation.
 
-Summarizing each figure with brief conclusion and providing insightful
-explanation for the observed characteristics in organized paragraphs.
+**examples:**
+
+-   Outputting top rows of the imported data frame as a data set
+    preview.
+
+-   Highlighting test statistic values and significance threshold with
+    shaded bar plot
+
+-   Summarizing each figure with brief conclusion and providing
+    insightful explanation for the observed characteristics in organized
+    paragraphs.
 
 ## Usage
 
