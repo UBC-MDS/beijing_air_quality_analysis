@@ -47,40 +47,17 @@ Each row in the data set represents a measurements of air pollutants (e.g., PM2.
 str(air_data)
 ```
 
-# Data Wrangling 
+# Data Wrangling
 
-We are interested to determine how PM2.5 has changed over two time periods - between March 1 2013 to Feb 28 2015, and March 1 2015 to Feb 28 2017. As such, we will drop all irrelevant columns, and only keep year, month, PM2.5. We have also created a derived column 'class', which will act as our target variable.
+We are interested to determine how PM2.5 has changed over two time periods - between March 1 2013 to Feb 28 2015, and March 1 2015 to Feb 28 2017. As such, we will drop all irrelevant columns, and only kept year, month, PM2.5. We have also created a derived column 'class', which will act as our target variable.
 
-```{r data wrangling}
+```{r testing out}
 air_data_processed <- air_data |>
-  select(year, month, PM2.5)
-```
+  select(year, month, PM2.5) |>
+  mutate(class = ifelse((year >=2013 & year <=2014) | (year == 2015 & month <=2),
+                        'Sample_A',
+                        'Sample_B'))
 
-```{r Creating new column called class and re-binding it}
-# Isolate Sample A
-sample_A_2015 <- air_data_processed |>
-  filter(year == 2015,
-         month <= 2)
-
-Sample_A_2013_2014 <- air_data_processed |>
-  filter(year >= 2013 & year <= 2014)
-
-Sample_A <- rbind(Sample_A_2013_2014,sample_A_2015) |>
-  mutate(class = 'Sample_A')
-
-# Isolate Sample B
-sample_B_2015 <- air_data_processed |>
-  filter(year == 2015,
-         month > 2)
-
-Sample_B_2016_2017 <- air_data_processed |>
-  filter(year>2015)
-
-Sample_B <- rbind(sample_B_2015, Sample_B_2016_2017) |>
-  mutate(class = 'Sample_B')
-
-# Processed Dataframe
-air_data_processed <- rbind(Sample_A, Sample_B)
 air_data_processed
 ```
 
@@ -116,6 +93,6 @@ plot_grid(sample_A_B_boxplot, sample_A_B_distribution, ncol=1)
 
 ```
 
-Figure 2. Boxplot and Density plot for both samples' PM2.5 distribution. (Black dot represents the mean PM2.5 value of each sample).
+Figure 2. Boxplot and Density plot for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample).
 
 Both samples are heavily right skewed. Sample A has a higher median and mean PM2.5 value than Sample B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
