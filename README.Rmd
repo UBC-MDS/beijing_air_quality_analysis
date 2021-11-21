@@ -1,3 +1,6 @@
+---
+output: github_document
+---
 # Beijing Air Quality Analysis
 
 -   Authors: Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
