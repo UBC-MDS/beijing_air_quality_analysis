@@ -20,7 +20,7 @@ set.seed(2020)
 
 ## Data Import
 
-Data are downloaded and unzipped by [python script](./download_data.py). 12 csv files are used in this project. All in the same format with one file representing one Beijing district. All data are combined and stored in`air_data`.
+The data is downloaded and unzipped by [python script](./download_data.py). 12 csv files are used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites. They are all in the same format, and are merged and stored in `air_data`.
 
 ```{r load data}
 csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
@@ -57,36 +57,67 @@ missing_values <- data.frame(apply(is.na(air_data), 2, sum))
 missing_values <- cbind(
         missing_values,
         c(
-                'row number',
-                'year of data in this row',
-                'month of data in this row',
-                'day of data in this row',
-                'hour of data in this row',
+                'Row number',
+                'Year of data in this row',
+                'Month of data in this row',
+                'Day of data in this row',
+                'Hour of data in this row',
                 'PM2.5 concentration (ug/m^3)',
                 'PM10 concentration (ug/m^3)',
                 'SO2 concentration (ug/m^3)',
                 'NO2 concentration (ug/m^3)',
                 'CO concentration (ug/m^3)',
                 'O3 concentration (ug/m^3)',
-                'temperature (degree Celsius)',
-                'pressure (hPa)',
-                'dew point temperature (degree Celsius)',
-                'precipitation (mm)',
-                'wind direction',
-                'wind speed (m/s)',
-                'name of the air-quality monitoring site'
+                'Temperature (degree Celsius)',
+                'Pressure (hPa)',
+                'Dew point temperature (degree Celsius)',
+                'Precipitation (mm)',
+                'Wind direction',
+                'Wind speed (m/s)',
+                'Name of the air-quality monitoring site'
         )
 )
 
-colnames(missing_values) <- c("# of missing values", "description")
+colnames(missing_values) <- c("# of missing values", "Description")
 
 missing_values <-
-        missing_values |> select("description", "# of missing values")
+        missing_values |> select("Description", "# of missing values")
 
 knitr::kable(missing_values, "pipe")
 ```
 
-(Histogram + short description)
+As we are interested to determine how PM2.5 levels have changed, we would like to see if there are any micro changes associated with how these levels shift across hours and months.
+
+```{r data summary year}
+summary_by <- function(col) {
+        air_data_summary <- air_data |>
+                group_by( {{ col }} ) |>
+                summarise(mean := round(mean(PM2.5, na.rm = TRUE)),
+                          min := round(min(PM2.5, na.rm = TRUE)),
+                          max := round(max(PM2.5, na.rm = TRUE))
+                                  )
+        
+        air_data_summary_transpose <-
+                as.data.frame(t(as.matrix(air_data_summary)), row.names = c('year','mean','min', 'max'))
+        
+        names(air_data_summary_transpose) <- lapply(air_data_summary_transpose[1, ], as.character)
+        air_data_summary_transpose <- air_data_summary_transpose[-1,] 
+
+        air_data_summary_transpose
+}
+
+knitr::kable(summary_by(month), "pipe")
+```
+
+*Figure 1. Table of Sample mean of PM2.5 by month*
+
+```{r data summary month}
+knitr::kable(summary_by(hour), "pipe")
+```
+
+*Figure 2. Table of Sample mean of PM2.5 by hour*
+
+As seen by the histogram, there are variations in the PM2.5 levels across the time of the day and the month of the year. It is especially curious that the PM2.5 levels appear to be lower from 0600 to 1700hrs as we would expect there to more exhaust released by both factories and vehicles. Moreover, the mean levels of PM2.5 level is at the lowest in May and August. These are some possible questions that we can explore in our further analysis.
 
 # Data Wrangling
 
@@ -95,6 +126,7 @@ We are interested to determine how PM2.5 has changed over two time periods - bet
 ```{r spilt data}
 air_data_processed <- air_data |>
   select(year, month, PM2.5) |>
+  drop_na(PM2.5) |>
   mutate(class = ifelse((year >=2013 & year <=2014) | (year == 2015 & month <=2),
                         'time_A',
                         'time_B'))
@@ -102,84 +134,89 @@ air_data_processed <- air_data |>
 air_data_processed
 ```
 
-```{r data summary year}
-summary_by <- function(col) {
-        air_data_summary <- air_data_processed |>
-                group_by( {{ col }} ) |>
-                summarise(mean := round(mean(PM2.5, na.rm = TRUE)))
-        
-        air_data_summary_transpose <-
-                as.data.frame(t(as.matrix(air_data_summary$mean)), row.names = 'mean')
-        
-        colnames(air_data_summary_transpose) <-
-                unlist(air_data_summary[1])
-        
-        air_data_summary_transpose
-}
-
-knitr::kable(summary_by(year), "pipe")
-```
-
-Figure 1. Table of Sample mean of PM2.5 by year
-
-```{r data summary month}
-knitr::kable(summary_by(month), "pipe")
-```
-
-Figure 2. Table of Sample mean of PM2.5 by month
-
 # Exploratory analysis on the training data set
 
 We will perform exploratory data analysis steps to highlight the distribution of PM2.5 data points for both sample A and sample B.
 
-## Heading
+## Distribution of data points for each class
 
-(hist?)
+```{r counts for each class}
+time_A_sum <- sum(air_data_processed$class == 'time_A')
+time_B_sum <- sum(air_data_processed$class == 'time_B')
+
+table_distribution_count <- data.frame(Class = c('time_A', 'time_B'),
+                                       'Sum of rows' = c(time_A_sum, time_B_sum))
+
+knitr::kable(table_distribution_count, 'pipe')
+
+```
+
+*Figure 3. Table of sum of rows in each class.*
+
+Both classes are equally distributed. As such, we are not concerned about class imbalance which could lead to non-statistical parity.
+
+## Distribution of PM2.5 levels across time_A and time_B
+
+Having verified that both classes are balanced, we move on to observe the distribution between both time_A and time_B.
 
 ```{r EDA hisogram plot}
 sample_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
-  geom_boxplot(names=c('Sample A', 'Sample B')) +
+  geom_boxplot(names=c('time_A', 'time_B'), 
+               outlier.alpha = 0.1,
+               outlier.fill = NULL) +
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
-  labs(title = 'Sample A has a higher median and mean value than Sample B',
-       subtitle = 'Both Sample A and Sample B are heavily right skewed') +
+  labs(title = 'time_A has a higher median and mean value than time_B',
+       subtitle = 'Both time_A and time_B are heavily right skewed') +
   theme(axis.title.y=element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
         axis.title.x=element_blank(),
         axis.text.x = element_blank())
 
-sample_A_B_distribution <- air_data_processed |>
-  group_by(class) |>
-  ggplot(aes(x=PM2.5, fill = class)) +
-  geom_density(alpha = 0.4) +
+histogram <- air_data_processed |>
+  ggplot(aes(x=PM2.5, fill=class)) +
+  geom_histogram(bins=30) +
+  facet_wrap(~class, ncol = 1) +
   theme(axis.title.y=element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 
-plot_grid(sample_A_B_boxplot, sample_A_B_distribution, ncol=1)
+
+plot_grid(
+  plot_grid(ggplot(),
+            sample_A_B_boxplot,
+            rel_widths = c(1,70)),
+  plot_grid(histogram + theme(legend.position = 'none'),
+            ggplot(),
+            ncol=2,
+            rel_widths = c(12,1.75)),
+  ncol=1)
 
 ```
 
-Figure 2. Boxplot and Density plot for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample).
+*Figure 4. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample).*
 
-Both samples are heavily right skewed. Sample A has a higher median and mean PM2.5 value than Sample B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
+The axis is identical for both plots. Both samples are heavily right skewed, as seen from numerous right-sided outliers in the boxplot and the long right tail in the histograms. time_A has a higher median and mean PM2.5 value than time_B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
 
-## Heading
+To explore further, we are plotting a log density graph to see how the PM2.5 levels are distributed.
 
-```{r EDA density plot}
-
+```{r density plot}
 sample_A_B_distribution <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=log(PM2.5), fill = class)) +
   geom_density(alpha = 0.4) +
   theme(axis.title.y=element_blank(),
         axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
- sample_A_B_distribution
+        axis.ticks.y = element_blank()) +
+  geom_vline(xintercept = 4.1, color = 'purple') +
+  geom_vline(xintercept = 1.3, color = 'orange') +
+  labs(x='PM2.5 level (log(ug/m^3))',
+       title = 'time_A has a larger number of extreme values than time_B') 
+sample_A_B_distribution
 ```
 
-## Heading 3
+*Figure 5. Density Plot for time_A and time_B.*
 
-Confident 95% + ticket
+By looking on the left of the orange vertical line, and the right of the purple vertical line, it is clear that the area under the plot for time_A in these two sections (1) from negative infinity to orange vertical line and (2) from purple vertical line to infinity are larger than that compared to time_B. The area under the plot between the orange vertical line and purple vertical line is larger for time_B than for time_A. This shows that time_A has more extreme values that time_B. It suggests that there could be an difference in the average value of time_A and time_B for certain confidence level.

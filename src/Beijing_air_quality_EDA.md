@@ -5,10 +5,11 @@ Exploratory data analysis of Beijing air quality data set
 
 ## Data Import
 
-Data are downloaded and unzipped by [python script](./download_data.py).
-12 csv files are used in this project. All in the same format with one
-file representing one Beijing district. All data are combined and stored
-in`air_data`.
+The data is downloaded and unzipped by [python
+script](./download_data.py). 12 csv files are used in this project. Each
+file represents one of 12 nationally-controlled air-quality monitoring
+sites. They are all in the same format, and are merged and stored in
+`air_data`.
 
     ## # A tibble: 6 × 18
     ##      No  year month   day  hour PM2.5  PM10   SO2   NO2    CO    O3  TEMP  PRES
@@ -62,28 +63,54 @@ Administration. There are `420,768` observations in the data set, and
 `18` features. Below we show the description and missing value of each
 features in the data set.
 
-|         | description                             | # of missing values |
+|         | Description                             | # of missing values |
 |:--------|:----------------------------------------|--------------------:|
-| No      | row number                              |                   0 |
-| year    | year of data in this row                |                   0 |
-| month   | month of data in this row               |                   0 |
-| day     | day of data in this row                 |                   0 |
-| hour    | hour of data in this row                |                   0 |
+| No      | Row number                              |                   0 |
+| year    | Year of data in this row                |                   0 |
+| month   | Month of data in this row               |                   0 |
+| day     | Day of data in this row                 |                   0 |
+| hour    | Hour of data in this row                |                   0 |
 | PM2.5   | PM2.5 concentration (ug/m^3)            |                8739 |
 | PM10    | PM10 concentration (ug/m^3)             |                6449 |
 | SO2     | SO2 concentration (ug/m^3)              |                9021 |
 | NO2     | NO2 concentration (ug/m^3)              |               12116 |
 | CO      | CO concentration (ug/m^3)               |               20701 |
 | O3      | O3 concentration (ug/m^3)               |               13277 |
-| TEMP    | temperature (degree Celsius)            |                 398 |
-| PRES    | pressure (hPa)                          |                 393 |
-| DEWP    | dew point temperature (degree Celsius)  |                 403 |
-| RAIN    | precipitation (mm)                      |                 390 |
-| wd      | wind direction                          |                1822 |
-| WSPM    | wind speed (m/s)                        |                 318 |
-| station | name of the air-quality monitoring site |                   0 |
+| TEMP    | Temperature (degree Celsius)            |                 398 |
+| PRES    | Pressure (hPa)                          |                 393 |
+| DEWP    | Dew point temperature (degree Celsius)  |                 403 |
+| RAIN    | Precipitation (mm)                      |                 390 |
+| wd      | Wind direction                          |                1822 |
+| WSPM    | Wind speed (m/s)                        |                 318 |
+| station | Name of the air-quality monitoring site |                   0 |
 
-(Histogram + short description)
+As we are interested to determine how PM2.5 levels have changed, we
+would like to see if there are any micro changes associated with how
+these levels shift across hours and months.
+
+|      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
+|:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+| mean |  94 |  88 |  95 |  73 |  63 |  69 |  72 |  53 |  61 |  92 |  93 | 105 |
+| min  |   2 |   3 |   3 |   2 |   3 |   2 |   3 |   3 |   3 |   3 |   3 |   3 |
+| max  | 835 | 999 | 558 | 533 | 844 | 560 | 540 | 500 | 477 | 527 | 687 | 741 |
+
+*Figure 1. Table of Sample mean of PM2.5 by month*
+
+|      |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |  13 |  14 |  15 |  16 |  17 |  18 |  19 |  20 |  21 |  22 |  23 |
+|:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+| mean |  88 |  87 |  85 |  82 |  79 |  76 |  74 |  73 |  75 |  76 |  77 |  77 |  77 |  76 |  75 |  75 |  74 |  75 |  78 |  82 |  87 |  89 |  89 |  89 |
+| min  |   3 |   3 |   3 |   3 |   2 |   2 |   3 |   3 |   3 |   3 |   2 |   2 |   3 |   3 |   2 |   2 |   3 |   2 |   2 |   3 |   3 |   2 |   3 |   2 |
+| max  | 809 | 881 | 999 | 857 | 801 | 770 | 720 | 712 | 610 | 640 | 661 | 705 | 844 | 741 | 718 | 708 | 687 | 689 | 684 | 670 | 685 | 685 | 770 | 737 |
+
+*Figure 2. Table of Sample mean of PM2.5 by hour*
+
+As seen by the histogram, there are variations in the PM2.5 levels
+across the time of the day and the month of the year. It is especially
+curious that the PM2.5 levels appear to be lower from 0600 to 1700hrs as
+we would expect there to more exhaust released by both factories and
+vehicles. Moreover, the mean levels of PM2.5 level is at the lowest in
+May and August. These are some possible questions that we can explore in
+our further analysis.
 
 # Data Wrangling
 
@@ -93,7 +120,7 @@ Feb 28 2017**. As such, we will drop all irrelevant columns, and only
 kept year, month, PM2.5. We have also created a derived column ‘class’,
 which will act as our target variable.
 
-    ## # A tibble: 420,768 × 4
+    ## # A tibble: 412,029 × 4
     ##     year month PM2.5 class 
     ##    <dbl> <dbl> <dbl> <chr> 
     ##  1  2013     3     4 time_A
@@ -106,44 +133,56 @@ which will act as our target variable.
     ##  8  2013     3     3 time_A
     ##  9  2013     3     3 time_A
     ## 10  2013     3     3 time_A
-    ## # … with 420,758 more rows
-
-|      | 2013 | 2014 | 2015 | 2016 | 2017 |
-|:-----|-----:|-----:|-----:|-----:|-----:|
-| mean |   80 |   86 |   80 |   72 |   93 |
-
-Figure 1. Table of Sample mean of PM2.5 by year
-
-|      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
-|:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-| mean |  94 |  88 |  95 |  73 |  63 |  69 |  72 |  53 |  61 |  92 |  93 | 105 |
-
-Figure 2. Table of Sample mean of PM2.5 by month
+    ## # … with 412,019 more rows
 
 # Exploratory analysis on the training data set
 
 We will perform exploratory data analysis steps to highlight the
 distribution of PM2.5 data points for both sample A and sample B.
 
-## Heading
+## Distribution of data points for each class
 
-(hist?)
+| Class  | Sum.of.rows |
+|:-------|------------:|
+| time_A |      205989 |
+| time_B |      206040 |
+
+*Figure 3. Table of sum of rows in each class.*
+
+Both classes are equally distributed. As such, we are not concerned
+about class imbalance which could lead to non-statistical parity.
+
+## Distribution of PM2.5 levels across time_A and time_B
+
+Having verified that both classes are balanced, we move on to observe
+the distribution between both time_A and time_B.
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20hisogram%20plot-1.png)<!-- -->
 
-Figure 2. Boxplot and Density plot for both samples’ PM2.5 distribution.
-(Black dots represent the mean PM2.5 value of each sample).
+*Figure 4. Boxplot and Histogram for both samples’ PM2.5 distribution.
+(Black dots represent the mean PM2.5 value of each sample).*
 
-Both samples are heavily right skewed. Sample A has a higher median and
-mean PM2.5 value than Sample B, and its data distribution is wider than
-B. It is fair to conclude that the median and mean values are too
-similar to make a definitive statement as to whether the air quality has
-changed over these two time frames.
+The axis is identical for both plots. Both samples are heavily right
+skewed, as seen from numerous right-sided outliers in the boxplot and
+the long right tail in the histograms. time_A has a higher median and
+mean PM2.5 value than time_B, and its data distribution is wider than B.
+It is fair to conclude that the median and mean values are too similar
+to make a definitive statement as to whether the air quality has changed
+over these two time frames.
 
-## Heading
+To explore further, we are plotting a log density graph to see how the
+PM2.5 levels are distributed.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20density%20plot-1.png)<!-- -->
+![](Beijing_air_quality_EDA_files/figure-gfm/density%20plot-1.png)<!-- -->
 
-## Heading 3
+*Figure 5. Density Plot for time_A and time_B.*
 
-Confident 95% + ticket
+By looking on the left of the orange vertical line, and the right of the
+purple vertical line, it is clear that the area under the plot for
+time_A in these two sections (1) from negative infinity to orange
+vertical line and (2) from purple vertical line to infinity are larger
+than that compared to time_B. The area under the plot between the orange
+vertical line and purple vertical line is larger for time_B than for
+time_A. This shows that time_A has more extreme values that time_B. It
+suggests that there could be an difference in the average value of
+time_A and time_B for certain confidence level.
