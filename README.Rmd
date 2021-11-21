@@ -33,9 +33,9 @@ We will combine sub data-sets, which were collected from twelve testing location
 
 Given that we have good sample size for both samples and the data points are independent, we will perform a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017.
 
-\- Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A is equal to the point estimate of PM2.5 in time_B)
+- Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A is equal to the point estimate of PM2.5 in time_B)
 
-\- Alternative Hypothesis($H_A$): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A is **greater** than the point estimate of PM2.5 in time_B)
+- Alternative Hypothesis($H_A$): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A is **greater** than the point estimate of PM2.5 in time_B)
 
 We will perform exploratory data analysis steps to identify and demonstrate the unique patterns and distributions of PM2.5 data points for time_A and time_B data sets, and then make the decision on corresponding tests and estimators to answer our inferential question from the introduction.
 
@@ -72,13 +72,23 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
     -   requests==2.22.0
     -   pandas==0.24.2
     -   urllib.request==3.9
-
+    
 -   R version 3.6.1 and R packages:
 
-    -   knitr==1.26
-    -   tidyverse==1.2.1
-    -   ggthemes==4.2.0
+    -   knitr==1.36
+    -   tidyverse==1.3.1
+    -   ggthemes==4.2.4
     -   here==1.0.1
+    -   cowplot==1.1.1
+    -   scales==1.1.1
+    -   forcats==0.5.1 
+    -   stringr==1.4.0
+    -   dplyr==1.0.7
+    -   purrr==0.3.4
+    -   readr==2.0.2
+    -   tidyr==1.1.3
+    -   tibble==3.1.5 
+    -   ggplot2==3.3.5
 
 ## License
 
