@@ -109,15 +109,15 @@ summary_by <- function(col) {
 knitr::kable(summary_by(month), "pipe")
 ```
 
-*Figure 1. Table of Sample mean of PM2.5 by month*
+*Figure 1. Table of Sample mean of PM2.5 in month*
 
 ```{r data summary month}
 knitr::kable(summary_by(hour), "pipe")
 ```
 
-*Figure 2. Table of Sample mean of PM2.5 by hour*
+*Figure 2. Table of Sample mean of PM2.5 in hour*
 
-As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious that the PM2.5 levels appear to be lower from 0600hrs to 1700hrs (range between 73 - 77 ug/m^3) as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
+As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious ( in Figure 2) that the PM2.5 levels appear to be lower from 0600hours to 1700hours (range of means between 73 - 77 ug/m^3), as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
 
 # Data Wrangling
 
@@ -200,7 +200,7 @@ plot_grid(
 
 The scale in the x-axis is identical for both plots. Both samples are heavily right skewed, as seen from numerous right-sided outliers in the boxplot and the long right tail in the histograms. time_A has a higher median and mean PM2.5 value than time_B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
 
-As our distribution is heavily skewed to the right, the mean is getting drawn to the right side. As such, we need to use median, as it is not sensitive to extreme values since we are taking the 50th percentile of our data.
+As our distribution is heavily skewed to the right, the mean is getting drawn to the right side. As such, we will take median as the appropriate estimator for hypothesis testing, since it is not sensitive to extreme values since we are taking the 50th percentile of our data.
 
 To explore further, we are plotting a log density graph to see how the PM2.5 levels are distributed.
 
