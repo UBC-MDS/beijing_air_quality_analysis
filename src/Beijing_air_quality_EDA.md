@@ -86,7 +86,7 @@ features in the data set.
 
 As we are interested to determine how PM2.5 levels have changed, we
 would like to see if there are any micro changes associated with how
-these levels shift across hours and months.
+these levels shift across months and hours.
 
 |      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
@@ -106,11 +106,11 @@ these levels shift across hours and months.
 
 As seen by the histogram, there are variations in the PM2.5 levels
 across the time of the day and the month of the year. It is especially
-curious that the PM2.5 levels appear to be lower from 0600 to 1700hrs as
-we would expect there to more exhaust released by both factories and
-vehicles. Moreover, the mean levels of PM2.5 level is at the lowest in
-May and August. These are some possible questions that we can explore in
-our further analysis.
+curious that the PM2.5 levels appear to be lower from 0600hrs to 1700hrs
+(range between 73 - 77 ug/m^3) as we would expect there to more exhaust
+released by both factories and vehicles. Moreover, the mean levels of
+PM2.5 level is at the lowest in August and September. These are some
+possible questions that we can explore in our further analysis.
 
 # Data Wrangling
 
@@ -138,7 +138,7 @@ which will act as our target variable.
 # Exploratory analysis on the training data set
 
 We will perform exploratory data analysis steps to highlight the
-distribution of PM2.5 data points for both sample A and sample B.
+distribution of PM2.5 data points for both time_A and time_B.
 
 ## Distribution of data points for each class
 
@@ -150,25 +150,30 @@ distribution of PM2.5 data points for both sample A and sample B.
 *Figure 3. Table of sum of rows in each class.*
 
 Both classes are equally distributed. As such, we are not concerned
-about class imbalance which could lead to non-statistical parity.
+about class imbalance which could lead to statistical parity.
 
 ## Distribution of PM2.5 levels across time_A and time_B
 
 Having verified that both classes are balanced, we move on to observe
 the distribution between both time_A and time_B.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20hisogram%20plot-1.png)<!-- -->
+![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20boxplot%20and%20histogram-1.png)<!-- -->
 
 *Figure 4. Boxplot and Histogram for both samples’ PM2.5 distribution.
 (Black dots represent the mean PM2.5 value of each sample).*
 
-The axis is identical for both plots. Both samples are heavily right
-skewed, as seen from numerous right-sided outliers in the boxplot and
-the long right tail in the histograms. time_A has a higher median and
-mean PM2.5 value than time_B, and its data distribution is wider than B.
-It is fair to conclude that the median and mean values are too similar
-to make a definitive statement as to whether the air quality has changed
-over these two time frames.
+The scale in the x-axis is identical for both plots. Both samples are
+heavily right skewed, as seen from numerous right-sided outliers in the
+boxplot and the long right tail in the histograms. time_A has a higher
+median and mean PM2.5 value than time_B, and its data distribution is
+wider than B. It is fair to conclude that the median and mean values are
+too similar to make a definitive statement as to whether the air quality
+has changed over these two time frames.
+
+As our distribution is heavily skewed to the right, the mean is getting
+drawn to the right side. As such, we need to use median, as it is not
+sensitive to extreme values since we are taking the 50th percentile of
+our data.
 
 To explore further, we are plotting a log density graph to see how the
 PM2.5 levels are distributed.
@@ -177,4 +182,15 @@ PM2.5 levels are distributed.
 
 *Figure 5. Density Plot for time_A and time_B.*
 
-Looking at these areas:(1) on the left of the orange vertical line(2) the right of the purple vertical lineIt is clear that the area under the curve for time_A in these two sections are larger than the area under the curve of time_B; which indicates time_A has more extreme values than time_B.The area under the curve of time_B dominates between the orange line and purple vertical line (it completely covered the area of time_A).There are overlapping areas, however, the distinct areas of time_A and time_B in this density plot suggests that time_A could possibly have a higher median than time_B.
+Looking at these areas:  
+**(1) on the left of the orange vertical line**  
+**(2)** **the right of the purple vertical line,**
+
+it is clear that the area under the curve for time_A in these two
+sections are larger than the area under the curve of time_B. This
+indicates time_A has more extreme values than time_B. The area under the
+curve of time_B dominates between the orange line and purple vertical
+line (it completely covered the area of time_A). However, there are
+overlapping areas. The distinct areas of time_A and time_B in this
+density plot suggests that time_A could possibly have a higher median
+than time_B. 
