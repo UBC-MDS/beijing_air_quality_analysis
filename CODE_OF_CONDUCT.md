@@ -9,10 +9,9 @@ In the interest of fostering an open and welcoming environment, we as contributo
 ### **Be supportive**
 
 -   Being respectful of differing viewpoints and experiences
-
 -   Showing empathy towards other community members
 
-### **Be collaborative** 
+### **Be collaborative**
 
 -   We are a team.
 -   Involving teammates in brainstorms, sketching sessions, code reviews, planning documents, and the like.
