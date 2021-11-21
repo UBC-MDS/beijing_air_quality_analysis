@@ -167,8 +167,8 @@ sample_A_B_boxplot <- air_data_processed |>
                outlier.alpha = 0.1,
                outlier.fill = NULL) +
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
-  labs(title = 'time_A has a higher median and mean value than time_B',
-       subtitle = 'Both time_A and time_B are heavily right skewed') +
+  labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
+       subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
   theme(axis.title.y=element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
@@ -215,7 +215,8 @@ sample_A_B_distribution <- air_data_processed |>
   geom_vline(xintercept = 4.1, color = 'purple') +
   geom_vline(xintercept = 1.3, color = 'orange') +
   labs(x='PM2.5 level (log(ug/m^3))',
-       title = 'time_A has a larger number of extreme values than time_B') 
+       title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
+       subtitle= 'time_A has more lower and upper extreme values than time_B') 
 sample_A_B_distribution
 ```
 
