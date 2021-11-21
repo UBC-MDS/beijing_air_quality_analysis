@@ -17,7 +17,7 @@ We analyse the Beijing Air Quality data set, donated to the UC Irvine Machine Le
 ### Sub Exploratory Questions:
 
 1.  How does the distribution of air quality data observations look like? Are they normally distributed?
-2.  If we splited the data into sub data sets based on time frames, will there be any overlap in the 95% confidence interval ranges of the samples?
+2.  If we split the data into sub data sets based on time frames, will there be any overlap in the 95% confidence interval ranges of the samples?
 
 In order to explore the data set while answering the sub questions, we will perform further steps as below to get better understanding for the main question.
 
@@ -31,13 +31,13 @@ We will combine sub data-sets, which were collected from twelve testing location
 
 ### **Hypothesis Testing:**
 
-Given that we have good sample size for both samples and the data points are independent, we will perform a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017.
+Given that we have good sample size for both samples and the data points are independent, we will perform a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We will implement one-tailed test to answer the question since we expect to detect the improvement in PM2.5 pollution.
 
-\- Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A is equal to the point estimate of PM2.5 in time_B)
+-   Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A $\\leq$ the point estimate of PM2.5 in time_B)
 
-\- Alternative Hypothesis($H_A$): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A is **greater** than the point estimate of PM2.5 in time_B)
+-   Alternative Hypothesis($H_A$): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A > the point estimate of PM2.5 in time_B)
 
-We will perform exploratory data analysis steps to identify and demonstrate the unique patterns and distributions of PM2.5 data points for time_A and time_B data sets, and then make the decision on corresponding tests and estimators to answer our inferential question from the introduction.
+We will perform exploratory data analysis steps to identify and demonstrate the unique patterns and distributions of PM2.5 data points for time_A and time_B data sets, and then pick the appropriate estimator from our observation to answer the inferential question on PM2.5 pollutant.
 
 **Exploratory approaches:**
 
