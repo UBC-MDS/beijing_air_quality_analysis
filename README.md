@@ -79,6 +79,15 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
     -   tidyverse==1.2.1
     -   ggthemes==4.2.0
     -   here==1.0.1
+    -   scales==1.1.1
+    -   forcats==0.5.1
+    -   stringr==1.4.0
+    -   dplyr==1.0.7
+    -   purrr==0.3.4
+    -   readr==2.0.2
+    -   tidyr==1.1.3
+    -   tibble==3.1.5
+    -   ggplot2==3.3.5
 
 ## License
 
