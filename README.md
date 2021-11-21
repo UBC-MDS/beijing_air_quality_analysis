@@ -17,7 +17,7 @@ We analyse the Beijing Air Quality data set, donated to the UC Irvine Machine Le
 ### Sub Exploratory Questions:
 
 1.  How does the distribution of air quality data observations look like? Are they normally distributed?
-2.  If we split the data into sub data sets based on time frames, will there be any overlap in the 95% confidence interval ranges of the samples?
+2.  If we split the data into sub data sets based on time frames, will there be any overlap in the ranges of the samples?
 
 In order to explore the data set while answering the sub questions, we will perform further steps as below to get better understanding for the main question.
 
