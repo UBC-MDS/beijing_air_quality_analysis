@@ -20,7 +20,7 @@ set.seed(2020)
 
 ## Data Import
 
-Data are downloaded and unzipped by [python script](`r here("src", "download_data.py")`). 12 csv files are used in this project. All in the same format with one file representing one Beijing district. All data are combined and stored in`air_data`.
+Data are downloaded and unzipped by [python script](./download_data.py). 12 csv files are used in this project. All in the same format with one file representing one Beijing district. All data are combined and stored in`air_data`.
 
 ```{r load data}
 csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))

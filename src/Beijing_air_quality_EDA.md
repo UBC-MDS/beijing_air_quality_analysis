@@ -5,8 +5,7 @@ Exploratory data analysis of Beijing air quality data set
 
 ## Data Import
 
-Data are downloaded and unzipped by [python
-script](/Users/macychan/UBC%20MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/src/download_data.py).
+Data are downloaded and unzipped by [python script](./download_data.py).
 12 csv files are used in this project. All in the same format with one
 file representing one Beijing district. All data are combined and stored
 in`air_data`.
