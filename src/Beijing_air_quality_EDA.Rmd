@@ -219,4 +219,8 @@ sample_A_B_distribution
 
 *Figure 5. Density Plot for time_A and time_B.*
 
-By looking on the left of the orange vertical line, and the right of the purple vertical line, it is clear that the area under the plot for time_A in these two sections (1) from negative infinity to orange vertical line and (2) from purple vertical line to infinity are larger than that compared to time_B. The area under the plot between the orange vertical line and purple vertical line is larger for time_B than for time_A. This shows that time_A has more extreme values that time_B. It suggests that there could be an difference in the average value of time_A and time_B for certain confidence level.
+Looking at these areas:  
+**(1) on the left of the orange vertical line**  
+**(2)** **the right of the purple vertical line**It is clear that the area under the curve for time_A in these two sections are larger than the area under the curve of time_B; which indicates time_A has more extreme values than time_B.  
+The area under the curve of time_B dominates between the orange line and purple vertical line (it completely covered the area of time_A).  
+There are overlapping areas, however, the distinct areas of time_A and time_B in this density plot suggests that time_A could possibly have a higher median than time_B. 
