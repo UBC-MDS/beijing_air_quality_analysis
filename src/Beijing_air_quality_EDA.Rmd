@@ -117,7 +117,7 @@ knitr::kable(summary_by(hour), "pipe")
 
 *Figure 2. Table of Sample mean of PM2.5 by hour*
 
-As seen by the histogram, there are variations in the PM2.5 levels across the time of the day and the month of the year. It is especially curious that the PM2.5 levels appear to be lower from 0600hrs to 1700hrs (range between 73 - 77 ug/m^3) as we would expect there to more exhaust released by both factories and vehicles. Moreover, the mean levels of PM2.5 level is at the lowest in August and September. These are some possible questions that we can explore in our further analysis.
+As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious that the PM2.5 levels appear to be lower from 0600hrs to 1700hrs (range between 73 - 77 ug/m^3) as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
 
 # Data Wrangling
 
@@ -160,7 +160,7 @@ Both classes are equally distributed. As such, we are not concerned about class 
 Having verified that both classes are balanced, we move on to observe the distribution between both time_A and time_B.
 
 ```{r EDA boxplot and histogram}
-sample_A_B_boxplot <- air_data_processed |>
+time_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
   geom_boxplot(names=c('time_A', 'time_B'), 
@@ -186,7 +186,7 @@ histogram <- air_data_processed |>
 
 plot_grid(
   plot_grid(ggplot(),
-            sample_A_B_boxplot,
+            time_A_B_boxplot,
             rel_widths = c(1,70)),
   plot_grid(histogram + theme(legend.position = 'none'),
             ggplot(),
@@ -205,7 +205,7 @@ As our distribution is heavily skewed to the right, the mean is getting drawn to
 To explore further, we are plotting a log density graph to see how the PM2.5 levels are distributed.
 
 ```{r density plot}
-sample_A_B_distribution <- air_data_processed |>
+time_A_B_distribution <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=log(PM2.5), fill = class)) +
   geom_density(alpha = 0.4) +
@@ -217,7 +217,7 @@ sample_A_B_distribution <- air_data_processed |>
   labs(x='PM2.5 level (log(ug/m^3))',
        title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
        subtitle= 'time_A has more lower and upper extreme values than time_B') 
-sample_A_B_distribution
+time_A_B_distribution
 ```
 
 *Figure 5. Density Plot for time_A and time_B.*
