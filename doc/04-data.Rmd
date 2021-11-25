@@ -1,15 +1,7 @@
----
-title: "04-data"
-author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
-bibliography: references.bib
-date: "11/24/2021"
-output: html_document
----
+### **Data Wrangling:**
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-library(caret)
-```
+We will combine sub data-sets, which were collected from twelve testing locations in Beijing, into one data frame, and then split this data frame into two samples based on time frames below.
+
+-   time_A: air quality data from March 2013 - February 2015
+
+-   time_B: air quality data from March 2015 - February 2017

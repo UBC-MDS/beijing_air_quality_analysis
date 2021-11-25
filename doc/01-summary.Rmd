@@ -1,17 +1,3 @@
----
-title: "01-summary"
-author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
-bibliography: references.bib
-date: "11/24/2021"
-output: html_document
----
+## Summary
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-library(caret)
-```
-
-
+I am a summary. ¯\_(ツ)_/¯

@@ -1,15 +1,8 @@
----
-title: "03-Methods"
-author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
-bibliography: references.bib
-date: "11/24/2021"
-output: html_document
----
+## Methods
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-library(caret)
-```
+### Sub Exploratory Questions:
+
+1.  How does the distribution of air quality data observations look like? Are they normally distributed?
+2.  If we split the data into sub data sets based on time frames, will there be any overlap in the ranges of the samples?
+
+In order to explore the data set while answering the sub questions, we will perform further steps as below to get better understanding for the main question.
