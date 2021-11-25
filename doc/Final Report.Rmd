@@ -1,0 +1,43 @@
+---
+title: "Beijing Air Quality Analysis Final Report"
+author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
+bibliography: references.bib
+date: "11/24/2021"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(caret)
+```
+
+```{r summary, child="01-summary.Rmd"}
+
+```
+
+```{r intro, child="02-intro.Rmd:}
+
+```
+
+```{r methods, child="03-methods.Rmd"}
+
+```
+
+```{r data, child="04-data.Rmd"}
+
+```
+
+```{r analysis, child="05-analysis.Rmd"}
+
+```
+
+```{r results and discussion, child="06-results and discussion.Rmd"}
+
+```
+
+# References
