@@ -1,15 +1,9 @@
----
-title: "05-analysis"
-author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
-bibliography: references.bib
-date: "11/24/2021"
-output: html_document
----
+### **Hypothesis Testing:**
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-library(kableExtra)
-library(tidyverse)
-library(caret)
-```
+Given that we have good sample size for both samples and the data points are independent, we will perform a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We will implement one-tailed test to answer the question since we expect to detect the improvement in PM2.5 pollution.
+
+-   Null Hypothesis(\*H\*\<sub>0\</sub>): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A is less than and equal to the point estimate of PM2.5 in time_B)
+
+-   Alternative Hypothesis(*H*<sub>0</sub>): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A is greater than the point estimate of PM2.5 in time_B)
+
+We will perform exploratory data analysis steps to identify and demonstrate the unique patterns and distributions of PM2.5 data points for time_A and time_B data sets, and then pick the appropriate estimator from our observation to answer the inferential question on PM2.5 pollutant.
