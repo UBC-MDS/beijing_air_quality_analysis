@@ -25,7 +25,7 @@ opt <- docopt(doc)
 main <- function(input, out_dir){
   
   #loading the preprocessed data
-  pm_data <- rad_feather(input)
+  pm_data <- read_feather(input)
   
   #simulation based permutation test
   null_distribution <- pm_data |> 
@@ -33,22 +33,22 @@ main <- function(input, out_dir){
     hypothesis(null = "independence") |> 
     generate(reps = 2000, type = "permutate") |> 
     calculate(stat = "diff in medians",
-              order = c("time_A", "time_B"))
+              order = c("time_B", "time_A"))
   
   #observed test statistic
   obs_diff_median <- pm_data |> 
     specify(PM2.5 ~ class) |> 
     calculate(stat = "diff in medians",
-              order = c("time_A", "time_B"))
+              order = c("time_B", "time_A"))
   
   #calculating p-value
   p_value <- get_p_value(null_distribution, 
                          obs_stat = obs_diff_median, 
-                         direction = "greater")
+                         direction = "less")
   
   #visualizing null distribution with shaded p-value
   dist_visual <- visualizae(null_distribution, bins = 30) +
-    shade_p_value(obs_stat = obs_diff_median, direction = "greater",
+    shade_p_value(obs_stat = obs_diff_median, direction = "less",
                   fill = "lightblue")
   
   saveRDS(p_value, file = paste0(out_dir, "/hypothesis_testing_p_value.rds"))
