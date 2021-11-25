@@ -1,4 +1,5 @@
 ### **Hypothesis Testing:**
+\label{sec:analysis}
 
 Given that we have good sample size for both samples and the data points are independent, we will perform a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We will implement one-tailed test to answer the question since we expect to detect the improvement in PM2.5 pollution.
 

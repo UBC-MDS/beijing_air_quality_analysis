@@ -1,4 +1,5 @@
 ### **Data Wrangling:**
+\label{sec:data}
 
 We will combine sub data-sets, which were collected from twelve testing locations in Beijing, into one data frame, and then split this data frame into two samples based on time frames below.
 
