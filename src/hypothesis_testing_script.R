@@ -11,6 +11,7 @@ Options:
 " -> doc
 
 #input path exapmle : here("data", "raw","PRSA_Data_20130301-20170228")
+#double check saveRDS and path to save plots
 
 library(docopt)
 library(tidyverse)
@@ -53,5 +54,6 @@ main <- function(input, out_dir){
   saveRDS(p_value, file = paste0(out_dir, "/hypothesis_testing_p_value.rds"))
   #!!!
 }
+
 
 main(opt[["--input"]], opt[["--out_dir"]])
