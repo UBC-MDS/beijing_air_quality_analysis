@@ -1,6 +1,13 @@
 ---
 title: "Beijing Air Quality Analysis Final Report"
 author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
+
+keywords:
+- to be filled in
+
+abstract:
+- to be filled in
+
 bibliography: references.bib
 date: "11/24/2021"
 output: 
@@ -14,6 +21,8 @@ library(knitr)
 library(kableExtra)
 library(tidyverse)
 library(caret)
+library(infer)
+library(scales)
 ```
 
 ```{r summary, child="01-summary.Rmd"}

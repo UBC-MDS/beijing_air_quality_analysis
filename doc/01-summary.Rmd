@@ -1,3 +1,4 @@
 ## Summary
+\label{sec:summary}
 
 I am a summary. ¯\_(ツ)_/¯
