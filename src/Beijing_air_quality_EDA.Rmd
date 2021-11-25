@@ -27,13 +27,13 @@ csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
 
 air_data <- data.frame()
 for (file_name in csv_list) {
-        air_data <-
-                rbind(air_data, 
-                      read_csv(here("data", 
-                                    "raw", 
-                                    "PRSA_Data_20130301-20170228", 
-                                    file_name), 
-                               show_col_types = FALSE))
+  air_data <- rbind(air_data,
+                    read_csv(
+                      here("data",
+                           "raw", 
+                           "PRSA_Data_20130301-20170228", 
+                           file_name), 
+                      show_col_types = FALSE))
 }
 
 head(air_data)
@@ -90,20 +90,23 @@ As we are interested to determine how PM2.5 levels have changed, we would like t
 
 ```{r data summary year}
 summary_by <- function(col) {
-        air_data_summary <- air_data |>
-                group_by( {{ col }} ) |>
-                summarise(mean := round(mean(PM2.5, na.rm = TRUE)),
-                          min := round(min(PM2.5, na.rm = TRUE)),
-                          max := round(max(PM2.5, na.rm = TRUE))
-                                  )
+  air_data_summary <- air_data |>
+    
+    group_by( {{ col }} ) |>
+    summarise(mean := round(mean(PM2.5, na.rm = TRUE)),
+              min := round(min(PM2.5, na.rm = TRUE)),
+              max := round(max(PM2.5, na.rm = TRUE)))
         
-        air_data_summary_transpose <-
-                as.data.frame(t(as.matrix(air_data_summary)), row.names = c('year','mean','min', 'max'))
-        
-        names(air_data_summary_transpose) <- lapply(air_data_summary_transpose[1, ], as.character)
-        air_data_summary_transpose <- air_data_summary_transpose[-1,] 
+    air_data_summary_transpose <- as.data.frame(
+      t(as.matrix(air_data_summary)), 
+      row.names = c('year','mean','min', 'max'))
+    
+    names(air_data_summary_transpose) <- lapply(
+      air_data_summary_transpose[1, ], as.character)
+    
+    air_data_summary_transpose <- air_data_summary_transpose[-1,] 
 
-        air_data_summary_transpose
+    air_data_summary_transpose
 }
 
 knitr::kable(summary_by(month), "pipe")
@@ -169,17 +172,17 @@ time_A_B_boxplot <- air_data_processed |>
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
   labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
        subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
-  theme(axis.title.y=element_blank(),
+  theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
-        axis.title.x=element_blank(),
+        axis.title.x = element_blank(),
         axis.text.x = element_blank())
 
 histogram <- air_data_processed |>
   ggplot(aes(x=PM2.5, fill=class)) +
   geom_histogram(bins=30) +
   facet_wrap(~class, ncol = 1) +
-  theme(axis.title.y=element_blank(),
+  theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 
@@ -214,9 +217,9 @@ time_A_B_distribution <- air_data_processed |>
         axis.ticks.y = element_blank()) +
   geom_vline(xintercept = 4.1, color = 'purple') +
   geom_vline(xintercept = 1.3, color = 'orange') +
-  labs(x='PM2.5 level (log(ug/m^3))',
+  labs(x = 'PM2.5 level (log(ug/m^3))',
        title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
-       subtitle= 'time_A has more lower and upper extreme values than time_B') 
+       subtitle = 'time_A has more lower and upper extreme values than time_B')
 time_A_B_distribution
 ```
 

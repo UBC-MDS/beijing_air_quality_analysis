@@ -1,6 +1,6 @@
 ---
 title: "Beijing Air Quality Analysis"
-bibliography: references.bib
+bibliography: src/references.bib
 output: 
   html_document:
     toc: true

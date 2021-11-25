@@ -26,6 +26,21 @@ opt <- docopt(doc)
 
 main <- function(input, out_dir){
   
+  csv_list <- dir(input)
+  
+  air_data <- data.frame()
+  for (file_name in csv_list) {
+    air_data <- rbind(air_data,
+                      read_csv(
+                        here("data",
+                             "raw", 
+                             "PRSA_Data_20130301-20170228", 
+                             file_name), 
+                        show_col_types = FALSE))
+  }
+  
+  head(air_data)
+  
   #loading the preprocessed data
   pm_data <- rad_feather(input)
   
