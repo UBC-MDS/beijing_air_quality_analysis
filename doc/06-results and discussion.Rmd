@@ -1,0 +1,15 @@
+---
+title: "06-results and discussion"
+author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
+bibliography: references.bib
+date: "11/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(caret)
+```
