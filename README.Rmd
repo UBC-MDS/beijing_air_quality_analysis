@@ -66,7 +66,7 @@ Demonstrations of the results will be in three forms, tabular data frame, labele
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
     python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00501/PRSA2017_Data_20130301-20170228.zip --out_folder=data/raw
-    Rscript -e "rmarkdown::render('src/Beijing_air_quality.Rmd')"
+    Rscript -e "rmarkdown::render('src/Beijing_air_quality_EDA.Rmd')"
 
 ## Dependencies
 

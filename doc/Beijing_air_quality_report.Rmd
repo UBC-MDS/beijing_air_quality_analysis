@@ -20,7 +20,7 @@ library(caret)
 
 ```
 
-```{r intro, child="02-intro.Rmd:}
+```{r intro, child="02-intro.Rmd"}
 
 ```
 
