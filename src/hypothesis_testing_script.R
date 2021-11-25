@@ -10,14 +10,14 @@ Options:
 --out_dir=<out_dir>  path to directory where the file should be saved
 " -> doc
 
-#input path exapmle : here("data", "raw","PRSA_Data_20130301-20170228")
-#double check saveRDS and path to save plots
+#input path example : here("data", "raw","PRSA_Data_20130301-20170228")
 
 library(docopt)
 library(tidyverse)
 library(infer)
 library(knitr)
 library(cowplot)
+library(here)
 set.seed(2021)
 
 opt <- docopt(doc)
@@ -51,8 +51,12 @@ main <- function(input, out_dir){
     shade_p_value(obs_stat = obs_diff_median, direction = "less",
                   fill = "lightblue")
   
-  saveRDS(p_value, file = paste0(out_dir, "/hypothesis_testing_p_value.rds"))
-  #!!!
+  #save the p-value for analysis file
+  save(p_value, file = paste0(out_dir, "/hypothesis_testing_p_value.rds"))
+  
+  #save plot of null distribution
+  ggsave("null_distribution_plot", dist_visual, 
+         path = out_dir)
 }
 
 
