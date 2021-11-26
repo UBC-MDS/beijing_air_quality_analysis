@@ -21,7 +21,10 @@ main <- function(input, out_dir){
   pm_data <- read_csv(input)
 
   #creating the function to get 95% confidence interval
-  ci_median <- function(sample, var, level = 0.95, type = 'percentile') {
+  ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
+    if(!is.data.frame(sample)){
+      stop("Input sample must be dataframe")
+    }
     set.seed(2021)
     sample |>
       rep_sample_n(nrow(sample), replace = TRUE, reps = 10) |>
