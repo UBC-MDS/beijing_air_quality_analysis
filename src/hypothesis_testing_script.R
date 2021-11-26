@@ -7,9 +7,6 @@ Options:
 --out_dir=<out_dir>   Path to directory where the file should be saved
 " -> doc
 
-#input path example : data/processed/processed_data.csv
-#Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
-
 library(docopt)
 library(tidyverse)
 library(infer)
