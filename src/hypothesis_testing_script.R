@@ -1,6 +1,3 @@
-# author: Junrong Zhu
-# date: 2021-11-24
-
 "Hypothesis Testing
 
 Usage:src/hypothesis_testing_script.R --input=<input> --out_dir=<out_dir>
