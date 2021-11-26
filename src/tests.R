@@ -11,8 +11,8 @@ test_that("Function has inappropriate input type", {
   expect_error(ci_median("air_data_processed", class))
 })
 
-#preventative function checking
 
+#preventative checking
 ci_median <- function(sample, var, level = 0.95, type = 'percentile') {
   if(!is.data.frame(sample)){
     stop("Input sample must be dataframe")
