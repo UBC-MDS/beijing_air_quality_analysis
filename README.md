@@ -82,8 +82,6 @@ visualization as well as text explanation.
 
 -   Outputting top rows of the imported data frame as a data set preview.
 
--   Highlighting test statistic values and significance threshold with shaded bar plot
-
 -   Summarizing each figure with brief conclusion and providing insightful explanation for
     the observed characteristics in organized paragraphs.
 

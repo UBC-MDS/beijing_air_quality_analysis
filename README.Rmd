@@ -16,9 +16,9 @@ Data analysis project for DSCI 522 (Data Science Workflows); a course in the Mas
 
 The objective of this project is to answer the following inferential question: **Does PM2.5 measurement in Beijing, China collected between 2013 and 2017 show any sign of improvement?**
 
-The capital city of Beijing, China has long struggled with poor air quality, a result of the country's rapid industrialization and its heavy reliance on coal for electricity generation the North, as well as its growing and increasingly urban middle class [@wang2012air]. This analysis question is important for its timely and global implications: as air pollution from the burning of fossil fuels and its association with climate change and direct health outcomes poses a challenge to nations worldwide, we explore whether we may find evidence of economic growth coinciding with improving air quality. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities [@world2021global].
+The capital city of Beijing, China has long struggled with poor air quality, a result of the country's rapid industrialization and its heavy reliance on coal for electricity generation the North, as well as its growing and increasingly urban middle class [\@wang2012air]. This analysis question is important for its timely and global implications: as air pollution from the burning of fossil fuels and its association with climate change and direct health outcomes poses a challenge to nations worldwide, we explore whether we may find evidence of economic growth coinciding with improving air quality. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities [\@world2021global].
 
-We analyse the `Beijing Air Quality` data set, donated to the UC Irvine Machine Learning Repository in 2019 (accessible via [URL](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data)), which comprises hourly measurement of six air pollutants (including `PM2.5`, `PM10`, `SO2`, `NO2`, `CO`, `O3`) and six meteorological variables spanning from 2013 until 2017 across twelve of its metropolitan data-collecting stations. While the structure of this data set makes it suitable for multi-variate time-series regression analysis, we focus our analysis solely on the readings of the `PM2.5` metric, a form of fine particulate matter that is considered especially harmful for its ability to penetrate deep into the lungs and cause long-lasting damage to the respiratory system [@xing2016impact].
+We analyse the `Beijing Air Quality` data set, donated to the UC Irvine Machine Learning Repository in 2019 (accessible via [URL](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data)), which comprises hourly measurement of six air pollutants (including `PM2.5`, `PM10`, `SO2`, `NO2`, `CO`, `O3`) and six meteorological variables spanning from 2013 until 2017 across twelve of its metropolitan data-collecting stations. While the structure of this data set makes it suitable for multi-variate time-series regression analysis, we focus our analysis solely on the readings of the `PM2.5` metric, a form of fine particulate matter that is considered especially harmful for its ability to penetrate deep into the lungs and cause long-lasting damage to the respiratory system [\@xing2016impact].
 
 ## Methods
 
@@ -61,8 +61,6 @@ Demonstrations of the results will be in three forms, tabular data frame, labele
 
 -   Outputting top rows of the imported data frame as a data set preview.
 
--   Highlighting test statistic values and significance threshold with shaded bar plot
-
 -   Summarizing each figure with brief conclusion and providing insightful explanation for the observed characteristics in organized paragraphs.
 
 ## Usage
@@ -97,6 +95,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
     -   tidyr==1.1.3
     -   tibble==3.1.5
     -   ggplot2==3.3.5
+    -   infer==1.0.0
 
 ## License
 
