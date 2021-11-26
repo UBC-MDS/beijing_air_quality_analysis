@@ -11,9 +11,6 @@ Options:
 " -> doc
 
 # Rscript src/pre_process_data.R --input=data/raw/PRSA_Data_20130301-20170228 --out_dir=data/processed
-# TODO:
-# 1. read all the files in data/raw/PRSA_Data_20130301-20170228
-# 2. Output the rds/csv folder to data/processed
 
 library(docopt)
 library(tidyverse)

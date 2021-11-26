@@ -3,59 +3,79 @@
 
 "Generate EDA Plots
 
-Usage: src/pre_process_data.R --data=<data> --out_dir=<out_dir>
+Usage: src/eda_generate_plots.R --input=<input> --out_dir=<out_dir>
 
 Options:
---input=<input>      path with processed csv for EDA plots generation
---out_dir=<out_dir>  path of output (EDA plots)
+--input=<input>         path with processed csv for EDA plots generation
+--out_dir=<out_dir>     path of output (EDA plots)
 " -> doc
 
-# Rscript src/eda_generate_plots.R --data=data/processed/PRSA_Data_processed.csv --out_dir=results
+# Rscript src/eda_generate_plots.R --data=data/processed/processed_data.csv --out_dir=results
 # TODO:
-# 1. read the processed data in data/processed/PRSA_Data_processed.csv/rds
+# 1. read the processed data in data/processed/processed_data.csv
 # 2. Output plots to to results
 
 library(docopt)
 library(tidyverse)
-library(infer)
-library(knitr)
-library(cowplot)
-set.seed(2021)
+#library(cowplot)
 
 opt <- docopt(doc)
 
-main <- function(input, out_dir){
-  
-  #loading the preprocessed data
-  pm_data <- rad_feather(input)
-  
-  #simulation based permutation test
-  null_distribution <- pm_data |> 
-    specify(PM2.5 ~ class) |> 
-    hypothesis(null = "independence") |> 
-    generate(reps = 2000, type = "permutate") |> 
-    calculate(stat = "diff in medians",
-              order = c("time_A", "time_B"))
-  
-  #observed test statistic
-  obs_diff_median <- pm_data |> 
-    specify(PM2.5 ~ class) |> 
-    calculate(stat = "diff in medians",
-              order = c("time_A", "time_B"))
-  
-  #calculating p-value
-  p_value <- get_p_value(null_distribution, 
-                         obs_stat = obs_diff_median, 
-                         direction = "greater")
-  
-  #visualizing null distribution with shaded p-value
-  dist_visual <- visualizae(null_distribution, bins = 30) +
-    shade_p_value(obs_stat = obs_diff_median, direction = "greater",
-                  fill = "lightblue")
-  
-  saveRDS(p_value, file = paste0(out_dir, "/hypothesis_testing_p_value.rds"))
-  #!!!
-}
+paste0(input, out_dir)
 
+#main <- function(data, out_dir) {
+  
+ # paste0(data, out_dir)
+  
+  #time_A_B_boxplot <- air_data_processed |>
+  #  group_by(class) |>
+  #  ggplot(aes(x=PM2.5, y=class, fill = class)) +
+  #  geom_boxplot(names=c('time_A', 'time_B'), 
+  #               outlier.alpha = 0.1,
+  #               outlier.fill = NULL) +
+  #  geom_point(stat = 'summary', fun = 'mean', color = 'black') +
+  #  labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
+  #       subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
+  #  theme(axis.title.y = element_blank(),
+  #       axis.text.y = element_blank(),
+  #        axis.ticks.y = element_blank(),
+  #        axis.title.x = element_blank(),
+  #        axis.text.x = element_blank())
+  
+  #histogram <- air_data_processed |>
+  #  ggplot(aes(x=PM2.5, fill=class)) +
+  # geom_histogram(bins=30) +
+  #  facet_wrap(~class, ncol = 1) +
+  #  theme(axis.title.y = element_blank(),
+  #        axis.text.y = element_blank(),
+  #        axis.ticks.y = element_blank())
+  
+  #plot_grid(
+  #  plot_grid(ggplot(),
+  #            time_A_B_boxplot,
+  #            rel_widths = c(1,70)),
+  #  plot_grid(histogram + theme(legend.position = 'none'),
+  #           ggplot(),
+  #            ncol=2,
+  #            rel_widths = c(12,1.75)),
+  # ncol=1)
+  
+  #time_A_B_distribution <- air_data_processed |>
+  #  group_by(class) |>
+  #  ggplot(aes(x=log(PM2.5), fill = class)) +
+  #  geom_density(alpha = 0.4) +
+  #  theme(axis.title.y=element_blank(),
+  #        axis.text.y = element_blank(),
+  #        axis.ticks.y = element_blank()) +
+  #  geom_vline(xintercept = 4.1, color = 'purple') +
+  #  geom_vline(xintercept = 1.3, color = 'orange') +
+  #  labs(x = 'PM2.5 level (log(ug/m^3))',
+  #       title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
+  #       subtitle = 'time_A has more lower and upper extreme values than time_B')
+  #time_A_B_distribution
+  
+  #ggsave(here())
+  
+#}
 
-main(opt[["--input"]], opt[["--out_dir"]])
+#main(opt[["--input"]], opt[["--out_dir"]])
