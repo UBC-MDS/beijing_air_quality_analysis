@@ -11,17 +11,14 @@ file represents one of 12 nationally-controlled air-quality monitoring
 sites. They are all in the same format, and are merged and stored in
 `air_data`.
 
-    ## # A tibble: 6 × 18
-    ##      No  year month   day  hour PM2.5  PM10   SO2   NO2    CO    O3  TEMP  PRES
-    ##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-    ## 1     1  2013     3     1     0     4     4     4     7   300    77  -0.7 1023 
-    ## 2     2  2013     3     1     1     8     8     4     7   300    77  -1.1 1023.
-    ## 3     3  2013     3     1     2     7     7     5    10   300    73  -1.1 1024.
-    ## 4     4  2013     3     1     3     6     6    11    11   300    72  -1.4 1024.
-    ## 5     5  2013     3     1     4     3     3    12    12   300    72  -2   1025.
-    ## 6     6  2013     3     1     5     5     5    18    18   400    66  -2.2 1026.
-    ## # … with 5 more variables: DEWP <dbl>, RAIN <dbl>, wd <chr>, WSPM <dbl>,
-    ## #   station <chr>
+|  No | year | month | day | hour | PM2.5 | PM10 | SO2 | NO2 |  CO |  O3 | TEMP |   PRES |  DEWP | RAIN | wd  | WSPM | station      |
+|----:|-----:|------:|----:|-----:|------:|-----:|----:|----:|----:|----:|-----:|-------:|------:|-----:|:----|-----:|:-------------|
+|   1 | 2013 |     3 |   1 |    0 |     4 |    4 |   4 |   7 | 300 |  77 | -0.7 | 1023.0 | -18.8 |    0 | NNW |  4.4 | Aotizhongxin |
+|   2 | 2013 |     3 |   1 |    1 |     8 |    8 |   4 |   7 | 300 |  77 | -1.1 | 1023.2 | -18.2 |    0 | N   |  4.7 | Aotizhongxin |
+|   3 | 2013 |     3 |   1 |    2 |     7 |    7 |   5 |  10 | 300 |  73 | -1.1 | 1023.5 | -18.2 |    0 | NNW |  5.6 | Aotizhongxin |
+|   4 | 2013 |     3 |   1 |    3 |     6 |    6 |  11 |  11 | 300 |  72 | -1.4 | 1024.5 | -19.4 |    0 | NW  |  3.1 | Aotizhongxin |
+|   5 | 2013 |     3 |   1 |    4 |     3 |    3 |  12 |  12 | 300 |  72 | -2.0 | 1025.2 | -19.5 |    0 | N   |  2.0 | Aotizhongxin |
+|   6 | 2013 |     3 |   1 |    5 |     5 |    5 |  18 |  18 | 400 |  66 | -2.2 | 1025.6 | -19.6 |    0 | N   |  3.7 | Aotizhongxin |
 
 ## Study the data
 
@@ -107,7 +104,7 @@ these levels shift across months and hours.
 As seen in Figure 1 and Figure 2, there are variations in the PM2.5
 levels across the month of the year, and the time of the day. The mean
 PM2.5 level is at the lowest in August and September. It is especially
-curious ( in Figure 2) that the PM2.5 levels appear to be lower from
+curious (in Figure 2) that the PM2.5 levels appear to be lower from
 0600hours to 1700hours (range of means between 73 - 77 ug/m^3), as we
 would expect there to more exhaust released by both factories and
 vehicles. These are some possible questions that we can explore in our
@@ -117,29 +114,27 @@ further analysis.
 
 We are interested to determine how PM2.5 has changed over two time
 periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
-Feb 28 2017**. As such, we will drop all irrelevant columns, and only
-kept year, month, PM2.5. We have also created a derived column ‘class’,
-which will act as our target variable.
+Feb 28 2017**. More specifically, we set out to answer these questions:
 
-    ## # A tibble: 412,029 × 4
-    ##     year month PM2.5 class 
-    ##    <dbl> <dbl> <dbl> <chr> 
-    ##  1  2013     3     4 time_A
-    ##  2  2013     3     8 time_A
-    ##  3  2013     3     7 time_A
-    ##  4  2013     3     6 time_A
-    ##  5  2013     3     3 time_A
-    ##  6  2013     3     5 time_A
-    ##  7  2013     3     3 time_A
-    ##  8  2013     3     3 time_A
-    ##  9  2013     3     3 time_A
-    ## 10  2013     3     3 time_A
-    ## # … with 412,019 more rows
+1.  How does the distribution of air quality data observations look
+    like? Are they normally distributed?
+2.  If we split the data into sub data sets based on time frames, will
+    there be any overlap in the ranges of the samples?
+
+As such, we will drop all irrelevant columns, and only kept year, month,
+PM2.5. We have also created a derived column ‘class’, which will act as
+our target variable.
+
+| year | month | PM2.5 | class  |
+|-----:|------:|------:|:-------|
+| 2013 |     3 |     4 | time_A |
+| 2013 |     3 |     8 | time_A |
+| 2013 |     3 |     7 | time_A |
+| 2013 |     3 |     6 | time_A |
+| 2013 |     3 |     3 | time_A |
+| 2013 |     3 |     5 | time_A |
 
 # Exploratory analysis on the training data set
-
-We will perform exploratory data analysis steps to highlight the
-distribution of PM2.5 data points for both time_A and time_B.
 
 ## Distribution of data points for each class
 
@@ -158,7 +153,7 @@ about class imbalance which could lead to statistical parity.
 Having verified that both classes are balanced, we move on to observe
 the distribution between both time_A and time_B.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20boxplot%20and%20histogram-1.png)<!-- -->
+<img src="Beijing_air_quality_EDA_files/figure-gfm/EDA boxplot and histogram-1.png" title="Figure 4. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)" alt="Figure 4. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)" width="80%" />
 
 *Figure 4. Boxplot and Histogram for both samples’ PM2.5 distribution.
 (Black dots represent the mean PM2.5 value of each sample).*
@@ -179,7 +174,7 @@ values since we are taking the 50th percentile of our data.
 To explore further, we are plotting a log density graph to see how the
 PM2.5 levels are distributed.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/density%20plot-1.png)<!-- -->
+<img src="Beijing_air_quality_EDA_files/figure-gfm/density plot-1.png" title="Figure 5. Density Plot for time_A and time_B" alt="Figure 5. Density Plot for time_A and time_B" width="80%" />
 
 *Figure 5. Density Plot for time_A and time_B.*
 

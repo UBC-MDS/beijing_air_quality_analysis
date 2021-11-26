@@ -36,7 +36,7 @@ for (file_name in csv_list) {
                       show_col_types = FALSE))
 }
 
-head(air_data)
+kable(head(air_data))
 ```
 
 ## Study the data
@@ -83,7 +83,7 @@ colnames(missing_values) <- c("# of missing values", "Description")
 missing_values <-
         missing_values |> select("Description", "# of missing values")
 
-knitr::kable(missing_values, "pipe")
+kable(missing_values)
 ```
 
 As we are interested to determine how PM2.5 levels have changed, we would like to see if there are any micro changes associated with how these levels shift across months and hours.
@@ -120,11 +120,16 @@ knitr::kable(summary_by(hour), "pipe")
 
 *Figure 2. Table of Sample mean of PM2.5 in hour*
 
-As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious ( in Figure 2) that the PM2.5 levels appear to be lower from 0600hours to 1700hours (range of means between 73 - 77 ug/m^3), as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
+As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious (in Figure 2) that the PM2.5 levels appear to be lower from 0600hours to 1700hours (range of means between 73 - 77 ug/m^3), as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
 
 # Data Wrangling
 
-We are interested to determine how PM2.5 has changed over two time periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to Feb 28 2017**. As such, we will drop all irrelevant columns, and only kept year, month, PM2.5. We have also created a derived column 'class', which will act as our target variable.
+We are interested to determine how PM2.5 has changed over two time periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to Feb 28 2017**. More specifically, we set out to answer these questions:
+
+1.  How does the distribution of air quality data observations look like? Are they normally distributed?
+2.  If we split the data into sub data sets based on time frames, will there be any overlap in the ranges of the samples?
+
+As such, we will drop all irrelevant columns, and only kept year, month, PM2.5. We have also created a derived column 'class', which will act as our target variable.
 
 ```{r spilt data}
 air_data_processed <- air_data |>
@@ -134,12 +139,10 @@ air_data_processed <- air_data |>
                         'time_A',
                         'time_B'))
 
-air_data_processed
+kable(head(air_data_processed))
 ```
 
 # Exploratory analysis on the training data set
-
-We will perform exploratory data analysis steps to highlight the distribution of PM2.5 data points for both time_A and time_B.
 
 ## Distribution of data points for each class
 
@@ -151,7 +154,6 @@ table_distribution_count <- data.frame(Class = c('time_A', 'time_B'),
                                        'Sum of rows' = c(time_A_sum, time_B_sum))
 
 knitr::kable(table_distribution_count, 'pipe')
-
 ```
 
 *Figure 3. Table of sum of rows in each class.*
@@ -162,7 +164,7 @@ Both classes are equally distributed. As such, we are not concerned about class 
 
 Having verified that both classes are balanced, we move on to observe the distribution between both time_A and time_B.
 
-```{r EDA boxplot and histogram}
+```{r EDA boxplot and histogram, fig.width=8, fig.height=6, fig.cap="Figure 4. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)", out.width="80%"}
 time_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
@@ -196,7 +198,6 @@ plot_grid(
             ncol=2,
             rel_widths = c(12,1.75)),
   ncol=1)
-
 ```
 
 *Figure 4. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample).*
@@ -207,7 +208,7 @@ As our distribution is heavily skewed to the right, the mean is getting drawn to
 
 To explore further, we are plotting a log density graph to see how the PM2.5 levels are distributed.
 
-```{r density plot}
+```{r density plot, fig.width=10, fig.height=5, fig.cap="Figure 5. Density Plot for time_A and time_B", out.width="80%"}
 time_A_B_distribution <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=log(PM2.5), fill = class)) +
