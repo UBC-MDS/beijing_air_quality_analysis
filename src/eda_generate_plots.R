@@ -21,8 +21,6 @@ library(tidyverse)
 
 opt <- docopt(doc)
 
-paste0(input, out_dir)
-
 #main <- function(data, out_dir) {
   
  # paste0(data, out_dir)
