@@ -1,6 +1,3 @@
-# author:
-# date: 2021-11-24
-
 "Preprocess PRSA Data
 
 Usage: src/pre_process_data.R --input=<input> --out_dir=<out_dir>
@@ -9,8 +6,6 @@ Options:
 --input=<input>      path with all unziped csv for data preprocess
 --out_dir=<out_dir>  path of output (a preprocessd csv file)
 " -> doc
-
-# Rscript src/pre_process_data.R --input=data/raw/PRSA_Data_20130301-20170228 --out_dir=data/processed
 
 library(docopt)
 library(tidyverse)

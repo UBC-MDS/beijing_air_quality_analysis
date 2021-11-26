@@ -1,6 +1,3 @@
-# author: Junrong Zhu
-# date: 2021-11-24
-
 "Hypothesis Testing
 
 Usage:src/hypothesis_testing_script.R --input=<input> --out_dir=<out_dir>
@@ -9,9 +6,6 @@ Options:
 --input=<input>       Path (including filename) to input the preprocessed data
 --out_dir=<out_dir>   Path to directory where the file should be saved
 " -> doc
-
-#input path example : data/processed/processed_data.csv
-#Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
 
 library(docopt)
 library(tidyverse)
@@ -66,7 +60,8 @@ main <- function(input, out_dir){
   #get the p-value
   pvalue <- get_p_value(null_distribution, 
                         obs_stat = delta_star, direction = 'less')
-  
+  pvalue_df <- data.frame(pvalue) 
+    
   violin_plot <- ggplot(pm_data, aes(x = class, y = PM2.5))+
     geom_violin(trim = TRUE, width = 0.5)+
     geom_point(data = median_est, aes(x = class, y = median))+
@@ -87,6 +82,8 @@ main <- function(input, out_dir){
   ggsave("violin_plot.png", 
          plot = violin_plot,
          path = here(out_dir))
+  
+  write.csv(pvalue_df, paste0(out_dir, "/pvalue.csv"))
   
 }
 

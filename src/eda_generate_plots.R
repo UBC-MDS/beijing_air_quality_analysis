@@ -1,6 +1,3 @@
-# author: Macy Chan
-# date: 2021-11-24
-
 "Generate EDA Plots
 
 Usage: src/eda_generate_plots.R --input=<input> --out_dir=<out_dir>
@@ -9,11 +6,6 @@ Options:
 --input=<input>         path with processed csv for EDA plots generation
 --out_dir=<out_dir>     path of output (EDA plots)
 " -> doc
-
-# Rscript src/eda_generate_plots.R --input=data/processed/processed_data.csv --out_dir=results
-# TODO:
-# 1. read the processed data in data/processed/processed_data.csv
-# 2. Output plots to to results
 
 library(docopt)
 library(tidyverse)

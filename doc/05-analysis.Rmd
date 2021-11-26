@@ -1,10 +1,36 @@
 ### **Hypothesis Testing:**
 \label{sec:analysis}
+```{r load library, message=FALSE}
+library(tidyverse)
+library(knitr)
+```
 
 Hypothesis test for independence of a difference in medians using permutation is
 a suitable test to answer our main question, given that the suitable estimator 
-is median and each data point is collected independently from several testing stations and independent time unit.
+is median and each data point is collected independently from several testing 
+stations and independent time unit. Our pre-specified significance level is 
+$\alpha$ = 0.05 (the probability for us to reject the null hypothesis)
 
--   Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_B  $\geq$ the point estimate of PM2.5 in time_A)
+-   Null Hypothesis($H_0$): The measurement of PM2.5 in Beijing from time_B does 
+not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 
+in time_B  $\geq$ the point estimate of PM2.5 in time_A)
 
--   Alternative Hypothesis($H_a$): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_B is $<$  the point estimate of PM2.5 in time_A)
+-   Alternative Hypothesis($H_a$): The measurement of PM2.5 in Beijing from 
+time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in 
+time_B is $<$  the point estimate of PM2.5 in time_A)
+
+```{r load p-value, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+pvalue <- read_csv(here("results", "pvalue.csv"))
+```
+After conducting the permutation test in the difference of medians, we get a 
+p-value as:
+```{r output p-value}
+pvalue[2][[1]]
+```
+which is greater than the significance level $\alpha$ = 0.05. 
+
+The result indicates that we do not have enough statistical evidence to reject 
+the null hypothesis, $H_0$. Hence, there is no statistically significant 
+difference between the median PM2.5 measurement for time_B and time_A in Beijing.
+
+
