@@ -60,7 +60,8 @@ main <- function(input, out_dir){
   #get the p-value
   pvalue <- get_p_value(null_distribution, 
                         obs_stat = delta_star, direction = 'less')
-  
+  pvalue_df <- data.frame(pvalue) 
+    
   violin_plot <- ggplot(pm_data, aes(x = class, y = PM2.5))+
     geom_violin(trim = TRUE, width = 0.5)+
     geom_point(data = median_est, aes(x = class, y = median))+
@@ -81,6 +82,8 @@ main <- function(input, out_dir){
   ggsave("violin_plot.png", 
          plot = violin_plot,
          path = here(out_dir))
+  
+  write.csv(pvalue_df, paste0(out_dir, "/pvalue.csv"))
   
 }
 
