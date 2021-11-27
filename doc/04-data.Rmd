@@ -1,8 +1,12 @@
 ### **Data Wrangling:**
+
 \label{sec:data}
 
-We will combine sub data-sets, which were collected from twelve testing locations in Beijing, into one data frame, and then split this data frame into two samples based on time frames below.
+We will combine data from twelve data collection stations across Beijing into 
+one data frame and split them into the following two time frames:
 
--   time_A: air quality data from March 2013 - February 2015
+-   $time\_A$: PM2.5 measurements from March 2013 until February 2015 
+(inclusive)
 
--   time_B: air quality data from March 2015 - February 2017
+-   $time\_B$: PM2.5 measurements from March 2015 until February 2017 
+(inclusive)
