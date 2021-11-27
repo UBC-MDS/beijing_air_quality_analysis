@@ -3,13 +3,6 @@ Beijing Air Quality Analysis Final Report
 Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
 11/24/2021
 
--   [Summary](#summary)
--   [Introduction](#introduction)
--   [Methodology](#methodology)
-    -   [**Hypothesis Testing**](#hypothesis-testing)
--   [Results and Discussion](#results-and-discussion)
--   [References](#references)
-
 ## Summary
 
 This analysis project aims to answer whether the levels of PM2.5 air
@@ -24,7 +17,7 @@ economic growth trajectory. Based on the Kuznets curve, it suggests that
 China’s per capita income has much to grow since the PM2.5 median value
 has remained constant or is increasing.
 
-<img src="../results/Environmental_Kuznets_Curve.jpeg" title="Figure 1. China has yet to reach the point of inflexion" alt="Figure 1. China has yet to reach the point of inflexion" width="50%" />
+<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/resource/Environmental_Kuznets_Curve.jpeg" title="Figure 1. China has yet to reach the point of inflexion" alt="Figure 1. China has yet to reach the point of inflexion" width="50%" />
 
 Figure 1: China has yet to reach the point of inflexion (Sanders 2017)
 
@@ -50,8 +43,7 @@ growth coinciding with improving air quality. In fact, in September
 2021, the World Health Organization revised its air quality guidelines
 to more restrictive levels following the increasingly evident causal
 relationships between poor air quality and its harmful health
-consequences on impacted mainly urban communities (Organization et al.
-2021).
+consequences on impacted mainly urban communities (WHO 2021).
 
 We analyse the `Beijing Air Quality` data set, donated to the UC Irvine
 Machine Learning Repository in 2019 (accessible via
@@ -83,7 +75,7 @@ into one data frame and split them into the following two time frames:
 Through Exploratory Data Analysis, we identify that our data is heavily
 skewed and more suitable to analyze the median.
 
-<img src="../results/combined_distribution_plot_1.png" title="Figure 2. Both time_A and time_B distributions are right-skewed" alt="Figure 2. Both time_A and time_B distributions are right-skewed" width="80%" />
+<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/combined_distribution_plot_1.png" title="Figure 2. Both time_A and time_B distributions are right-skewed" alt="Figure 2. Both time_A and time_B distributions are right-skewed" width="80%" />
 
 Figure 2. Both time_A and time_B distributions are right-skewed
 
@@ -114,7 +106,7 @@ of *α* = 0.05.
 
 ## Results and Discussion
 
-<img src="../results/violin_plot.png" title="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" alt="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" width="80%" />
+<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/violin_plot.png" title="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" alt="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" width="80%" />
 
 Figure 3. Violin Plot showing that there is a difference in median PM2.5
 value in time_A and time_B
@@ -151,14 +143,6 @@ Survey.” *Ecological Economics* 49 (4): 431–55.
 
 </div>
 
-<div id="ref-world2021global" class="csl-entry">
-
-Organization, World Health et al. 2021. “WHO Global Air Quality
-Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen
-Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary.”
-
-</div>
-
 <div id="ref-sanders_2017" class="csl-entry">
 
 Sanders, Jon. 2017. “The Market Forces Behind North Carolina’s Falling
@@ -179,6 +163,14 @@ Statista. 2021. “China GDP Growth Rate 2011-2024.” *Statista*.
 Wang, Shuxiao, and Jiming Hao. 2012. “Air Quality Management in China:
 Issues, Challenges, and Options.” *Journal of Environmental Sciences* 24
 (1): 2–13.
+
+</div>
+
+<div id="ref-world2021global" class="csl-entry">
+
+WHO. 2021. “WHO Global Air Quality Guidelines: Particulate Matter (Pm2.
+5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon
+Monoxide: Executive Summary.”
 
 </div>
 
