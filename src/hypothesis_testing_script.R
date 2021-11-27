@@ -12,6 +12,8 @@ library(tidyverse)
 library(infer)
 library(cowplot)
 library(here)
+library(testthat)
+
 
 opt <- docopt(doc)
 
@@ -19,19 +21,6 @@ main <- function(input, out_dir){
  
   #loading the preprocessed data
   pm_data <- read_csv(input)
-
-  #creating the function to get 95% confidence interval
-  # 
-  ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
-    if(!is.data.frame(sample)){
-      stop("Input sample must be dataframe")
-    }
-    set.seed(2021)
-    sample |>
-      rep_sample_n(nrow(sample), replace = TRUE, reps = 10) |>
-      summarise(stat = median({{ var }})) |>
-      get_confidence_interval(level = level, type = type)
-   }
   
   # Calculate medians for each class
   medians <- pm_data |>
@@ -82,18 +71,6 @@ main <- function(input, out_dir){
     dir.create(out_dir)
   }
   
-  test_that("Incorrect output result", {
-    expect_equal(length(ci_median(air_data_processed, PM2.5)), 2)
-    expect_false(
-      ci_median(air_data_processed, PM2.5)[2] < 
-        ci_median(air_data_processed, PM2.5)[1]
-    )
-  })
-  
-  test_that("Function has inappropriate input type", {
-    expect_error(ci_median(c(1, 2, 3), class))
-    expect_error(ci_median("air_data_processed", class))
-  })
   
   #save plot of null distribution
   ggsave("violin_plot.png", 
@@ -103,6 +80,35 @@ main <- function(input, out_dir){
   write.csv(pvalue_df, paste0(out_dir, "/pvalue.csv"))
   
 }
+
+#creating helper function to get 95% confidence interval
+ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
+  if(!is.data.frame(sample)){
+    stop("Input sample must be dataframe")
+  }
+  set.seed(2021)
+  sample |>
+    rep_sample_n(nrow(sample), replace = TRUE, reps = 10) |>
+    summarise(stat = median({{ var }})) |>
+    get_confidence_interval(level = level, type = type)
+}
+
+pm_data <- read_csv(opt[["--input"]])
+
+#test cases for ci_median function
+test_that("Incorrect output result", {
+  expect_equal(length(ci_median(pm_data, PM2.5)), 2)
+  expect_false(
+    ci_median(pm_data, PM2.5)[2] < 
+      ci_median(pm_data, PM2.5)[1]
+  )
+})
+
+test_that("Function has inappropriate input type", {
+  expect_error(ci_median(c(1, 2, 3), class))
+  expect_error(ci_median("pm_data", class))
+})
+
 
 main(opt[["--input"]], opt[["--out_dir"]])
 
