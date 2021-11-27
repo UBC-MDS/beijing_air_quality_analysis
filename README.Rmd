@@ -1,5 +1,5 @@
 ---
-bibliography: src/references.bib
+bibliography: doc/references.bib
 output: github_document
 ---
 # Beijing Air Quality Analysis
@@ -12,6 +12,7 @@ Data analysis project for DSCI 522 (Data Science Workflows); a course in the Mas
 knitr::opts_chunk$set(echo = TRUE)
 library(knitr)
 library(tidyverse)
+library(here)
 ```
 
 ## Introduction
