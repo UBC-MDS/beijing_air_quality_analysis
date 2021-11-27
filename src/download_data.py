@@ -20,6 +20,10 @@ from zipfile import ZipFile
 opt = docopt(__doc__)
 
 
+class UnzipFileError(Exception):
+    pass
+
+
 def unzip(url, out_folder):
     try:
         print("Unzipping file...")
@@ -32,8 +36,7 @@ def unzip(url, out_folder):
         zf.close()
         print(f"Finished unzipping file to {os.getcwd()}/{out_folder}")
     except Exception as req:
-        print("Failed unzip file.")
-        print(req)
+        raise UnzipFileError(req)
 
 
 def main(url, out_folder):
@@ -52,3 +55,15 @@ def main(url, out_folder):
 
 if __name__ == "__main__":
     main(opt["--url"], opt["--out_folder"])
+
+
+url = "fakeUrl_forError"
+output = "data/raw"
+
+try:
+    unzip(url, output)  # this should fail and be caught by the exception
+except UnzipFileError as ex:
+    print(f"{ex.__class__.__name__} caught!")
+    pass
+else:
+    assert False
