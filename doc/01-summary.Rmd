@@ -1,4 +1,5 @@
 ## Summary
+
 \label{sec:summary}
 
-I am a summary. ¯\_(ツ)_/¯
+This analysis project aims to answer whether the levels of PM2.5 air pollution in Beijing, China has improved between 2013 and 2017. To do so, we performed a difference in medians hypothesis test between two intervals, `time_A` and `time_B`, and concluded that no statistically significant decrease in PM2.5 particulate measurements can be detected.
