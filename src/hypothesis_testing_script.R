@@ -21,6 +21,7 @@ main <- function(input, out_dir){
   pm_data <- read_csv(input)
 
   #creating the function to get 95% confidence interval
+  # 
   ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
     if(!is.data.frame(sample)){
       stop("Input sample must be dataframe")
@@ -81,6 +82,19 @@ main <- function(input, out_dir){
     dir.create(out_dir)
   }
   
+  test_that("Incorrect output result", {
+    expect_equal(length(ci_median(air_data_processed, PM2.5)), 2)
+    expect_false(
+      ci_median(air_data_processed, PM2.5)[2] < 
+        ci_median(air_data_processed, PM2.5)[1]
+    )
+  })
+  
+  test_that("Function has inappropriate input type", {
+    expect_error(ci_median(c(1, 2, 3), class))
+    expect_error(ci_median("air_data_processed", class))
+  })
+  
   #save plot of null distribution
   ggsave("violin_plot.png", 
          plot = violin_plot,
@@ -91,3 +105,5 @@ main <- function(input, out_dir){
 }
 
 main(opt[["--input"]], opt[["--out_dir"]])
+
+

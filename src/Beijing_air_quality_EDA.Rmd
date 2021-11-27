@@ -1,6 +1,8 @@
 ---
 title: "Exploratory data analysis of Beijing air quality data set"
-output: github_document
+output: 
+  github_document:
+    toc: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -15,8 +17,6 @@ library(cowplot)
 theme_set(theme_minimal())
 set.seed(2020)
 ```
-
-# Summary of the data set
 
 ## Data Import
 
@@ -36,7 +36,7 @@ for (file_name in csv_list) {
                       show_col_types = FALSE))
 }
 
-kable(head(air_data))
+head(air_data)
 ```
 
 ## Study the data
@@ -88,7 +88,7 @@ kable(missing_values)
 
 As we are interested to determine how PM2.5 levels have changed, we would like to see if there are any micro changes associated with how these levels shift across months and hours.
 
-```{r data summary year}
+```{r data summary year, fig.cap="Figure 1. Table of Sample mean of PM2.5 per year"}
 summary_by <- function(col) {
   air_data_summary <- air_data |>
     
@@ -109,20 +109,18 @@ summary_by <- function(col) {
     air_data_summary_transpose
 }
 
+knitr::kable(summary_by(year), "pipe")
+```
+
+
+```{r data summary month, fig.cap="Figure 2. Table of Sample mean of PM2.5 per month"}
 knitr::kable(summary_by(month), "pipe")
 ```
 
-*Figure 1. Table of Sample mean of PM2.5 in month*
 
-```{r data summary month}
-knitr::kable(summary_by(hour), "pipe")
-```
+As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month and year. The mean PM2.5 level is at the lowest in August and September. It is especially curious (in Figure 2) that the PM2.5 levels appear to be lower, as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
 
-*Figure 2. Table of Sample mean of PM2.5 in hour*
-
-As seen in Figure 1 and Figure 2, there are variations in the PM2.5 levels across the month of the year, and the time of the day. The mean PM2.5 level is at the lowest in August and September. It is especially curious (in Figure 2) that the PM2.5 levels appear to be lower from 0600hours to 1700hours (range of means between 73 - 77 ug/m^3), as we would expect there to more exhaust released by both factories and vehicles. These are some possible questions that we can explore in our further analysis.
-
-# Data Wrangling
+## Data Wrangling
 
 We are interested to determine how PM2.5 has changed over two time periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to Feb 28 2017**. More specifically, we set out to answer these questions:
 
@@ -139,10 +137,8 @@ air_data_processed <- air_data |>
                         'time_A',
                         'time_B'))
 
-kable(head(air_data_processed))
+head(air_data_processed)
 ```
-
-# Exploratory analysis on the training data set
 
 ## Distribution of data points for each class
 
@@ -230,4 +226,5 @@ Looking at these areas:
 **(1) on the left of the orange vertical line**  
 **(2)** **the right of the purple vertical line,**
 
-it is clear that the area under the curve for time_A in these two sections are larger than the area under the curve of time_B. This indicates time_A has more extreme values than time_B. The area under the curve of time_B dominates between the orange line and purple vertical line (it completely covered the area of time_A). However, there are overlapping areas. The distinct areas of time_A and time_B in this density plot suggests that time_A could possibly have a higher median than time_B. 
+it is clear that the area under the curve for time_A in these two sections are larger than the area under the curve of time_B. This indicates time_A has more extreme values than time_B. The area under the curve of time_B dominates between the orange line and purple vertical line (it completely covered the area of time_A). However, there are overlapping areas. The distinct areas of time_A and time_B in this density plot suggests that time_A could possibly have a higher median than time_B.
+
