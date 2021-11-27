@@ -25,6 +25,22 @@ class UnzipFileError(Exception):
 
 
 def unzip(url, out_folder):
+    """Downloads data from the web and unzip the data.
+
+
+    Parameters
+    ----------
+    url : string
+        URL from where to download the data (must be in standard csv format)
+
+    out_folder : string
+        Folder of where to locally unzip the file (e.g. data/raw)
+
+    Examples
+    --------
+    >>> unzip("www.data.csv", "data/raw")
+    """
+
     try:
         print("Unzipping file...")
         zipresp = urlopen(url)
