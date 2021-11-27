@@ -5,13 +5,12 @@
 ```{r load p-value, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 library(tidyverse) 
 library(knitr) 
-library(here) 
-
+library(here)
 pvalue <- read_csv(here("results", "pvalue.csv"))
 ```
 
 ```{r median value, echo = FALSE, fig.cap="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B", out.width = '80%'}
-knitr::include_graphics("../results/violin_plot.png")
+knitr::include_graphics(here("results","violin_plot.png"))
 ```
 
 Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B

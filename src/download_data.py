@@ -79,7 +79,7 @@ output = "data/raw"
 try:
     unzip(url, output)  # this should fail and be caught by the exception
 except UnzipFileError as ex:
-    print(f"{ex.__class__.__name__} caught!")
+    print(f"{ex.__class__.__name__} caught! Test case ran successfully.")
     pass
 else:
     assert False

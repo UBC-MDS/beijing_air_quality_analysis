@@ -4,8 +4,12 @@ author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
 bibliography: ../src/references.bib
 date: "11/24/2021"
 output: 
-  github_document:
+  html_document:
     toc: true
+knit: (function(inputFile, encoding) { 
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), '../index.html')) })
 ---
 
 
@@ -17,6 +21,7 @@ library(tidyverse)
 library(caret)
 library(infer)
 library(scales)
+library(here)
 ```
 
 ```{r summary, child="01-summary.Rmd"}
