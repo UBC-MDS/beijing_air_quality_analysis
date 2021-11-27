@@ -82,6 +82,20 @@ main <- function(input, out_dir){
 }
 
 #creating helper function to get 95% confidence interval
+#' ci_median
+#'
+#' @param sample A dataframe
+#' @param var A numeric vector
+#' @param level the confidence level (default value 0.95)
+#' @param type confidence level (default is percentile)
+#'
+#' @return the lower and upper confidence interval for the input vector(two numeric values)
+#' @export
+#'
+#' @examples
+#' 
+#' ci_median(pm_data, PM2.5)
+#'
 ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
   if(!is.data.frame(sample)){
     stop("Input sample must be dataframe")
