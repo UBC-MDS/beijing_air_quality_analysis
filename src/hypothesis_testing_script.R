@@ -93,7 +93,6 @@ main <- function(input, out_dir){
 #' @export
 #'
 #' @examples
-#' 
 #' ci_median(pm_data, PM2.5)
 #'
 ci_median <- function(sample, var, level = 0.95, type = 'percentile'){
