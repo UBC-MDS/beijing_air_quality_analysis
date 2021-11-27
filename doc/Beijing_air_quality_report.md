@@ -17,7 +17,7 @@ economic growth trajectory. Based on the Kuznets curve, it suggests that
 China’s per capita income has much to grow since the PM2.5 median value
 has remained constant or is increasing.
 
-<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/resource/Environmental_Kuznets_Curve.jpeg" title="Figure 1. China has yet to reach the point of inflexion" alt="Figure 1. China has yet to reach the point of inflexion" width="50%" />
+![](/Users/macychan/UBC%20MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/resource/Environmental_Kuznets_Curve.jpeg)<!-- -->
 
 Figure 1: China has yet to reach the point of inflexion (Sanders 2017)
 
@@ -75,7 +75,7 @@ into one data frame and split them into the following two time frames:
 Through Exploratory Data Analysis, we identify that our data is heavily
 skewed and more suitable to analyze the median.
 
-<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/combined_distribution_plot_1.png" title="Figure 2. Both time_A and time_B distributions are right-skewed" alt="Figure 2. Both time_A and time_B distributions are right-skewed" width="80%" />
+![](/Users/macychan/UBC%20MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/combined_distribution_plot_1.png)<!-- -->
 
 Figure 2. Both time_A and time_B distributions are right-skewed
 
@@ -90,7 +90,7 @@ implement a one-tailed hypothesis test to answer to compare these
 measurements between two equal-interval time intervals (`time_A` and
 `time_B`).
 
-### **Hypothesis Testing**
+### Hypothesis Testing
 
 We use a hypothesis test for independence of a difference in medians via
 permutation to answer the main question main, using a significance level
@@ -106,7 +106,7 @@ of *α* = 0.05.
 
 ## Results and Discussion
 
-<img src="/Users/macychan/UBC MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/violin_plot.png" title="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" alt="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B" width="80%" />
+![](/Users/macychan/UBC%20MDS/522_Data_Science_Workflows/DSCI_522_Beijing_Air_Quality/results/violin_plot.png)<!-- -->
 
 Figure 3. Violin Plot showing that there is a difference in median PM2.5
 value in time_A and time_B
