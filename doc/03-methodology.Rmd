@@ -14,7 +14,7 @@ We combine the data from twelve data collection stations across Beijing into one
 
 Through Exploratory Data Analysis, we identify that our data is heavily skewed and more suitable to analyze the median.
 
-```{r eda plot for report, echo=FALSE, fig.cap="Figure 2. Both time_A and time_B distributions are right-skewed", out.width = '80%'}
+```{r eda plot for report, echo=FALSE}
 library(here)
 knitr::include_graphics(here("results","combined_distribution_plot_1.png"))
 ```
