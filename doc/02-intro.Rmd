@@ -1,13 +1,9 @@
 ---
 title: "Beijing Air Quality Analysis"
-bibliography: references.bib
 output: 
   html_document:
     toc: true
 ---
-
-## Introduction
-
 \label{sec:intro}
 
 ## Introduction
@@ -20,4 +16,3 @@ We analyse the `Beijing Air Quality` data set, donated to the UC Irvine Machine 
 
 The report for our exploratory data analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/Beijing_air_quality_EDA.md).
 
-# References
