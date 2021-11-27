@@ -1,6 +1,10 @@
 ## Methodology
-
 \label{sec:methods}
+```{r echo=FALSE, include=FALSE}
+library(here)
+library(knitr)
+```
+
 
 We combine the data from twelve data collection stations across Beijing into one data frame and split them into the following two time frames:
 
@@ -10,6 +14,10 @@ We combine the data from twelve data collection stations across Beijing into one
 
 Through Exploratory Data Analysis, we identify that our data is heavily skewed and more suitable to analyze the median.
 
-!["Box Plot and Histogram PM2.5 Distribution per Time Frame"](%22/results/combined_distribution_plot_1.png%22)
+```{r eda plot for report, echo=FALSE, fig.cap="Figure 2. Both time_A and time_B distributions are right-skewed", out.width = '80%'}
+knitr::include_graphics("../results/combined_distribution_plot_1.png")
+```
+
+Figure 2. Both time_A and time_B distributions are right-skewed
 
 We answer the main question of this project using the following methodology pipeline. Based on the theoretical assumption that data points across both samples are independent and identically distributed (i.i.d.) when their hourly collected data are distributed over multi-year time span, we performed a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and 2017. To do so, we implement a one-tailed hypothesis test to answer to compare these measurements between two equal-interval time intervals (`time_A` and `time_B`).

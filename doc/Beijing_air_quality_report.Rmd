@@ -27,19 +27,15 @@ library(scales)
 
 ```
 
-```{r methods, child="03-methods.Rmd"}
+```{r methods, child="03-methodology.Rmd"}
 
 ```
 
-```{r data, child="04-data.Rmd"}
+```{r data, child="04-hypothesis_test.Rmd"}
 
 ```
 
-```{r analysis, child="05-analysis.Rmd", echo=FALSE}
-
-```
-
-```{r results and discussion, child="06-results and discussion.Rmd"}
+```{r analysis, child="05-results_and_discussion.Rmd"}
 
 ```
 
