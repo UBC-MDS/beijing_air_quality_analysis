@@ -56,6 +56,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -169,105 +191,36 @@ pre code {
 
 <div id="TOC">
 <ul>
-<li><a href="#beijing-air-quality-analysis">Beijing Air Quality Analysis</a>
-<ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#report">Report</a></li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#dependencies">Dependencies</a></li>
-<li><a href="#license">License</a></li>
-</ul></li>
+<li><a href="#introduction-1">Introduction</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 </div>
 
-<div id="beijing-air-quality-analysis" class="section level1">
-<h1>Beijing Air Quality Analysis</h1>
-<ul>
-<li>Authors: Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev</li>
-</ul>
-<p>Data analysis project for DSCI 522 (Data Science Workflows); a course in the Master of Data Science program at the University of British Columbia.</p>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
+<p></p>
+</div>
+<div id="introduction-1" class="section level2">
+<h2>Introduction</h2>
 <p>The objective of this project is to answer the following inferential question: <strong>Does PM2.5 measurement in Beijing, China collected between 2013 and 2017 show any sign of improvement?</strong></p>
-<p>The capital city of Beijing, China has long struggled with poor air quality, a result of the country’s rapid industrialization and its heavy reliance on coal for electricity generation the North, as well as its growing and increasingly urban middle class <span class="math display">\[\@wang2012air\]</span>. This analysis question is important for its timely and global implications. As air pollution from the burning of fossil fuels and its association with climate change and direct health outcomes poses a challenge to nations worldwide, we explore whether we may find evidence of economic growth coinciding with improving air quality. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities <span class="math display">\[\@world2021global\]</span>.</p>
-<p>We analyse the <code>Beijing Air Quality</code> data set, donated to the UC Irvine Machine Learning Repository in 2019 (accessible via <a href="https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data">URL</a>), which comprises hourly measurement of six air pollutants (including <code>PM2.5</code>, <code>PM10</code>, <code>SO2</code>, <code>NO2</code>, <code>CO</code>, <code>O3</code>) and six meteorological variables spanning from 2013 until 2017 across twelve of its metropolitan data-collecting stations. While the structure of this data set makes it suitable for multi-variate time-series regression analysis, we focus our analysis solely on the readings of the <code>PM2.5</code> metric, a form of fine particulate matter that is considered especially harmful for its ability to penetrate deep into the lungs and cause long-lasting damage to the respiratory system <span class="math display">\[\@xing2016impact\]</span>.</p>
+<p>The capital city of Beijing, China has long struggled with poor air quality, a result of the country’s rapid industrialization and its heavy reliance on coal for electricity generation the North, as well as its growing and increasingly urban middle class <span class="citation">(Wang and Hao 2012)</span>. This analysis question is important for its timely and global implications. As air pollution from the burning of fossil fuels and its association with climate change and direct health outcomes poses a challenge to nations worldwide, we explore whether we may find evidence of economic growth coinciding with improving air quality. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities <span class="citation">(Organization et al. 2021)</span>.</p>
+<p>We analyse the <code>Beijing Air Quality</code> data set, donated to the UC Irvine Machine Learning Repository in 2019 (accessible via <a href="https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data">URL</a>), which comprises hourly measurement of six air pollutants (including <code>PM2.5</code>, <code>PM10</code>, <code>SO2</code>, <code>NO2</code>, <code>CO</code>, <code>O3</code>) and six meteorological variables spanning from 2013 until 2017 across twelve of its metropolitan data-collecting stations. While the structure of this data set makes it suitable for multi-variate time-series regression analysis, we focus our analysis solely on the readings of the <code>PM2.5</code> metric, a form of fine particulate matter that is considered especially harmful for its ability to penetrate deep into the lungs and cause long-lasting damage to the respiratory system <span class="citation">(Xing et al. 2016)</span>.</p>
 <p>The report for our exploratory data analysis can be found <a href="https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/Beijing_air_quality_EDA.md">here</a>.</p>
 </div>
-<div id="about" class="section level2">
-<h2>About</h2>
-<p>Given that we have good sample size for both samples and the data points are independent, we performed a <strong>hypothesis test</strong> to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We implemented one-tailed test to answer the question since we expect to detect the improvement in PM2.5 pollution.</p>
-<ul>
-<li><p>Null Hypothesis(*H*&lt;sub&gt;0&lt;/sub&gt;): The measurement of PM2.5 in Beijing from time_B does not show any sign of improvement comparing to time_A. (Point estimate of PM2.5 in time_A is less than and equal to the point estimate of PM2.5 in time_B)</p></li>
-<li><p>Alternative Hypothesis(<em>H</em><sub>0</sub>): The measurement of PM2.5 in Beijing from time_B shows an improvement comparing to time_A. (Point estimate of PM2.5 in time_A is greater than the point estimate of PM2.5 in time_B)</p></li>
-</ul>
-<p>…. summary of results.</p>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-world2021global" class="csl-entry">
+Organization, World Health et al. 2021. <span>“WHO Global Air Quality Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary.”</span>
 </div>
-<div id="report" class="section level2">
-<h2>Report</h2>
-<p>The final report can be found here.</p>
+<div id="ref-wang2012air" class="csl-entry">
+Wang, Shuxiao, and Jiming Hao. 2012. <span>“Air Quality Management in China: Issues, Challenges, and Options.”</span> <em>Journal of Environmental Sciences</em> 24 (1): 2–13.
 </div>
-<div id="usage" class="section level2">
-<h2>Usage</h2>
-<p>To replicate the analysis, clone this GitHub repository, install the <a href="#dependencies">dependencies</a> listed below, and run the following commands at the command line/terminal from the root directory of this project:</p>
-<pre><code># download data
-python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00501/PRSA2017_Data_20130301-20170228.zip --out_folder=data/raw
-Rscript -e &quot;rmarkdown::render(&#39;src/Beijing_air_quality_EDA.Rmd&#39;)&quot;
-
-# run eda report
-Rscript -e &quot;rmarkdown::render(&#39;src/Beijing_air_quality_EDA.Rmd&#39;)&quot;
-
-# pre-process data
-Rscript src/pre_process_data.R --input=??? --out_dir=/processed_data.csv
-
-# create exploratory data analysis figure and write to file
-Rscript src/eda_generate_plots.R --input=pre_process_data.R --out_dir=results
-
-# hypothesis_testing
-Rscript src/hypothesis_testing_script.R --input=pre_process_data.R --out_dir=results
-
-# render final report
-Rscript -e &quot;rmarkdown::render(&#39;doc/Beijing_air_quality_report.Rmd&#39;, output_format = &#39;github_document&#39;)&quot;</code></pre>
-</div>
-<div id="dependencies" class="section level2">
-<h2>Dependencies</h2>
-<ul>
-<li><p>Python 3.7.3 and Python packages:</p>
-<ul>
-<li>docopt==0.6.2</li>
-<li>requests==2.22.0</li>
-<li>pandas==0.24.2</li>
-<li>urllib.request==3.9</li>
-</ul></li>
-<li><p>R version 3.6.1 and R packages:</p>
-<ul>
-<li>knitr==1.36</li>
-<li>tidyverse==1.3.1</li>
-<li>ggthemes==4.2.4</li>
-<li>here==1.0.1</li>
-<li>cowplot==1.1.1</li>
-<li>scales==1.1.1</li>
-<li>forcats==0.5.1</li>
-<li>stringr==1.4.0</li>
-<li>dplyr==1.0.7</li>
-<li>purrr==0.3.4</li>
-<li>readr==2.0.2</li>
-<li>tidyr==1.1.3</li>
-<li>tibble==3.1.5</li>
-<li>ggplot2==3.3.5</li>
-<li>infer==1.0.0</li>
-</ul></li>
-</ul>
-</div>
-<div id="license" class="section level2">
-<h2>License</h2>
-<p>This dataset is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International</a> (CC BY 4.0) license.</p>
-<p>This allows for the sharing and adaptation of the datasets for any purpose, provided that the appropriate credit is given.</p>
+<div id="ref-xing2016impact" class="csl-entry">
+Xing, Yu-Fei, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. <span>“The Impact of Pm2. 5 on the Human Respiratory System.”</span> <em>Journal of Thoracic Disease</em> 8 (1): E69.
 </div>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
 </div>
 
 
