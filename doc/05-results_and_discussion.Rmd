@@ -9,11 +9,9 @@ library(here)
 pvalue <- read_csv(here("results", "pvalue.csv"))
 ```
 
-```{r median value, echo = FALSE}
+```{r median value, echo = FALSE, fig.cap="Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B", out.width = '80%'}
 knitr::include_graphics(here("results","violin_plot.png"))
 ```
-
-Figure 3. Violin Plot showing that there is a difference in median PM2.5 value in time_A and time_B
 
 There is a difference in median values as seen in the violin plot. However, after conducting the permutation test in the difference of medians, we get a p-value of `r round(pvalue[2][[1]],3)`, which is greater than the significance level $\alpha$ = 0.05.
 

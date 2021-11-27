@@ -5,11 +5,9 @@ This analysis project aims to answer whether the levels of PM2.5 air pollution i
 
 This result has economic implications, informing us about China's economic growth trajectory. Based on the Kuznets curve, it suggests that China's per capita income has much to grow since the PM2.5 median value has remained constant or is increasing.
 
-```{r Kuznets curve, echo=FALSE}
+```{r Kuznets curve, echo=FALSE, fig.cap="Figure 1. China has yet to reach the point of inflexion", out.width = '50%'}
 library(here)
 knitr::include_graphics(here("resource","Environmental_Kuznets_Curve.jpeg"))
 ```
-
-Figure 1: China has yet to reach the point of inflexion [@sanders_2017]
 
 *The model suggests that economic development initially leads to a deterioration in the environment, but will improve in its relationship past a certain level of economic growth.
