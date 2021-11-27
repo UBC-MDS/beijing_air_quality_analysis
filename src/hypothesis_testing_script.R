@@ -83,7 +83,7 @@ main <- function(input, out_dir){
 
 #creating helper function to get 95% confidence interval
 #' ci_median
-#'
+#' compute the confidence interval, default is 95%
 #' @param sample A dataframe
 #' @param var A numeric vector
 #' @param level the confidence level (default value 0.95)
