@@ -14,7 +14,7 @@ Data analysis project for DSCI 522 (Data Science Workflows); a course in the Mas
 
 ## Introduction
 
-The objective of this project is to answer the following inferential question: **Have the levels of PM2.5 air pollution in Beijing, China decreased between the Mar 2013 - Feb 2015 and Mar 2015 - Feb 2017 time intervals, thus suggesting an improvement in overall air quality**?
+The objective of this project is to answer the following inferential question: **Do PM2.5 measurements in Beijing, China collected between 2013 and 2017 show any sign of improvement?**
 
 The capital city of Beijing, China has long struggled with poor air quality, a result of the country's rapid industrialization and its heavy reliance on coal for electricity generation the North, as well as its growing and increasingly urban middle class \[\@wang2012air\]. This analysis question is important for its timely and global implications. As air pollution from the burning of fossil fuels and its association with climate change and direct health outcomes poses a challenge to nations worldwide, we explore whether we may find evidence of economic growth coinciding with improving air quality. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities \[\@world2021global\].
 

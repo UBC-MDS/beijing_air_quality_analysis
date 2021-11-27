@@ -1,0 +1,9 @@
+### **Hypothesis Testing**
+
+\label{sec:analysis}
+
+We use a hypothesis test for independence of a difference in medians via permutation to answer the main question main, using a significance level of $\alpha$ = 0.05.
+
+-   Null Hypothesis ($H_0$): The median PM2.5 value in Beijing in time_A is less than or equal to the median PM2.5 value in time_B (i.e., $median_{PM2.5_{time\_A}} \leq median_{PM2.5_{time\_B}}$)
+
+-   Alternative Hypothesis ($H_A$): There median PM2.5 value in Beijing in time_A is greater than the median PM2.5 values in time_B ($median_{PM2.5_{time\_A}} \gt median_{PM2.5_{time\_B}}$)

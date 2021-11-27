@@ -35,7 +35,7 @@ library(scales)
 
 ```
 
-```{r analysis, child="05-analysis.Rmd"}
+```{r analysis, child="05-analysis.Rmd", echo=FALSE}
 
 ```
 
