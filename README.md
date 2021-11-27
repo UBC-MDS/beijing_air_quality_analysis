@@ -1,15 +1,7 @@
-Beijing Air Quality Analysis
-================
 
--   [Introduction](#introduction)
--   [About](#about)
--   [Report](#report)
--   [Usage](#usage)
--   [Dependencies](#dependencies)
--   [License](#license)
--   [References](#references)
+# Beijing Air Quality Analysis
 
-Authors: Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
+**Authors:** Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
 
 Data analysis project for DSCI 522 (Data Science Workflows); a course in
 the Master of Data Science program at the University of British
@@ -136,10 +128,10 @@ project:
 ## License
 
 This dataset is licensed under a [Creative Commons Attribution 4.0
-International](https://creativecommons.org/licenses/by/4.0/legalcode) (CC
-BY 4.0) license.
+International](https://creativecommons.org/licenses/by/4.0/legalcode)
+(CC BY 4.0) license.
 
 This allows for the sharing and adaptation of the datasets for any
 purpose, provided that the appropriate credit is given.
 
-## References
+# References
