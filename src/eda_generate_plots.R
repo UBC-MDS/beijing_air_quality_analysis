@@ -23,8 +23,7 @@ main <- function(input, out_dir) {
         time_A_B_boxplot <- air_data_processed |>
                 group_by(class) |>
                 ggplot(aes(x=PM2.5, y=class, fill = class)) +
-                geom_boxplot(names=c('time_A', 'time_B'), 
-                             outlier.alpha = 0.1,
+                geom_boxplot(outlier.alpha = 0.1,
                              outlier.fill = NULL) +
                 geom_point(stat = 'summary', fun = 'mean', color = 'black') +
                 labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
