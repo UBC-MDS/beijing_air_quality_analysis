@@ -63,19 +63,20 @@ measurements in Beijing between 2013 and year 2017. We implemented
 one-tailed test to answer the question since we expect to detect the
 improvement in PM2.5 pollution.
 
--   Null Hypothesis(\*H\*\<sub>0\</sub>): The measurement of PM2.5 in
-    Beijing from time_B does not show any sign of improvement comparing
-    to time_A. (Point estimate of PM2.5 in time_A is less than and equal
-    to the point estimate of PM2.5 in time_B)
+-   Null Hypothesis (*H*<sub>0</sub>): The median PM2.5 value in Beijing
+    in time_A is less than or equal to the median PM2.5 value in time_B
+    (*Q*\_*A*(0.5) ≤ *Q*\_*B*(0.5))
 
--   Alternative Hypothesis(*H*<sub>0</sub>): The measurement of PM2.5 in
-    Beijing from time_B shows an improvement comparing to time_A. (Point
-    estimate of PM2.5 in time_A is greater than the point estimate of
-    PM2.5 in time_B)
+-   Alternative Hypothesis (*H*<sub>*A*</sub>): There median PM2.5 value
+    in Beijing in time_A is greater than the median PM2.5 values in
+    time_B (*Q*\_*A*(0.5) \> *Q*\_*B*(0.5))
 
 After conducting the permutation test in the difference of medians, we
-get a p-value of 1, which is greater than the significance level
-$\\\\alpha$ = 0.05.
+get a p-value of 1, which is greater than the significance level *α* =
+0.05. Our result has economic implications, informing us about China’s
+economic growth trajectory. Based on the Kuznets curve, it suggests that
+China’s per capita income has much to grow since the PM2.5 median value
+has remained constant or is increasing.
 
 ## Report
 
