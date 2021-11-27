@@ -30,8 +30,8 @@ run_fincal_report () {
         Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
         
         # render final report
-        Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'github_document')"
-        FILE=doc/Beijing_air_quality_report.md
+        Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'html_document')"
+        FILE=doc/Beijing_air_quality_report.html
         if [ -e "$FILE" ]; then
             echo "Complete rendering final report"
         else

@@ -69,9 +69,8 @@ has remained constant or is increasing.
 
 ## Report
 
-The final report can be found in two formats,  
-[Webpage](https://ubc-mds.github.io/DSCI_522_Beijing_Air_Quality/)  
-[Github](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/doc/Beijing_air_quality_report.md).
+The final report can be found in this
+[Webpage](https://ubc-mds.github.io/DSCI_522_Beijing_Air_Quality/)
 
 ## Usage
 
@@ -96,7 +95,7 @@ project:
     Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
 
     # render final report
-    Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'github_document')"
+    Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'html_document')"
 
 ## Dependencies
 
