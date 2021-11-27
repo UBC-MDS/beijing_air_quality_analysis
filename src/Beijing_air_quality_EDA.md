@@ -111,14 +111,14 @@ Table 3. Sample mean, max and min of PM2.5 per year
 
 Table 4. Sample mean, max and min of PM2.5 per month
 
-As seen in table 1 and 2, there are variations in the PM2.5 levels
-across the month and year. The mean PM2.5 level is generally at the
-lowest in August and September. Looking at the statistic trends for
-years, 2016 had the lowest mean, yet highest max; 2015 had the lowest
-max value but its mean was same as 2013. We couldn’t tell a significant
-differences among these statistical summary values to answer the main
-question, hence we’d perform further data wrangling and exploration to
-find out more representative characteristics of our data.
+As seen in Table 3 and 4, there are variations in the PM2.5 levels
+across the years and months. Looking at the statistic trends for years,
+2016 had the lowest mean, yet highest max; 2015 had the lowest max value
+but its mean was same as 2013. The mean PM2.5 level is generally at the
+lowest in August and September. There are no significant differences
+among these statistical summary values to answer the main question. As
+such, we will perform further data wrangling and exploration to find out
+more representative characteristics of our data.
 
 ## Data Wrangling
 
@@ -131,9 +131,9 @@ Feb 28 2017**. More specifically, we set out to answer these questions:
 2.  If we split the data into sub data sets based on time frames, will
     there be any overlap in the ranges of the samples?
 
-As such, we will drop all irrelevant columns, and only kept year, month,
-PM2.5. We have also created a derived column ‘class’, which will act as
-our target variable.
+As such, we drop all irrelevant columns, and only kept year, month,
+PM2.5. We created a derived column ‘class’, which will act as our target
+variable.
 
     ## # A tibble: 412,029 × 4
     ##     year month PM2.5 class 
@@ -159,8 +159,8 @@ our target variable.
 
 Table 5. Sum of rows in each class.
 
-Both classes are equally distributed. As such, we are not concerned
-about class imbalance which could lead to statistical parity.
+Both classes are equally distributed. As such, we are not concern about
+class imbalance which could lead to statistical parity.
 
 ## Distribution of PM2.5 levels across time_A and time_B
 
