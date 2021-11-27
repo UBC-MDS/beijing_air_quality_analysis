@@ -45,7 +45,6 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 
     # download data
     python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00501/PRSA2017_Data_20130301-20170228.zip --out_folder=data/raw
-    Rscript -e "rmarkdown::render('src/Beijing_air_quality_EDA.Rmd')"
 
     # run eda report
     Rscript -e "rmarkdown::render('src/Beijing_air_quality_EDA.Rmd')"
@@ -54,7 +53,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
     Rscript src/pre_process_data.R --input=data/raw/PRSA_Data_20130301-20170228 --out_dir=data/processed
 
     # create exploratory data analysis figure and write to file
-    Rscript src/eda_generate_plots.R --input=src/pre_process_data.R --out_dir=results
+    Rscript src/eda_generate_plots.R --input=data/processed/processed_data.csv --out_dir=results
 
     # hypothesis_testing
     Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
