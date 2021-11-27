@@ -16,7 +16,7 @@ question: **Do PM2.5 measurements in Beijing, China collected between
 The capital city of Beijing, China has long struggled with poor air
 quality, a result of the country’s rapid industrialization and its heavy
 reliance on coal for electricity generation the North, as well as its
-growing and increasingly urban middle class \[@wang2012air\]. This
+growing and increasingly urban middle class (Wang and Hao 2012). This
 analysis question is important for its timely and global implications.
 As air pollution from the burning of fossil fuels and its association
 with climate change and direct health outcomes poses a challenge to
@@ -25,7 +25,7 @@ growth coinciding with improving air quality. In fact, in September
 2021, the World Health Organization revised its air quality guidelines
 to more restrictive levels following the increasingly evident causal
 relationships between poor air quality and its harmful health
-consequences on impacted mainly urban communities \[@world2021global\].
+consequences on impacted mainly urban communities (WHO 2021).
 
 We analyse the `Beijing Air Quality` data set, donated to the UC Irvine
 Machine Learning Repository in 2019 (accessible via
@@ -38,7 +38,7 @@ set makes it suitable for multi-variate time-series regression analysis,
 we focus our analysis solely on the readings of the `PM2.5` metric, a
 form of fine particulate matter that is considered especially harmful
 for its ability to penetrate deep into the lungs and cause long-lasting
-damage to the respiratory system \[@xing2016impact\].
+damage to the respiratory system (Xing et al. 2016).
 
 The report for our exploratory data analysis can be found
 [here](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/Beijing_air_quality_EDA.md).
@@ -135,3 +135,31 @@ This allows for the sharing and adaptation of the datasets for any
 purpose, provided that the appropriate credit is given.
 
 # References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-wang2012air" class="csl-entry">
+
+Wang, Shuxiao, and Jiming Hao. 2012. “Air Quality Management in China:
+Issues, Challenges, and Options.” *Journal of Environmental Sciences* 24
+(1): 2–13.
+
+</div>
+
+<div id="ref-world2021global" class="csl-entry">
+
+WHO. 2021. “WHO Global Air Quality Guidelines: Particulate Matter (Pm2.
+5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon
+Monoxide: Executive Summary.”
+
+</div>
+
+<div id="ref-xing2016impact" class="csl-entry">
+
+Xing, Yu-Fei, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. “The
+Impact of Pm2. 5 on the Human Respiratory System.” *Journal of Thoracic
+Disease* 8 (1): E69.
+
+</div>
+
+</div>

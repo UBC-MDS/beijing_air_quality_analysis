@@ -1,7 +1,7 @@
 ---
 title: "Beijing Air Quality Analysis Final Report"
 author: "Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev"
-bibliography: references.bib
+bibliography: ../src/references.bib
 date: "11/24/2021"
 output: 
   github_document:
