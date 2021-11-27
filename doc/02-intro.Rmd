@@ -1,13 +1,5 @@
----
-title: "Beijing Air Quality Analysis"
-output: 
-  html_document:
-    toc: true
----
-
-\label{sec:intro}
-
 ## Introduction
+\label{sec:intro}
 
 The objective of this project is to answer the following inferential question: **Does PM2.5 measurement in Beijing, China collected between 2013 and 2017 show any sign of improvement?**
 
