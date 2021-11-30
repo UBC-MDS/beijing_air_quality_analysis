@@ -167,7 +167,7 @@ class imbalance which could lead to statistical parity.
 Having verified that both classes are balanced, we move on to observe
 the distribution between both time_A and time_B.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/EDA%20boxplot%20and%20histogram-1.png)<!-- -->
+![](Beijing_air_quality_EDA_files/figure-gfm/combined_distribution_plot-1.png)<!-- -->
 
 Figure 1. Boxplot and Histogram for both samples’ PM2.5 distribution.
 (Black dots represent the mean PM2.5 value of each sample)
@@ -188,7 +188,7 @@ values since we are taking the 50th percentile of our data.
 To explore further, we are plotting a log density graph to see how the
 PM2.5 levels are distributed.
 
-![](Beijing_air_quality_EDA_files/figure-gfm/density%20plot-1.png)<!-- -->
+![](Beijing_air_quality_EDA_files/figure-gfm/time_A_B_distribution-1.png)<!-- -->
 
 Figure 2. Density Plot for time_A and time_B
 

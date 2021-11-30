@@ -161,7 +161,7 @@ Both classes are equally distributed. As such, we are not concern about class im
 
 Having verified that both classes are balanced, we move on to observe the distribution between both time_A and time_B.
 
-```{r EDA boxplot and histogram, fig.width=8, fig.height=6}
+```{r combined_distribution_plot, fig.width=8, fig.height=6}
 time_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
@@ -204,7 +204,7 @@ As our distribution is heavily skewed to the right, the mean is getting drawn to
 
 To explore further, we are plotting a log density graph to see how the PM2.5 levels are distributed.
 
-```{r density plot, fig.width=10, fig.height=5}
+```{r time_A_B_distribution, fig.width=10, fig.height=5}
 time_A_B_distribution <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=log(PM2.5), fill = class)) +
