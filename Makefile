@@ -1,5 +1,5 @@
-# author: Macy Chan
-# date: 2021-11-19
+# author: Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
+# date: 2021-11-30
 
 all: src/Beijing_air_quality_EDA.md doc/Beijing_air_quality_report.html
 
