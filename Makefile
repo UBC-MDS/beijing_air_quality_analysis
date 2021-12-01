@@ -27,16 +27,20 @@ results/violin_plot.png results/pvalue.csv: data/processed/processed_data.csv
 doc/Beijing_air_quality_report.html: doc/*.Rmd results/time_A_B_distribution.png results/combined_distribution_plot_1.png results/pvalue.csv src/references.bib
 	Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'html_document')"
 
+#clean data folder
 clean_data:
 		rm -rf data
 		
+#clean EDA files
 clean_EDA: 
 		rm -rf src/Beijing_air_quality_EDA.md
 		rm -rf src/Beijing_air_quality_EDA_files
 		rm -rf src/Beijing_air_quality_EDA.html
 
+#clean results folder and html_document report
 clean_reports:
 		rm -rf results
 		rm -rf doc/Beijing_air_quality_report.html
-		
+
+#clean all above three options
 clean_all: clean_data clean_EDA clean_reports
