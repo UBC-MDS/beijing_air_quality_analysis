@@ -123,8 +123,13 @@ more representative characteristics of our data.
 ## Data Wrangling
 
 We are interested to determine how PM2.5 has changed over two time
-periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
-Feb 28 2017**. More specifically, we set out to answer these questions:
+periods - between **March 1 2013 to Feb 28 2015** , and **March 1 2015
+to Feb 28 2017**. In this project, we will refer to first time period
+**March 1 2013 to Feb 28 2015** as **time_A** and second time period
+**March 1 2015 to Feb 28 2017** as **time_B** in both visualization and
+code scripts after we processed the raw data**.**
+
+We set out to answer these questions from the proposal:
 
 1.  How does the distribution of air quality data observations look
     like? Are they normally distributed?
@@ -132,8 +137,11 @@ Feb 28 2017**. More specifically, we set out to answer these questions:
     there be any overlap in the ranges of the samples?
 
 As such, we drop all irrelevant columns, and only kept year, month,
-PM2.5. We created a derived column ‘class’, which will act as our target
-variable.
+PM2.5. Since we observed that there are 8739 missing values in the
+combined raw data from Table 2(Description of Missing Values), we’d drop
+all the missing PM2.5 value rows. FUrthermore, we are going to create a
+derived column ‘class’, which contains our explanatory variables
+“**time_A”** and”**time_B**”.
 
     ## # A tibble: 412,029 × 4
     ##     year month PM2.5 class 
