@@ -103,6 +103,10 @@ these levels shift across months and hours.
 
 Table 3. Sample mean, max and min of PM2.5 per year
 
+![](Beijing_air_quality_EDA_files/figure-gfm/year_summary_figure-1.png)<!-- -->
+
+Figure 1. Yearly Summary Line Plot on PM2.5 Measurements
+
 |      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | mean |  94 |  88 |  95 |  73 |  63 |  69 |  72 |  53 |  61 |  92 |  93 | 105 |
@@ -111,14 +115,23 @@ Table 3. Sample mean, max and min of PM2.5 per year
 
 Table 4. Sample mean, max and min of PM2.5 per month
 
-As seen in Table 3 and 4, there are variations in the PM2.5 levels
-across the years and months. Looking at the statistic trends for years,
-2016 had the lowest mean, yet highest max; 2015 had the lowest max value
-but its mean was same as 2013. The mean PM2.5 level is generally at the
-lowest in August and September. There are no significant differences
-among these statistical summary values to answer the main question. As
-such, we will perform further data wrangling and exploration to find out
-more representative characteristics of our data.
+![](Beijing_air_quality_EDA_files/figure-gfm/month%20figure-1.png)<!-- -->
+
+Figure 2. Monthly Summary Line Plot on PM2.5 Measurements
+
+We created **Table 3** and **Table 4** to summarize the yearly and
+monthly measurements of PM2.5. And as seen from **Figure 1** above, the
+variation in the max PM2.5 measurements across the years is the most
+obvious comparing to the changes in the overall minPM2.5 and meanPM2.5
+values.
+
+Looking at the statistic values on Table 3, 2016 had the lowest mean,
+yet highest max; 2015 had the lowest max value but its mean was same as
+2013. The mean PM2.5 level is generally at the lowest in August and
+September. There are no significant differences among these statistical
+summary values to answer the main question. As such, we will perform
+further data wrangling and exploration to find out more representative
+characteristics of our data.
 
 ## Data Wrangling
 
@@ -139,7 +152,7 @@ We set out to answer these questions from the proposal:
 As such, we drop all irrelevant columns, and only kept year, month,
 PM2.5. Since we observed that there are 8739 missing values in the
 combined raw data from Table 2(Description of Missing Values), we’d drop
-all the missing PM2.5 value rows. FUrthermore, we are going to create a
+all the missing PM2.5 value rows. Furthermore, we are going to create a
 derived column ‘class’, which contains our explanatory variables
 “**time_A”** and”**time_B**”.
 
@@ -177,7 +190,7 @@ the distribution between both time_A and time_B.
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/combined_distribution_plot-1.png)<!-- -->
 
-Figure 1. Boxplot and Histogram for both samples’ PM2.5 distribution.
+Figure 3. Boxplot and Histogram for both samples’ PM2.5 distribution.
 (Black dots represent the mean PM2.5 value of each sample)
 
 The scale in the x-axis is identical for both plots. Both samples are
@@ -198,7 +211,7 @@ PM2.5 levels are distributed.
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/time_A_B_distribution-1.png)<!-- -->
 
-Figure 2. Density Plot for time_A and time_B
+Figure 4. Density Plot for time_A and time_B
 
 Looking at these areas:  
 **(1) on the left of the orange vertical line**  
