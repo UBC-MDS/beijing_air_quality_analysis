@@ -115,21 +115,64 @@ summary_by(year) |>
   kable(caption = "Table 3. Sample mean, max and min of PM2.5 per year")
 ```
 
+```{r year_summary_figure}
+air_data |> 
+  select(PM2.5, year) |> 
+  drop_na(PM2.5) |> 
+  group_by(year) |> 
+  summarize(pm_mean = mean(PM2.5),
+            pm_max = max(PM2.5),
+            pm_min = min(PM2.5)) |> 
+  pivot_longer(cols = pm_mean:pm_min,
+               names_to = "summary_values") |> 
+  ggplot(aes(x = year, y = value, color = summary_values))+
+  geom_line()+
+  labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
+       title = "Yearly Summary Line Plot")
+  
+```
+
+Figure 1. Yearly Summary Line Plot on PM2.5 Measurements
+
 ```{r data summary month}
 summary_by(month)|>
   kable(caption = "Table 4. Sample mean, max and min of PM2.5 per month")
 ```
 
-As seen in Table 3 and 4, there are variations in the PM2.5 levels across the years and months. Looking at the statistic trends for years, 2016 had the lowest mean, yet highest max; 2015 had the lowest max value but its mean was same as 2013. The mean PM2.5 level is generally at the lowest in August and September. There are no significant differences among these statistical summary values to answer the main question. As such, we will perform further data wrangling and exploration to find out more representative characteristics of our data.
+```{r month figure}
+air_data |> 
+  select(PM2.5, month) |> 
+  drop_na(PM2.5) |> 
+  group_by(month) |> 
+  summarize(pm_mean = mean(PM2.5),
+            pm_max = max(PM2.5),
+            pm_min = min(PM2.5)) |> 
+  pivot_longer(cols = pm_mean:pm_min,
+               names_to = "summary_values") |> 
+  ggplot(aes(x = month, 
+             y = value, 
+             color = summary_values))+
+  geom_line()+
+  labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
+       title = "Monthly Summary Line Plot")
+```
+
+Figure 2. Monthly Summary Line Plot on PM2.5 Measurements
+
+We created **Table 3** and **Table 4** to summarize the yearly and monthly measurements of PM2.5. And as seen from **Figure 1** above, the variation in the max PM2.5 measurements across the years is the most obvious comparing to the changes in the overall minPM2.5 and meanPM2.5 values.
+
+Looking at the statistic values on Table 3, 2016 had the lowest mean, yet highest max; 2015 had the lowest max value but its mean was same as 2013. The mean PM2.5 level is generally at the lowest in August and September. There are no significant differences among these statistical summary values to answer the main question. As such, we will perform further data wrangling and exploration to find out more representative characteristics of our data.
 
 ## Data Wrangling
 
-We are interested to determine how PM2.5 has changed over two time periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to Feb 28 2017**. More specifically, we set out to answer these questions:
+We are interested to determine how PM2.5 has changed over two time periods - between **March 1 2013 to Feb 28 2015** , and **March 1 2015 to Feb 28 2017**. In this project, we will refer to first time period **March 1 2013 to Feb 28 2015** as **time_A** and second time period **March 1 2015 to Feb 28 2017** as **time_B** in both visualization and code scripts after we processed the raw data**.**
+
+We set out to answer these questions from the proposal:
 
 1.  How does the distribution of air quality data observations look like? Are they normally distributed?
 2.  If we split the data into sub data sets based on time frames, will there be any overlap in the ranges of the samples?
 
-As such, we drop all irrelevant columns, and only kept year, month, PM2.5. We created a derived column 'class', which will act as our target variable.
+As such, we drop all irrelevant columns, and only kept year, month, PM2.5. Since we observed that there are 8739 missing values in the combined raw data from Table 2(Description of Missing Values), we'd drop all the missing PM2.5 value rows. Furthermore, we are going to create a derived column 'class', which contains our explanatory variables "**time_A"** and "**time_B**".
 
 ```{r spilt data}
 air_data_processed <- air_data |>
@@ -196,7 +239,7 @@ plot_grid(
   ncol=1)
 ```
 
-Figure 1. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)
+Figure 3. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)
 
 The scale in the x-axis is identical for both plots. Both samples are heavily right skewed, as seen from numerous right-sided outliers in the boxplot and the long right tail in the histograms. time_A has a higher median and mean PM2.5 value than time_B, and its data distribution is wider than B. It is fair to conclude that the median and mean values are too similar to make a definitive statement as to whether the air quality has changed over these two time frames.
 
@@ -220,7 +263,7 @@ time_A_B_distribution <- air_data_processed |>
 time_A_B_distribution 
 ```
 
-Figure 2. Density Plot for time_A and time_B
+Figure 4. Density Plot for time_A and time_B
 
 Looking at these areas:  
 **(1) on the left of the orange vertical line**  
