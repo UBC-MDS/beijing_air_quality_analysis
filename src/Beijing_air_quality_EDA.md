@@ -13,11 +13,11 @@ Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
 ## Data Import
 
 The data is downloaded and unzipped by a [python
-script](./src/download_data.py). 12 csv files were used in this project.
-Each file represents one of 12 nationally-controlled air-quality
-monitoring sites, which captured information **between March 2013 and
-February 2017**. They are all in the same format (.csv files), and are
-merged and stored in `air_data`.
+script](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/download_data.py).
+12 csv files were used in this project. Each file represents one of 12
+nationally-controlled air-quality monitoring sites, which captured
+information **between March 2013 and February 2017**. They are all in
+the same format (.csv files), and are merged and stored in `air_data`.
 
 |  No | year | month | day | hour | PM2.5 | PM10 | SO2 | NO2 |  CO |  O3 | TEMP |   PRES |  DEWP | RAIN | wd  | WSPM | station      |
 |----:|-----:|------:|----:|-----:|------:|-----:|----:|----:|----:|----:|-----:|-------:|------:|-----:|:----|-----:|:-------------|
@@ -110,7 +110,7 @@ changes associated with how these levels shift across years and months.
 
 Table 4. Mean, max and min of PM2.5 per year
 
-![](Beijing_air_quality_EDA_files/figure-gfm/year_summary_figure-1.png)<!-- -->
+![](Beijing_air_quality_EDA_files/figure-gfm/year%20figure-1.png)<!-- -->
 
 Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
 

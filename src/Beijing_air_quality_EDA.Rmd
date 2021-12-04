@@ -21,7 +21,7 @@ set.seed(2020)
 
 ## Data Import
 
-The data is downloaded and unzipped by a [python script](./src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
+The data is downloaded and unzipped by a [python script](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
 
 ```{r load data}
 csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
@@ -120,7 +120,7 @@ summary_by(year) |>
   kable(caption = "Table 4. Mean, max and min of PM2.5 per year")
 ```
 
-```{r year_summary_figure}
+```{r year figure, fig.width=10, fig.height=5}
 air_data |> 
   select(PM2.5, year) |> 
   drop_na(PM2.5) |> 
@@ -144,7 +144,7 @@ summary_by(month)|>
   kable(caption = "Table 5. Mean, max and min of PM2.5 per month")
 ```
 
-```{r month figure}
+```{r month figure, fig.width=10, fig.height=5}
 air_data |> 
   select(PM2.5, month) |> 
   drop_na(PM2.5) |> 
