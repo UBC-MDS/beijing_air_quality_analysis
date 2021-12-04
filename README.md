@@ -32,23 +32,15 @@ The final report can be found in this [Webpage](https://ubc-mds.github.io/DSCI_5
 
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
-    # download data
-    python src/download_data.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00501/PRSA2017_Data_20130301-20170228.zip --out_folder=data/raw
+    make all
 
-    # run eda report
-    Rscript -e "rmarkdown::render('src/Beijing_air_quality_EDA.Rmd')"
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 
-    # pre-process data
-    Rscript src/pre_process_data.R --input=data/raw/PRSA_Data_20130301-20170228 --out_dir=data/processed
+    make clean
 
-    # create exploratory data analysis figure and write to file
-    Rscript src/eda_generate_plots.R --input=data/processed/processed_data.csv --out_dir=results
+To reset the repo with no imported or processed data files, run the following command at the command line/terminal from the root directory of this project:
 
-    # hypothesis_testing
-    Rscript src/hypothesis_testing_script.R --input=data/processed/processed_data.csv --out_dir=results
-
-    # render final report
-    Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'html_document')"
+    make clean_data
 
 ## Dependencies {#dependencies}
 
