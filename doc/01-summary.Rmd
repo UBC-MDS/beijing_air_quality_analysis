@@ -4,11 +4,4 @@
 
 This analysis project aims to answer **whether the levels of PM2.5 air pollution in Beijing, China has improved between 2013 and 2017**. To do so, we performed a **difference in medians hypothesis test** between two intervals, `time_A` (March 2013 - February 2015) and `time_B` (March 2015 - February 2017), and concluded that no statistically significant decrease in PM2.5 particulate measurements can be detected.
 
-This result has economic implications, informing us about China's economic growth trajectory. Based on the Kuznets curve, it suggests that China's per capita income has much to grow since the PM2.5 median value has remained constant or is increasing.
-
-```{r Kuznets curve, echo=FALSE, fig.cap="Figure 1. China has yet to reach the point of inflexion", out.width = '50%'}
-library(here)
-knitr::include_graphics(here("resource","Environmental_Kuznets_Curve.jpeg"))
-```
-
-\*The model suggests that economic development initially leads to a deterioration in the environment, but will improve in its relationship past a certain level of economic growth.
+This result has implications on both the individual level and state level. On the individual front, this result is indeed unfortunate as Beijing is the second largest city, and home to millions of people. They will face the health repercussions of high PM2.5 levels which are harmful for their respiratory system. On the state front, as China strives to become a global leader, it needs to prove that they are capable of upholding a high standard of collective issues, such as public health and climate change. It needs to start at home, to provide a better future for its own people.
