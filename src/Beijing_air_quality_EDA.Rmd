@@ -21,7 +21,7 @@ set.seed(2020)
 
 ## Data Import
 
-The data is downloaded and unzipped by a [python script](./src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
+The data is downloaded and unzipped by a [python script](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
 
 ```{r load data}
 csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
@@ -120,21 +120,22 @@ summary_by(year) |>
   kable(caption = "Table 4. Mean, max and min of PM2.5 per year")
 ```
 
-```{r year_summary_figure}
-air_data |> 
-  select(PM2.5, year) |> 
-  drop_na(PM2.5) |> 
-  group_by(year) |> 
-  summarize(pm_mean = mean(PM2.5),
-            pm_max = max(PM2.5),
-            pm_min = min(PM2.5)) |> 
-  pivot_longer(cols = pm_mean:pm_min,
-               names_to = "summary_values") |> 
-  ggplot(aes(x = year, y = value, color = summary_values))+
-  geom_line()+
-  labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
-       title = "Yearly Summary Line Plot")
-  
+```{r year figure, fig.width=10, fig.height=5}
+year_figure<- air_data |> 
+              select(PM2.5, year) |> 
+              drop_na(PM2.5) |> 
+              group_by(year) |> 
+              summarize(pm_mean = mean(PM2.5),
+                        pm_max = max(PM2.5),
+                        pm_min = min(PM2.5)) |> 
+              pivot_longer(cols = pm_mean:pm_min,
+                           names_to = "summary_values") |> 
+              ggplot(aes(x = year, y = value, color = summary_values))+
+              geom_line()+
+              labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
+                   title = "Yearly Summary Line Plot")
+
+year_figure
 ```
 
 Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
@@ -144,22 +145,24 @@ summary_by(month)|>
   kable(caption = "Table 5. Mean, max and min of PM2.5 per month")
 ```
 
-```{r month figure}
-air_data |> 
-  select(PM2.5, month) |> 
-  drop_na(PM2.5) |> 
-  group_by(month) |> 
-  summarize(pm_mean = mean(PM2.5),
-            pm_max = max(PM2.5),
-            pm_min = min(PM2.5)) |> 
-  pivot_longer(cols = pm_mean:pm_min,
-               names_to = "summary_values") |> 
-  ggplot(aes(x = month, 
-             y = value, 
-             color = summary_values))+
-  geom_line()+
-  labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
-       title = "Monthly Summary Line Plot")
+```{r month figure, fig.width=10, fig.height=5}
+month_figure <- air_data |> 
+                select(PM2.5, month) |> 
+                drop_na(PM2.5) |> 
+                group_by(month) |> 
+                summarize(pm_mean = mean(PM2.5),
+                          pm_max = max(PM2.5),
+                          pm_min = min(PM2.5)) |> 
+                pivot_longer(cols = pm_mean:pm_min,
+                             names_to = "summary_values") |> 
+                ggplot(aes(x = month, 
+                           y = value, 
+                           color = summary_values))+
+                geom_line()+
+                labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
+                     title = "Monthly Summary Line Plot")
+
+month_figure
 ```
 
 Figure 2. Monthly Summary Line Plot of PM2.5 Measurements

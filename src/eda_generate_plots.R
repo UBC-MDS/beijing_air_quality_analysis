@@ -66,7 +66,6 @@ main <- function(input, out_dir) {
                      title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
                      subtitle = 'time_A has more lower and upper extreme values than time_B')
         
-        
         if(!file.exists(out_dir)){
                 dir.create(out_dir)
         }
