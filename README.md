@@ -1,3 +1,8 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
 # Beijing Air Quality Analysis
 
@@ -10,11 +15,11 @@ Columbia.
 ## Introduction
 
 The objective of this project is to answer the following inferential
-question: **Do PM2.5 measurements in Beijing, China collected between
-2013 and 2017 show any sign of improvement?**
+question: **Do PM2.5 measurements in Beijing, China collected from 2013
+to 2017 show any sign of improvement?**
 
 The capital city of Beijing, China has long struggled with poor air
-quality, a result of the country’s rapid industrialization and its heavy
+quality, a result of the country's rapid industrialization and its heavy
 reliance on coal for electricity generation the North, as well as its
 growing and increasingly urban middle class (Wang and Hao 2012). This
 analysis question is important for its timely and global implications.
@@ -58,13 +63,13 @@ improvement in PM2.5 pollution.
 
 -   Alternative Hypothesis (*H*<sub>*A*</sub>): There median PM2.5 value
     in Beijing in time_A is greater than the median PM2.5 values in
-    time_B (*Q*\_*A*(0.5) \> *Q*\_*B*(0.5))
+    time_B (*Q*\_*A*(0.5) > *Q*\_*B*(0.5))
 
 After conducting the permutation test in the difference of medians, we
 get a p-value of 1, which is greater than the significance level *α* =
-0.05. Our result has economic implications, informing us about China’s
+0.05. Our result has economic implications, informing us about China's
 economic growth trajectory. Based on the Kuznets curve, it suggests that
-China’s per capita income has much to grow since the PM2.5 median value
+China's per capita income has much to grow since the PM2.5 median value
 has remained constant or is increasing.
 
 ## Report
@@ -97,7 +102,7 @@ project:
     # render final report
     Rscript -e "rmarkdown::render('doc/Beijing_air_quality_report.Rmd', output_format = 'html_document')"
 
-## Dependencies
+## Dependencies {#dependencies}
 
 -   Python 3.7.3 and Python packages:
 
@@ -135,30 +140,15 @@ purpose, provided that the appropriate credit is given.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+::: {#refs .references .csl-bib-body .hanging-indent} :::
+{#ref-wang2012air .csl-entry} Wang, Shuxiao, and Jiming Hao. 2012. "Air
+Quality Management in China: Issues, Challenges, and Options." *Journal
+of Environmental Sciences* 24 (1): 2--13. :::
 
-<div id="ref-wang2012air" class="csl-entry">
+::: {#ref-world2021global .csl-entry} WHO. 2021. "WHO Global Air Quality
+Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen
+Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary." :::
 
-Wang, Shuxiao, and Jiming Hao. 2012. “Air Quality Management in China:
-Issues, Challenges, and Options.” *Journal of Environmental Sciences* 24
-(1): 2–13.
-
-</div>
-
-<div id="ref-world2021global" class="csl-entry">
-
-WHO. 2021. “WHO Global Air Quality Guidelines: Particulate Matter (Pm2.
-5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon
-Monoxide: Executive Summary.”
-
-</div>
-
-<div id="ref-xing2016impact" class="csl-entry">
-
-Xing, Yu-Fei, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. “The
-Impact of Pm2. 5 on the Human Respiratory System.” *Journal of Thoracic
-Disease* 8 (1): E69.
-
-</div>
-
-</div>
+::: {#ref-xing2016impact .csl-entry} Xing, Yu-Fei, Yue-Hua Xu, Min-Hua
+Shi, and Yi-Xin Lian. 2016. "The Impact of Pm2. 5 on the Human
+Respiratory System." *Journal of Thoracic Disease* 8 (1): E69. ::: :::
