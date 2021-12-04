@@ -164,7 +164,8 @@ month_figure <- air_data |>
                            color = summary_values))+
                 geom_line()+
                 labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
-                     title = "Monthly Summary Line Plot")
+                     title = "Monthly Summary Line Plot") +
+                scale_x_continuous(breaks=pretty_breaks())
 
 month_figure
 ```
