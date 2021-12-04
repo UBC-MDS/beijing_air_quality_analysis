@@ -121,20 +121,21 @@ summary_by(year) |>
 ```
 
 ```{r year figure, fig.width=10, fig.height=5}
-air_data |> 
-  select(PM2.5, year) |> 
-  drop_na(PM2.5) |> 
-  group_by(year) |> 
-  summarize(pm_mean = mean(PM2.5),
-            pm_max = max(PM2.5),
-            pm_min = min(PM2.5)) |> 
-  pivot_longer(cols = pm_mean:pm_min,
-               names_to = "summary_values") |> 
-  ggplot(aes(x = year, y = value, color = summary_values))+
-  geom_line()+
-  labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
-       title = "Yearly Summary Line Plot")
-  
+year_figure<- air_data |> 
+              select(PM2.5, year) |> 
+              drop_na(PM2.5) |> 
+              group_by(year) |> 
+              summarize(pm_mean = mean(PM2.5),
+                        pm_max = max(PM2.5),
+                        pm_min = min(PM2.5)) |> 
+              pivot_longer(cols = pm_mean:pm_min,
+                           names_to = "summary_values") |> 
+              ggplot(aes(x = year, y = value, color = summary_values))+
+              geom_line()+
+              labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
+                   title = "Yearly Summary Line Plot")
+
+year_figure
 ```
 
 Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
@@ -145,21 +146,23 @@ summary_by(month)|>
 ```
 
 ```{r month figure, fig.width=10, fig.height=5}
-air_data |> 
-  select(PM2.5, month) |> 
-  drop_na(PM2.5) |> 
-  group_by(month) |> 
-  summarize(pm_mean = mean(PM2.5),
-            pm_max = max(PM2.5),
-            pm_min = min(PM2.5)) |> 
-  pivot_longer(cols = pm_mean:pm_min,
-               names_to = "summary_values") |> 
-  ggplot(aes(x = month, 
-             y = value, 
-             color = summary_values))+
-  geom_line()+
-  labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
-       title = "Monthly Summary Line Plot")
+month_figure <- air_data |> 
+                select(PM2.5, month) |> 
+                drop_na(PM2.5) |> 
+                group_by(month) |> 
+                summarize(pm_mean = mean(PM2.5),
+                          pm_max = max(PM2.5),
+                          pm_min = min(PM2.5)) |> 
+                pivot_longer(cols = pm_mean:pm_min,
+                             names_to = "summary_values") |> 
+                ggplot(aes(x = month, 
+                           y = value, 
+                           color = summary_values))+
+                geom_line()+
+                labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
+                     title = "Monthly Summary Line Plot")
+
+month_figure
 ```
 
 Figure 2. Monthly Summary Line Plot of PM2.5 Measurements
