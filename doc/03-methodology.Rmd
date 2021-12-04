@@ -12,7 +12,9 @@ We combine the data from twelve data collection stations across Beijing into one
 
 -   `time_B`: PM2.5 measurements from March 2015 until February 2017 (inclusive)
 
-Through Exploratory Data Analysis, we identify that our data is heavily skewed and more suitable to analyze the median.
+We chose to divide our dataset into two equal time intervals in order to see if there is a general change in the PM2.5 levels across these two time periods. While we have considered other means of dividing the dataset, such as by year and mapping it according to government policies and its implementation, we made the decision not to, as we recognise that phasing out of certain pollutants will take time, and there is a time lag involved. 
+
+Through Exploratory Data Analysis, we identify that our data is heavily skewed to the right. As such, we determined that it is best to analyse the median of each time interval, rather than other estimates. 
 
 ```{r eda plot for report, echo=FALSE, fig.cap="Figure 2. Both time_A and time_B distributions are right-skewed", out.width = '80%'}
 library(here)

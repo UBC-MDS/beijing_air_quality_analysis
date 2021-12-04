@@ -1,5 +1,6 @@
 Exploratory data analysis of Beijing air quality data set
 ================
+Jacqueline Chong, Junrong Zhu, Macy Chan, Vadim Taskaev
 
 -   [Data Import](#data-import)
 -   [Study the data](#study-the-data)
@@ -11,11 +12,12 @@ Exploratory data analysis of Beijing air quality data set
 
 ## Data Import
 
-The data is downloaded and unzipped by [python
-script](./download_data.py). 12 csv files are used in this project. Each
-file represents one of 12 nationally-controlled air-quality monitoring
-sites. They are all in the same format, and are merged and stored in
-`air_data`.
+The data is downloaded and unzipped by a [python
+script](./src/download_data.py). 12 csv files were used in this project.
+Each file represents one of 12 nationally-controlled air-quality
+monitoring sites, which captured information **between March 2013 and
+February 2017**. They are all in the same format (.csv files), and are
+merged and stored in `air_data`.
 
 |  No | year | month | day | hour | PM2.5 | PM10 | SO2 | NO2 |  CO |  O3 | TEMP |   PRES |  DEWP | RAIN | wd  | WSPM | station      |
 |----:|-----:|------:|----:|-----:|------:|-----:|----:|----:|----:|----:|-----:|-------:|------:|-----:|:----|-----:|:-------------|
@@ -30,14 +32,14 @@ Table 1. Preview of original datset
 
 ## Study the data
 
-The data set used in this project is an hourly air pollutants data from
-12 nationally-controlled air-quality monitoring sites in Beijing, China
-from 1 March 2013 to 28 February 2017. The air-quality data is from the
-Beijing Municipal Environmental Monitoring Center. It was sourced from
-the UCI Machine Learning Repository
+This data set contains hourly air pollutants data from 12
+nationally-controlled air-quality monitoring sites in Beijing, China
+from **1 March 2013 to 28 February 2017**. The air-quality data is
+retrieved from the Beijing Municipal Environmental Monitoring Center. It
+was sourced from the UCI Machine Learning Repository
 [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
 
-Below we show the structure of each features in the data set.
+This is the structure of each features in the data set.
 
     ## spec_tbl_df [420,768 × 18] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ No     : num [1:420768] 1 2 3 4 5 6 7 8 9 10 ...
@@ -59,14 +61,17 @@ Below we show the structure of each features in the data set.
     ##  $ WSPM   : num [1:420768] 4.4 4.7 5.6 3.1 2 3.7 2.5 3.8 4.1 2.6 ...
     ##  $ station: chr [1:420768] "Aotizhongxin" "Aotizhongxin" "Aotizhongxin" "Aotizhongxin" ...
 
-Each row in the data set represents a measurements of air pollutants
-(e.g., PM2.5, PM10, CO) at specific date and time in 12 different
-district in Beijing, including Aotizhongxin, Changping, Dingling and so
-on. The meteorological data in each air-quality site are matched with
-the nearest weather station from the China Meteorological
-Administration. There are `420,768` observations in the data set, and
-`18` features. Below we show the description and missing value of each
-features in the data set.
+Table 2: Structure of our data set `air_data`
+
+Each row in the data set represents a measurement of air pollutants
+(e.g., PM2.5, PM10, CO) at specific year, month, and day in 12 different
+district in Beijing, including Aotizhongxin, Changping, Dingling. The
+meteorological data in each air-quality site are matched with the
+nearest weather station from the China Meteorological Administration.
+There are `420,768` observations and `18` features in the data set.
+
+Below we show the description and missing value of each features in the
+data set.
 
 |         | Description                             | # of missing values |
 |:--------|:----------------------------------------|--------------------:|
@@ -89,11 +94,13 @@ features in the data set.
 | WSPM    | Wind speed (m/s)                        |                 318 |
 | station | Name of the air-quality monitoring site |                   0 |
 
-Table 2. Description and missing data of the original dataset
+Table 3. Description and instances of missing values in the original
+dataset
 
-As we are interested to determine how PM2.5 levels have changed, we
-would like to see if there are any micro changes associated with how
-these levels shift across months and hours.
+As we are interested to determine how PM2.5 levels have changed over two
+time periods - between **March 1 2013 to Feb 28 2015**, and **March 1
+2015 to Feb 28 2017**, we would first like to see if there are any micro
+changes associated with how these levels shift across years and months.
 
 |      | 2013 | 2014 | 2015 | 2016 | 2017 |
 |:-----|-----:|-----:|-----:|-----:|-----:|
@@ -101,11 +108,11 @@ these levels shift across months and hours.
 | min  |    2 |    3 |    3 |    3 |    2 |
 | max  |  844 |  809 |  762 |  999 |  835 |
 
-Table 3. Sample mean, max and min of PM2.5 per year
+Table 4. Mean, max and min of PM2.5 per year
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/year_summary_figure-1.png)<!-- -->
 
-Figure 1. Yearly Summary Line Plot on PM2.5 Measurements
+Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
 
 |      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
@@ -113,48 +120,54 @@ Figure 1. Yearly Summary Line Plot on PM2.5 Measurements
 | min  |   2 |   3 |   3 |   2 |   3 |   2 |   3 |   3 |   3 |   3 |   3 |   3 |
 | max  | 835 | 999 | 558 | 533 | 844 | 560 | 540 | 500 | 477 | 527 | 687 | 741 |
 
-Table 4. Sample mean, max and min of PM2.5 per month
+Table 5. Mean, max and min of PM2.5 per month
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/month%20figure-1.png)<!-- -->
 
-Figure 2. Monthly Summary Line Plot on PM2.5 Measurements
+Figure 2. Monthly Summary Line Plot of PM2.5 Measurements
 
 We created **Table 3** and **Table 4** to summarize the yearly and
-monthly measurements of PM2.5. And as seen from **Figure 1** above, the
+monthly measurements of PM2.5. As seen from **Figure 1** above, the
 variation in the max PM2.5 measurements across the years is the most
-obvious comparing to the changes in the overall minPM2.5 and meanPM2.5
+obvious comparing to the changes in the overall `pm_min` and `pm_mean`
 values.
 
-Looking at the statistic values on Table 3, 2016 had the lowest mean,
-yet highest max; 2015 had the lowest max value but its mean was same as
-2013. The mean PM2.5 level is generally at the lowest in August and
-September. There are no significant differences among these statistical
-summary values to answer the main question. As such, we will perform
-further data wrangling and exploration to find out more representative
-characteristics of our data.
+Looking at the statistic values on **Table 3**, 2016 had the largest
+range of PM2.5 levels, while 2015 had the lowest `pm_max` value but its
+mean was the same as in 2013. As seen from Figure 2, `pm_mean` is
+generally at the lowest in August and September. There are no
+significant differences among these statistical summary values to answer
+the main question. As such, we will perform further data wrangling and
+exploration to find out more representative characteristics of our data.
+
+To reiterate, the question which we are hoping to answer in our EDA is:
+“How has the PM2.5 levels in Beijing China changed over two time
+periods, between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
+Feb 28 2017**”.
 
 ## Data Wrangling
 
 We are interested to determine how PM2.5 has changed over two time
-periods - between **March 1 2013 to Feb 28 2015** , and **March 1 2015
-to Feb 28 2017**. In this project, we will refer to first time period
-**March 1 2013 to Feb 28 2015** as **time_A** and second time period
-**March 1 2015 to Feb 28 2017** as **time_B** in both visualization and
-code scripts after we processed the raw data**.**
+periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
+Feb 28 2017**. In this project, we will refer to first time period
+**March 1 2013 to Feb 28 2015** as `time_A` and second time period
+**March 1 2015 to Feb 28 2017** as `time_B` in both visualization and
+code scripts after we processed the raw data.
 
-We set out to answer these questions from the proposal:
+We set out to answer these questions from our proposal:
 
 1.  How does the distribution of air quality data observations look
     like? Are they normally distributed?
 2.  If we split the data into sub data sets based on time frames, will
     there be any overlap in the ranges of the samples?
 
-As such, we drop all irrelevant columns, and only kept year, month,
-PM2.5. Since we observed that there are 8739 missing values in the
-combined raw data from Table 2(Description of Missing Values), we’d drop
+Before we answer these sub-EDA questions, we dropped all irrelevant
+columns, and only kept **year**, **month**, **PM2.5**. Since we observed
+that there are `8739 missing values` in the combined raw data from
+**Table 3** (Description and instances of missing values), we will drop
 all the missing PM2.5 value rows. Furthermore, we are going to create a
-derived column ‘class’, which contains our explanatory variables
-“**time_A”** and”**time_B**”.
+derived column `class`, which contains our explanatory variables
+`time_A` and `time_B`.
 
     ## # A tibble: 412,029 × 4
     ##     year month PM2.5 class 
@@ -171,6 +184,8 @@ derived column ‘class’, which contains our explanatory variables
     ## 10  2013     3     3 time_A
     ## # … with 412,019 more rows
 
+Table 6: Preview of the `air_data_processed` data frame.
+
 ## Distribution of data points for each class
 
 | Class  | Sum.of.rows |
@@ -178,15 +193,16 @@ derived column ‘class’, which contains our explanatory variables
 | time_A |      205989 |
 | time_B |      206040 |
 
-Table 5. Sum of rows in each class.
+Table 7. Sum of rows in each class.
 
-Both classes are equally distributed. As such, we are not concern about
+Both classes are equally distributed, even after dropping the missing
+PM2.5 values present in our data set. As such, we are not concern about
 class imbalance which could lead to statistical parity.
 
 ## Distribution of PM2.5 levels across time_A and time_B
 
 Having verified that both classes are balanced, we move on to observe
-the distribution between both time_A and time_B.
+the distribution between both `time_A` and `time_B`.
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/combined_distribution_plot-1.png)<!-- -->
 
@@ -195,16 +211,17 @@ Figure 3. Boxplot and Histogram for both samples’ PM2.5 distribution.
 
 The scale in the x-axis is identical for both plots. Both samples are
 heavily right skewed, as seen from numerous right-sided outliers in the
-boxplot and the long right tail in the histograms. time_A has a higher
-median and mean PM2.5 value than time_B, and its data distribution is
-wider than B. It is fair to conclude that the median and mean values are
-too similar to make a definitive statement as to whether the air quality
-has changed over these two time frames.
+boxplot and the long right tail in the histograms. `time_A` has a higher
+median and mean PM2.5 value than `time_B`, and its data distribution is
+wider than B. It is fair to conclude that the **median and mean values
+are too similar to make a definitive statement as to whether the air
+quality has changed over these two time frames**.
 
 As our distribution is heavily skewed to the right, the mean is getting
-drawn to the right side. As such, we will take median as the appropriate
-estimator for hypothesis testing, since it is not sensitive to extreme
-values since we are taking the 50th percentile of our data.
+drawn to the right side. As such, we will **take median as the
+appropriate estimator for hypothesis testing**, since it is not
+sensitive to extreme values since we are taking the 50th percentile of
+our data.
 
 To explore further, we are plotting a log density graph to see how the
 PM2.5 levels are distributed.
@@ -217,11 +234,11 @@ Looking at these areas:
 **(1) on the left of the orange vertical line**  
 **(2)** **the right of the purple vertical line,**
 
-it is clear that the area under the curve for time_A in these two
-sections are larger than the area under the curve of time_B. This
-indicates time_A has more extreme values than time_B. The area under the
-curve of time_B dominates between the orange line and purple vertical
-line (it completely covered the area of time_A). However, there are
-overlapping areas. The distinct areas of time_A and time_B in this
-density plot suggests that time_A could possibly have a higher median
-than time_B.
+it is clear that the area under the curve for `time_A` in these two
+sections are larger than the area under the curve of `time_B`. This
+indicates `time_A` has more extreme values than `time_B`. The area under
+the curve of `time_B` dominates between the orange line and purple
+vertical line (it completely covered the area of `time_A`). However,
+there are overlapping areas. The distinct areas of `time_A` and `time_B`
+in this density plot suggests that `time_A` could possibly have a higher
+median than `time_B`.
