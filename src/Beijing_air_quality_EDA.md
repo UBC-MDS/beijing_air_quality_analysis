@@ -101,6 +101,8 @@ As we are interested to determine how PM2.5 levels have changed over two
 time periods - between **March 1 2013 to Feb 28 2015**, and **March 1
 2015 to Feb 28 2017**, we would first like to see if there are any micro
 changes associated with how these levels shift across years and months.
+Here we are going to create two summary tables on yearly and monthly
+PM2.5 values.
 
 |      | 2013 | 2014 | 2015 | 2016 | 2017 |
 |:-----|-----:|-----:|-----:|-----:|-----:|
@@ -110,9 +112,17 @@ changes associated with how these levels shift across years and months.
 
 Table 4. Mean, max and min of PM2.5 per year
 
+Looking at the statistic values on **Table 4**, 2016 had the largest
+range of PM2.5 levels (from 72(ug/m^3) to 999(ug/m^3)), while 2015 had
+the lowest `pm_max` value but its mean was the same as in 2013.
+
 ![](Beijing_air_quality_EDA_files/figure-gfm/year%20figure-1.png)<!-- -->
 
 Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
+
+As seen from **Figure 1** above, the variation in the **max** PM2.5
+measurements across the years is the most obvious comparing to the
+changes in the overall `pm_min` and `pm_mean` values.
 
 |      |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
 |:-----|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
@@ -126,21 +136,15 @@ Table 5. Mean, max and min of PM2.5 per month
 
 Figure 2. Monthly Summary Line Plot of PM2.5 Measurements
 
-We created **Table 3** and **Table 4** to summarize the yearly and
-monthly measurements of PM2.5. As seen from **Figure 1** above, the
-variation in the max PM2.5 measurements across the years is the most
-obvious comparing to the changes in the overall `pm_min` and `pm_mean`
-values.
+As seen from Figure 2, `pm_mean` is generally at the lowest in August
+and September and overall the variation in max surpasses the changes in
+mean and min values.
 
-Looking at the statistic values on **Table 3**, 2016 had the largest
-range of PM2.5 levels, while 2015 had the lowest `pm_max` value but its
-mean was the same as in 2013. As seen from Figure 2, `pm_mean` is
-generally at the lowest in August and September. There are no
-significant differences among these statistical summary values to answer
-the main question: **Do PM2.5 measurements in Beijing, China collected
-from 2013 to 2017 show any sign of improvement?**. As such, we will
-perform further data wrangling and exploration to find out more
-representative characteristics of our data.
+In general, we can not conclude significant differences among these
+statistical summary values to answer the main question: **Do PM2.5
+measurements in Beijing, China collected from 2013 to 2017 show any sign
+of improvement?**. As such, we will perform further data wrangling and
+exploration to find out more representative characteristics of our data.
 
 ## Data Wrangling
 
