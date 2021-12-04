@@ -40,7 +40,7 @@ To reset the repo with no imported or processed data files, run the following co
 
     make clean_data
 
-## Dependencies 
+## Dependencies
 
 -   Python 3.7.3 and Python packages:
 
@@ -75,8 +75,8 @@ This allows for the sharing and adaptation of the datasets for any purpose, prov
 
 # References
 
-Wang, Shuxiao, and Jiming Hao. 2012. “Air Quality Management in China: Issues, Challenges, and Options.” Journal of Environmental Sciences 24 (1): 2–13. 
+Wang, Shuxiao, and Jiming Hao. 2012. "Air Quality Management in China: Issues, Challenges, and Options." Journal of Environmental Sciences 24 (1): 2–13.
 
-WHO. 2021. “WHO Global Air Quality Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary.”
+WHO. 2021. "WHO Global Air Quality Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary."
 
-Xing, Yu-Fei, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. “The Impact of Pm2. 5 on the Human Respiratory System.” Journal of Thoracic Disease 8 (1): E69.
+Xing, Yu-Fei, Yue-Hua Xu, Min-Hua Shi, and Yi-Xin Lian. 2016. "The Impact of Pm2. 5 on the Human Respiratory System." Journal of Thoracic Disease 8 (1): E69.
