@@ -66,36 +66,6 @@ main <- function(input, out_dir) {
                      title = 'Density Plot of PM2.5 Log-Distribution per Time Frame',
                      subtitle = 'time_A has more lower and upper extreme values than time_B')
         
-        year_figure<- air_data |> 
-          select(PM2.5, year) |> 
-          drop_na(PM2.5) |> 
-          group_by(year) |> 
-          summarize(pm_mean = mean(PM2.5),
-                    pm_max = max(PM2.5),
-                    pm_min = min(PM2.5)) |> 
-          pivot_longer(cols = pm_mean:pm_min,
-                       names_to = "summary_values") |> 
-          ggplot(aes(x = year, y = value, color = summary_values))+
-          geom_line()+
-          labs(x = "Year", y = "PM2.5 measurements", color = "Summary Values", 
-               title = "Yearly Summary Line Plot")
-        
-        month_figure <- air_data |> 
-          select(PM2.5, month) |> 
-          drop_na(PM2.5) |> 
-          group_by(month) |> 
-          summarize(pm_mean = mean(PM2.5),
-                    pm_max = max(PM2.5),
-                    pm_min = min(PM2.5)) |> 
-          pivot_longer(cols = pm_mean:pm_min,
-                       names_to = "summary_values") |> 
-          ggplot(aes(x = month, 
-                     y = value, 
-                     color = summary_values))+
-          geom_line()+
-          labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
-               title = "Monthly Summary Line Plot")
-        
         if(!file.exists(out_dir)){
                 dir.create(out_dir)
         }
