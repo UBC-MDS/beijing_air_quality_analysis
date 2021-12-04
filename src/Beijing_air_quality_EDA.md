@@ -137,13 +137,10 @@ range of PM2.5 levels, while 2015 had the lowest `pm_max` value but its
 mean was the same as in 2013. As seen from Figure 2, `pm_mean` is
 generally at the lowest in August and September. There are no
 significant differences among these statistical summary values to answer
-the main question. As such, we will perform further data wrangling and
-exploration to find out more representative characteristics of our data.
-
-To reiterate, the question which we are hoping to answer in our EDA is:
-“How has the PM2.5 levels in Beijing China changed over two time
-periods, between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
-Feb 28 2017**”.
+the main question: **Do PM2.5 measurements in Beijing, China collected
+from 2013 to 2017 show any sign of improvement?**. As such, we will
+perform further data wrangling and exploration to find out more
+representative characteristics of our data.
 
 ## Data Wrangling
 
