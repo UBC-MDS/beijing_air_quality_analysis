@@ -14,9 +14,9 @@ In general, the objective of this project is to answer the following inferential
 
 ## About
 
-Firstly, we performed initial EDA to study the data structure, detect missing values/outliers, and visualize `PM2.5` measurements distribution to find the suitable test and estimator for our inferential question. The report for our exploratory data analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/Beijing_air_quality_EDA.md).
+Firstly, we performed initial EDA to study the data structure, detect missing values/outliers, and visualize the `PM2.5` measurements distribution to find a suitable test and estimator for our inferential question. The report for our exploratory data analysis can be found [here](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/Beijing_air_quality_EDA.md).
 
-During EDA, we wrangled the original data set and preprocessed the data into two samples based on the time periods, referred as `time_A` and `time_B` for hypothesis testing purpose. Given that we have good sample size for both time periods and the data points are independent, applying a hypothesis test for independence is feasible for this project. Hence, we performed a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We implemented one-tailed test to answer the question since we are more interested to detect an improvement in PM2.5 pollution.
+During EDA, we wrangled the original data set and preprocessed the data into two samples based on the time periods, referred as `time_A` and `time_B` for hypothesis testing purpose. Note that we consider year-to-year changes to PM2.5 measurements to be less likely to generate statistically significant test results compared to longer time intervals, so we have instead chosen to proceed with a comparison of these two longer time intervals. Given that we have good sample size for both time periods and the data points are independent, applying a hypothesis test for independence is feasible for this project. Hence, we performed a hypothesis test to determine whether there is statistical evidence to indicate an improvement in PM2.5 measurements in Beijing between 2013 and year 2017. We implemented one-tailed test to answer the question since we are more interested to detect an improvement in PM2.5 pollution.
 
 -   Null Hypothesis (*H*<sub>0</sub>): The median PM2.5 value in Beijing in time_A is less than or equal to the median PM2.5 value in time_B (*Q*\_*A*(0.5) ≤ *Q*\_*B*(0.5))
 
@@ -40,7 +40,7 @@ To reset the repo with no imported or processed data files, run the following co
 
     make clean_data
 
-## Dependencies
+## Dependencies {#dependencies}
 
 -   Python 3.7.3 and Python packages:
 
@@ -75,7 +75,7 @@ This allows for the sharing and adaptation of the datasets for any purpose, prov
 
 # References
 
-Wang, Shuxiao, and Jiming Hao. 2012. "Air Quality Management in China: Issues, Challenges, and Options." Journal of Environmental Sciences 24 (1): 2–13.
+Wang, Shuxiao, and Jiming Hao. 2012. "Air Quality Management in China: Issues, Challenges, and Options." Journal of Environmental Sciences 24 (1): 2--13.
 
 WHO. 2021. "WHO Global Air Quality Guidelines: Particulate Matter (Pm2. 5 and Pm10), Ozone, Nitrogen Dioxide, Sulfur Dioxide and Carbon Monoxide: Executive Summary."
 
