@@ -2,7 +2,7 @@
 
 \label{sec:intro}
 
-The objective of this project is to answer the following inferential question: **Does PM2.5 measurement in Beijing, China collected between 2013 and 2017 show any sign of improvement?**
+The objective of this project is to answer the following inferential question: **Does PM2.5 measurement in Beijing, China collected between the first and second half of the March 2013-2017 show any sign of improvement?**
 
 Beijing, China has long struggled with poor air quality, a result of the country's rapid industrialization and its heavy reliance on coal for electricity generation, as well as its growing and increasingly urban middle class [@wang2012air]. In fact, in September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities [@world2021global].
 
