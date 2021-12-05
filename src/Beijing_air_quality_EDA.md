@@ -148,12 +148,14 @@ exploration to find out more representative characteristics of our data.
 
 ## Data Wrangling
 
-We are interested to determine how PM2.5 has changed over two time
-periods - between **March 1 2013 to Feb 28 2015**, and **March 1 2015 to
-Feb 28 2017**. In this project, we will refer to first time period
-**March 1 2013 to Feb 28 2015** as `time_A` and second time period
-**March 1 2015 to Feb 28 2017** as `time_B` in both visualization and
-code scripts after we processed the raw data.
+Since we observe only slight changes in yealy PM2.5 measurements, we
+have chosen to focus our analysis on determining how PM2.5 measurements
+have changed between two time periods - between **March 1 2013 to Feb 28
+2015**, and **March 1 2015 to Feb 28 2017**. Hereafter in this project,
+we will refer to first time period **March 1 2013 to Feb 28 2015** as
+`time_A` and second time period **March 1 2015 to Feb 28 2017** as
+`time_B` in both visualization and code scripts after we processed the
+raw data.
 
 We set out to answer these questions from our proposal:
 
