@@ -24,6 +24,8 @@ During EDA, we wrangled the original data set and preprocessed the data into two
 
 -   Alternative Hypothesis (*H*<sub>*A*</sub>): There median PM2.5 value in Beijing in time_A is greater than the median PM2.5 values in time_B (*Q*\_*A*(0.5) > *Q*\_*B*(0.5))
 
+![](Makefile.png)
+
 ## Report
 
 The final report can be found in this [Webpage](https://ubc-mds.github.io/DSCI_522_Beijing_Air_Quality/)
