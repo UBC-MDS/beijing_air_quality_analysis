@@ -118,7 +118,12 @@ the lowest `pm_max` value but its mean was the same as in 2013.
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/year%20figure-1.png)<!-- -->
 
-Figure 1. Yearly Summary Line Plot of PM2.5 Measurements
+Figure 1. Yearly Summary Line Plot of PM2.5 Measurements, illustrating
+the evolution of PM2.5 mean PM2.5 measurements (in green) as well as
+minimum and maximum PM2.5 measurements (in blue and red) between 2013
+and 2017 (inclusive). This figure demonstrates the relatively modest
+mean measurement in relation to maximum values observed, and the
+relatively larger variability of maximum measurement observations.
 
 As seen from **Figure 1** above, the variation in the **max** PM2.5
 measurements across the years is the most obvious comparing to the
