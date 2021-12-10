@@ -14,7 +14,8 @@ RUN Rscript -e "install.packages('cowplot')" && \
     Rscript -e "install.packages('docopt')" && \
     Rscript -e "install.packages('here')" && \
     Rscript -e "install.packages('testthat')" && \
-    Rscript -e "install.packages('infer')"
+    Rscript -e "install.packages('infer')" && \
+    Rscript -e "install.packages('ggthemes')"
 
 # add a missing apt package to save images
 RUN apt-get install -y --no-install-recommends libxt6
