@@ -38,8 +38,7 @@ from **1 March 2013 to 28 February 2017**. The air-quality data is
 retrieved from the Beijing Municipal Environmental Monitoring Center. It
 was sourced from the UCI Machine Learning Repository
 [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
-
-This is the structure of each features in the data set.
+The structure of each this data set’s features are explored below.
 
     ## spec_tbl_df [420,768 × 18] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
     ##  $ No     : num [1:420768] 1 2 3 4 5 6 7 8 9 10 ...
