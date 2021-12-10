@@ -5,18 +5,12 @@
 # use rocker/tidyverse as the base image [Version: rocker/tidyverse:4]
 FROM rocker/tidyverse@sha256:d0cd11790cc01deeb4b492fb1d4a4e0d5aa267b595fe686721cfc7c5e5e8a684
 
-# install R packages
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-  && install2.r --error \
-    --deps TRUE \
-    knitr \
-    docopt \
-    here \
-    infer \
-    testthat 
-
-# install the cowplot package using install.packages
-RUN Rscript -e "install.packages('cowplot')"
+# install R packages using install.packages
+RUN Rscript -e "install.packages('cowplot')" && \
+    Rscript -e "install.packages('knitr')" && \
+    Rscript -e "install.packages('docopt')" && \
+    Rscript -e "install.packages('here')" && \
+    Rscript -e "install.packages('testthat')"
 
 # install the anaconda distribution of python
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
