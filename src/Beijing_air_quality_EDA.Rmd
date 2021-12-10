@@ -228,19 +228,14 @@ time_A_B_boxplot <- air_data_processed |>
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
   labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
        subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank())
+  labs(x="PM2.5 measurement",
+       y="")
 
 histogram <- air_data_processed |>
   ggplot(aes(x=PM2.5, fill=class)) +
   geom_histogram(bins=30) +
   facet_wrap(~class, ncol = 1) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
+  labs(y="Count (of hourly observations) per \nx-axis PM2.5 measurement")
 
 plot_grid(
   plot_grid(ggplot(),
