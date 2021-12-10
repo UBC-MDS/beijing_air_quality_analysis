@@ -43,9 +43,7 @@ head(air_data) |>
 
 ## Study the data
 
-This data set contains hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from **1 March 2013 to 28 February 2017**. The air-quality data is retrieved from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
-
-This is the structure of each features in the data set.
+This data set contains hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from **1 March 2013 to 28 February 2017**. The air-quality data is retrieved from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data). The structure of each this data set's features are explored below.
 
 ```{r study data}
 str(air_data, give.attr = FALSE)
