@@ -150,6 +150,13 @@ summary_by(month)|>
 ```
 
 ```{r month figure, fig.width=10, fig.height=5}
+
+months_num <- seq(1, 12, length = 12)
+
+month_list <- c("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug",
+                "Sep", "Oct", "Nov", "Dec")
+
 month_figure <- air_data |> 
                 select(PM2.5, month) |> 
                 drop_na(PM2.5) |> 
@@ -163,10 +170,13 @@ month_figure <- air_data |>
                            y = value, 
                            color = summary_values))+
                 geom_line()+
-                labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
+                labs(x = "Month", 
+                     y = "PM2.5 measurements", 
+                     color = "Summary Values", 
                      title = "Monthly Summary Line Plot") +
-                scale_x_continuous(breaks=pretty_breaks())
-
+                scale_x_continuous(
+                  breaks=months_num,
+                                   labels=month_list)
 month_figure
 ```
 
