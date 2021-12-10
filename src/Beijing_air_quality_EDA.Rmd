@@ -220,32 +220,36 @@ Both classes are equally distributed, even after dropping the missing PM2.5 valu
 Having verified that both classes are balanced, we move on to observe the distribution between both `time_A` and `time_B`.
 
 ```{r combined_distribution_plot, fig.width=8, fig.height=6}
+
 time_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
   geom_boxplot(outlier.alpha = 0.1,
                outlier.fill = NULL) +
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
-  labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
-       subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
+  labs(title = 'Box Plot and Histogram PM2.5 Distribution',
+       subtitle = 'plots over both Time Frame(time_A, time_B)') +
   labs(x="PM2.5 measurement",
-       y="")
+       y="")+
+  theme(text = element_text(size = 18))+theme_bw()
 
 histogram <- air_data_processed |>
   ggplot(aes(x=PM2.5, fill=class)) +
   geom_histogram(bins=30) +
   facet_wrap(~class, ncol = 1) +
-  labs(y="Count (of hourly observations) per \nx-axis PM2.5 measurement")
+  labs(y="Count (of hourly observations) per \nx-axis PM2.5 measurement")+
+  theme(text = element_text(size = 18))+theme_bw()
+
 
 plot_grid(
   plot_grid(ggplot(),
             time_A_B_boxplot,
             rel_widths = c(1,70)),
-  plot_grid(histogram + theme(legend.position = 'none'),
+  plot_grid(histogram,
             ggplot(),
             ncol=2,
             rel_widths = c(12,1.75)),
-  ncol=1)
+  ncol=1)+theme_bw()
 ```
 
 Figure 3. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)
