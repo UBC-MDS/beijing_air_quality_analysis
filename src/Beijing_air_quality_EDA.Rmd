@@ -176,7 +176,7 @@ month_figure <- air_data |>
                      title = "Monthly Summary Line Plot") +
                 scale_x_continuous(
                   breaks=months_num,
-                  labels=month_list)
+                                   labels=month_list)
 month_figure
 ```
 
