@@ -121,9 +121,10 @@ the lowest `pm_max` value but its mean was the same as in 2013.
 Figure 1. Yearly Summary Line Plot of PM2.5 Measurements, illustrating
 the evolution of PM2.5 mean PM2.5 measurements (in green) as well as
 minimum and maximum PM2.5 measurements (in blue and red) between 2013
-and 2017 (inclusive). This figure demonstrates the relatively modest
-mean measurement in relation to maximum values observed, and the
-relatively larger variability of maximum measurement observations.
+and 2017 (inclusive). This figure displays the trend a relatively steady
+mean PM2.5 measurements, despite a small decrease in 2016 and subsequent
+substantial increase in 2017, and points to relatively large variability
+of maximum measurement observations.
 
 As seen from **Figure 1** above, the variation in the **max** PM2.5
 measurements across the years is the most obvious comparing to the
@@ -139,7 +140,15 @@ Table 5. Mean, max and min of PM2.5 per month
 
 ![](Beijing_air_quality_EDA_files/figure-gfm/month%20figure-1.png)<!-- -->
 
-Figure 2. Monthly Summary Line Plot of PM2.5 Measurements
+Figure 2. Monthly Summary Line Plot of PM2.5 Measurements. Unlike Figure
+1, Figure 2 displays the aggregate monthly average of mean, minimum, and
+maximum PM2.5 measurements across the entire data set time series (in
+green, blue, and red, respectively). This figure reflects a general
+monthly trend whereby both mean and maximum PM2.5 measurements appears
+most elevated in winter months, and are at their lowest in the month of
+August. The observed variability of maximum PM2.5 measurements
+month-to-month is most noticeable throughout the months of February
+through June.
 
 As seen from Figure 2, `pm_mean` is generally at the lowest in August
 and September and overall the variation in max surpasses the changes in
