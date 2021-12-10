@@ -5,18 +5,19 @@
 # use rocker/tidyverse as the base image [Version: rocker/tidyverse:4]
 FROM rocker/tidyverse@sha256:d0cd11790cc01deeb4b492fb1d4a4e0d5aa267b595fe686721cfc7c5e5e8a684
 
-# install R packages
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-  && install2.r --error \
-    --deps TRUE \
-    knitr \
-    docopt \
-    here \
-    infer \
-    testthat 
+#check the base image is updated
+RUN apt-get update --fix-missing
 
-# install the cowplot package using install.packages
-RUN Rscript -e "install.packages('cowplot')"
+# install R packages using install.packages
+RUN Rscript -e "install.packages('cowplot')" && \
+    Rscript -e "install.packages('knitr')" && \
+    Rscript -e "install.packages('docopt')" && \
+    Rscript -e "install.packages('here')" && \
+    Rscript -e "install.packages('testthat')" && \
+    Rscript -e "install.packages('infer')"
+
+# add a missing apt package to save images
+RUN apt-get install -y --no-install-recommends libxt6
 
 # install the anaconda distribution of python
 RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
