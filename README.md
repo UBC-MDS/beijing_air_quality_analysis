@@ -24,7 +24,11 @@ During EDA, we wrangled the original data set and preprocessed the data into two
 
 -   Alternative Hypothesis (*H*<sub>*A*</sub>): There median PM2.5 value in Beijing in time_A is greater than the median PM2.5 values in time_B (*Q*\_*A*(0.5) > *Q*\_*B*(0.5))
 
-![](Makefile.png)
+## Structure Diagram (analysis process)
+
+Figure 1. Files graph (\**click on it to view the enlarged file graph diagram)*
+
+<img src="Makefile.png" width="4438"/>
 
 ## Report
 
