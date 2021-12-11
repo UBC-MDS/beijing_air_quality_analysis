@@ -55,7 +55,7 @@ To reset the repo to a clean state, with no intermediate or results files, run t
     
 #### **2. Without using Docker**
 
-To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
+To replicate the analysis, clone this GitHub repository, install the dependencies listed below, and run the following command at the command line/terminal from the root directory of this project:
 
     make all
 
@@ -63,7 +63,7 @@ To reset the repo to a clean state, with no intermediate or results files, run t
 
     make clean
 
-## Dependencies {#dependencies}
+## Dependencies
 
 -   Python 3.7.3 and Python packages:
 
@@ -89,6 +89,7 @@ To reset the repo to a clean state, with no intermediate or results files, run t
     -   tibble==3.1.5
     -   ggplot2==3.3.5
     -   infer==1.0.0
+    -   caret==4.1.0
 
 ## License
 
