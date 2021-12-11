@@ -21,7 +21,7 @@ set.seed(2020)
 
 ## Data Import
 
-The data is downloaded and unzipped by a [python script](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/blob/main/src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
+The data is downloaded and unzipped by a [python script](https://github.com/UBC-MDS/beijing_air_quality_analysis/blob/main/src/download_data.py). 12 csv files were used in this project. Each file represents one of 12 nationally-controlled air-quality monitoring sites, which captured information **between March 2013 and February 2017**. They are all in the same format (.csv files), and are merged and stored in `air_data`.
 
 ```{r load data}
 csv_list <- dir(here("data", "raw","PRSA_Data_20130301-20170228"))
@@ -43,9 +43,7 @@ head(air_data) |>
 
 ## Study the data
 
-This data set contains hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from **1 March 2013 to 28 February 2017**. The air-quality data is retrieved from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data).
-
-This is the structure of each features in the data set.
+This data set contains hourly air pollutants data from 12 nationally-controlled air-quality monitoring sites in Beijing, China from **1 March 2013 to 28 February 2017**. The air-quality data is retrieved from the Beijing Municipal Environmental Monitoring Center. It was sourced from the UCI Machine Learning Repository [here](https://archive-beta.ics.uci.edu/ml/datasets/beijing+multi+site+air+quality+data). The structure of each this data set's features are explored below.
 
 ```{r study data}
 str(air_data, give.attr = FALSE)
@@ -150,6 +148,13 @@ summary_by(month)|>
 ```
 
 ```{r month figure, fig.width=10, fig.height=5}
+
+months_num <- seq(1, 12, length = 12)
+
+month_list <- c("Jan", "Feb", "Mar", "Apr",
+                "May", "Jun", "Jul", "Aug",
+                "Sep", "Oct", "Nov", "Dec")
+
 month_figure <- air_data |> 
                 select(PM2.5, month) |> 
                 drop_na(PM2.5) |> 
@@ -163,10 +168,13 @@ month_figure <- air_data |>
                            y = value, 
                            color = summary_values))+
                 geom_line()+
-                labs(x = "Month", y = "PM2.5 measurements", color = "Summary Values", 
+                labs(x = "Month", 
+                     y = "PM2.5 measurements", 
+                     color = "Summary Values", 
                      title = "Monthly Summary Line Plot") +
-                scale_x_continuous(breaks=pretty_breaks())
-
+                scale_x_continuous(
+                  breaks=months_num,
+                                   labels=month_list)
 month_figure
 ```
 
@@ -220,32 +228,36 @@ Both classes are equally distributed, even after dropping the missing PM2.5 valu
 Having verified that both classes are balanced, we move on to observe the distribution between both `time_A` and `time_B`.
 
 ```{r combined_distribution_plot, fig.width=8, fig.height=6}
+
 time_A_B_boxplot <- air_data_processed |>
   group_by(class) |>
   ggplot(aes(x=PM2.5, y=class, fill = class)) +
   geom_boxplot(outlier.alpha = 0.1,
                outlier.fill = NULL) +
   geom_point(stat = 'summary', fun = 'mean', color = 'black') +
-  labs(title = 'Box Plot and Histogram PM2.5 Distribution per Time Frame',
-       subtitle = 'time_A has a higher median and mean value than time_B \ntime_A and time_B are both heavily right-skewed') +
+  labs(title = 'Box Plot and Histogram PM2.5 Distribution',
+       subtitle = 'plots over both Time Frame(time_A, time_B)') +
   labs(x="PM2.5 measurement",
-       y="")
+       y="")+
+  theme(text = element_text(size = 18))+theme_bw()
 
 histogram <- air_data_processed |>
   ggplot(aes(x=PM2.5, fill=class)) +
   geom_histogram(bins=30) +
   facet_wrap(~class, ncol = 1) +
-  labs(y="Count (of hourly observations) per \nx-axis PM2.5 measurement")
+  labs(y="Count (of hourly observations) per \nx-axis PM2.5 measurement")+
+  theme(text = element_text(size = 18))+theme_bw()
+
 
 plot_grid(
   plot_grid(ggplot(),
             time_A_B_boxplot,
             rel_widths = c(1,70)),
-  plot_grid(histogram + theme(legend.position = 'none'),
+  plot_grid(histogram,
             ggplot(),
             ncol=2,
             rel_widths = c(12,1.75)),
-  ncol=1)
+  ncol=1)+theme_bw()
 ```
 
 Figure 3. Boxplot and Histogram for both samples' PM2.5 distribution. (Black dots represent the mean PM2.5 value of each sample)

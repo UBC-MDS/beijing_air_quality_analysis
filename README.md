@@ -4,7 +4,7 @@
 
 Data analysis project for DSCI 522 (Data Science Workflows); a course in the Master of Data Science program at the University of British Columbia.
 
-Milestone3 Link: [https://github.com/UBCMDS/DSCI_522_Beijing_Air_Quality/tree/c05cf571eb5ebbd61355599a814123c56642776b](https://github.com/UBC-MDS/DSCI_522_Beijing_Air_Quality/tree/c05cf571eb5ebbd61355599a814123c56642776b)
+Milestone3 Link: <https://github.com/UBC-MDS/beijing_air_quality_analysis/tree/c05cf571eb5ebbd61355599a814123c56642776b>
 
 ## Introduction
 
@@ -32,21 +32,45 @@ Figure 1. Files graph (\**click on it to view the enlarged file graph diagram)*
 
 ## Report
 
-The final report can be found in this [Webpage](https://ubc-mds.github.io/DSCI_522_Beijing_Air_Quality/)
+The final report can be found in this [webpage](https://ubc-mds.github.io/beijing_air_quality_analysis/)
 
 ## Usage
 
-To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
+There are two suggested ways to run this analysis:
+
+#### **1. Using Docker**
+
+To replicate the analysis, install [Docker](https://www.docker.com/get-started). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis all
+
+For Apple Mac M1 users, please run the following command instead at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" --platform linux/amd64 jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis all
+    
+Two reports can be found,
+
+> 1.  `src\Beijing_air_quality_EDA.Rmd` : A detailed EDA report for Beijing air quality analysis and visualization
+> 2.  `doc\Beijing_air_quality_report.html` : Equivalent to final report [webpage](https://ubc-mds.github.io/beijing_air_quality_analysis/)
+
+To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis clean
+
+For Apple Mac M1 users, please run the following command instead at the command line/terminal from the root directory of this project:
+
+    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" --platform linux/amd64 jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis clean
+    
+#### **2. Without using Docker**
+
+To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
 
     make all
-
+    
 To reset the repo to a clean state, with no intermediate or results files, run the following command at the command line/terminal from the root directory of this project:
 
     make clean
 
-To reset the repo with no imported or processed data files, run the following command at the command line/terminal from the root directory of this project:
-
-    make clean_data
 
 ## Dependencies {#dependencies}
 
