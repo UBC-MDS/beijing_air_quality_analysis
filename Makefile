@@ -53,3 +53,4 @@ clean_EDA:
 clean_reports:
 		rm -rf results
 		rm -rf doc/Beijing_air_quality_report.html
+		rm -rf index.html
