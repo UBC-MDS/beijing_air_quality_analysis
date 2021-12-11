@@ -16,7 +16,8 @@ RUN apt-get update -qq && apt-get --no-install-recommends install \
   knitr \
   infer \
   docopt \
-  kableExtra
+  kableExtra \
+  readr
 
 # install R packages using install.packages
 RUN Rscript -e "install.packages('cowplot')" && \
