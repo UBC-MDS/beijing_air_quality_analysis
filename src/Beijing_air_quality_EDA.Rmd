@@ -33,8 +33,7 @@ for (file_name in csv_list) {
                       here("data",
                            "raw", 
                            "PRSA_Data_20130301-20170228", 
-                           file_name), 
-                      show_col_types = FALSE))
+                           file_name)))
 }
 
 head(air_data) |>
