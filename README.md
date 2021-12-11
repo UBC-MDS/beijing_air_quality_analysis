@@ -4,8 +4,6 @@
 
 Data analysis project for DSCI 522 (Data Science Workflows); a course in the Master of Data Science program at the University of British Columbia.
 
-Milestone3 Link: <https://github.com/UBC-MDS/beijing_air_quality_analysis/tree/c05cf571eb5ebbd61355599a814123c56642776b>
-
 ## Introduction
 
 Beijing, China has long struggled with poor air quality, a result of the country's rapid industrialization and its heavy reliance on coal for electricity generation, as well as its growing and increasingly urban middle class (Wang and Hao 2012). In September 2021, the World Health Organization revised its air quality guidelines to more restrictive levels following the increasingly evident causal relationships between poor air quality and its harmful health consequences on impacted mainly urban communities (WHO 2021).
