@@ -42,11 +42,11 @@ There are two suggested ways to run this analysis:
 
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
-    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis all
+    docker run --rm --platform linux/amd64 -v $(PWD):/home/beijing_air_quality jacqann/beijing-air-quality@sha256:4b8e3a93539d8cde4ec72178ffd826d8e37dd26037722d4eae3da6752f6a0fdf make -C /home/beijing_air_quality all
 
 For Apple Mac M1 users, please run the following command instead at the command line/terminal from the root directory of this project:
 
-    docker run --rm -v "$(pwd):/home/rstudio/beijing_air_quality_analysis" --platform linux/amd64 jacqann/beijing-air-quality:v0.7.0 make -C /home/rstudio/beijing_air_quality_analysis all
+    docker run --rm --platform linux/amd64 -v $(PWD):/home/beijing_air_quality jacqann/beijing-air-quality@sha256:4b8e3a93539d8cde4ec72178ffd826d8e37dd26037722d4eae3da6752f6a0fdf make -C /home/beijing_air_quality clean
     
 Two reports can be found,
 
