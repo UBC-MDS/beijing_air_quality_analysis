@@ -40,7 +40,7 @@ There are two suggested ways to run this analysis:
 
 #### **1. Using Docker**
 
-To replicate the analysis, install [Docker](https://www.docker.com/get-started). Make sure you have configured Docker to allow at least 7 GB memory to run. Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+To replicate the analysis, install [Docker](https://www.docker.com/get-started). Make sure you have configured Docker to **allow at least 7 GB memory to run**. Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
     docker run --rm --platform linux/amd64 -v "$(PWD):/home/beijing_air_quality" jacqann/beijing-air-quality@sha256:4b8e3a93539d8cde4ec72178ffd826d8e37dd26037722d4eae3da6752f6a0fdf make -C /home/beijing_air_quality all
 
